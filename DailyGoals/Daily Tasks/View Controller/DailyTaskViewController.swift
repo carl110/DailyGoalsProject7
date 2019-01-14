@@ -10,6 +10,18 @@ import UIKit
 
 class DailyTaskViewController: UIViewController {
 
+    
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var checkBox: CheckBox!
+    
+    @IBAction func checkBox(_ sender: Any) {
+        if checkBox.isChecked == false {
+            textField.text = "Checked" }
+        else {
+            textField.text = "UnChecked"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

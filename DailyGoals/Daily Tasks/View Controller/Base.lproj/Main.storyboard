@@ -51,15 +51,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-ZD-yVz" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
-                                <rect key="frame" x="36" y="32" width="59" height="60"/>
+                                <rect key="frame" x="43" y="35" width="59" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="emptycheckbox"/>
+                                <connections>
+                                    <action selector="checkBox:" destination="TwY-vl-L58" eventType="touchUpInside" id="avs-TR-7e2"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ER2-5p-BL3">
+                                <rect key="frame" x="119" y="168" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pyu-of-Duo"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Todays Tasks" id="nuf-BK-fZa"/>
+                    <connections>
+                        <outlet property="checkBox" destination="G5T-ZD-yVz" id="FNf-Sd-Cbn"/>
+                        <outlet property="textField" destination="ER2-5p-BL3" id="Pdn-53-UFX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVq-Mj-DUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
