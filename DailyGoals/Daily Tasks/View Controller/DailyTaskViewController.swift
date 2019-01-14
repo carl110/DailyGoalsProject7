@@ -9,24 +9,11 @@
 import UIKit
 
 class DailyTaskViewController: UIViewController {
-    
-    @IBOutlet var tickedCheckBox: CheckBox!
-    @IBOutlet var emptyCheckBox: CheckBox!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tickedCheckBox.delegate = self as? CheckBoxDelegate
-        self.emptyCheckBox.delegate = self as? CheckBoxDelegate
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
-    func checkBoxDidChange(checkBox: CheckBox) {
-        if checkBox == self.tickedCheckBox {
-            self.emptyCheckBox.isChecked = !checkBox.isChecked
-        } else {
-            self.tickedCheckBox.isChecked = !checkBox.isChecked
-        }
+        // Do any additional setup after loading the view, typically from a nib.
     }
 
     

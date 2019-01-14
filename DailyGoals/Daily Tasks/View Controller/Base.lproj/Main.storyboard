@@ -60,10 +60,6 @@
                         <viewLayoutGuide key="safeArea" id="pyu-of-Duo"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Todays Tasks" id="nuf-BK-fZa"/>
-                    <connections>
-                        <outlet property="emptyCheckBox" destination="G5T-ZD-yVz" id="6Ai-qV-vt7"/>
-                        <outlet property="tickedCheckBox" destination="G5T-ZD-yVz" id="TMo-dA-6G9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVq-Mj-DUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,17 +8,12 @@
 
 import UIKit
 
-protocol CheckBoxDelegate {
-    func checkBoxDidChange(checkbox: CheckBox) -> Void
-}
-
 class CheckBox: UIButton {
     // Images
     let checkedImage = UIImage(named: "tickedcheckbox")! as UIImage
     let uncheckedImage = UIImage(named: "emptycheckbox")! as UIImage
     
-    var delegate: CheckBoxDelegate?
-    // Bool property
+    // Bool property chooses images for the variables
     var isChecked: Bool = false {
         didSet{
             if isChecked == true {
@@ -35,7 +30,13 @@ class CheckBox: UIButton {
     }
     //change image to the opposite image when selected
     @objc func buttonClicked(sender: UIButton) {
-        isChecked = !isChecked
-        self.delegate?.checkBoxDidChange(checkbox: self)
+        if(sender == self) {
+            if isChecked == true {
+                isChecked = false  }
+            else {
+                isChecked = true
+            }
+        }
     }
 }
+
