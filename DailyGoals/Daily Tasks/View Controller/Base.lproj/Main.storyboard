@@ -40,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9q3-eN-nNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-447" y="351"/>
+            <point key="canvasLocation" x="-751" y="455"/>
         </scene>
         <!--Todays Tasks-->
         <scene sceneID="VpT-s1-QJa">
@@ -49,14 +49,25 @@
                     <view key="view" contentMode="scaleToFill" id="RAo-tf-PXf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-ZD-yVz" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                                <rect key="frame" x="36" y="32" width="59" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="emptycheckbox"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pyu-of-Duo"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Todays Tasks" id="nuf-BK-fZa"/>
+                    <connections>
+                        <outlet property="emptyCheckBox" destination="G5T-ZD-yVz" id="6Ai-qV-vt7"/>
+                        <outlet property="tickedCheckBox" destination="G5T-ZD-yVz" id="TMo-dA-6G9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVq-Mj-DUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202" y="-703"/>
+            <point key="canvasLocation" x="200.80000000000001" y="-703.89805097451278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1UO-Jq-mbF">
@@ -78,4 +89,7 @@
             <point key="canvasLocation" x="-750" y="-371"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="emptycheckbox" width="225" height="225"/>
+    </resources>
 </document>
