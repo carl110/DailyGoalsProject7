@@ -17,6 +17,8 @@
 		8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F321ECC31300EDF42F /* HistoryViewController.swift */; };
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
+		89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */; };
+		89CE16E221EF6170004CE51D /* DailyTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16E121EF6170004CE51D /* DailyTaskData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		8997A9F321ECC31300EDF42F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		89CE16E121EF6170004CE51D /* DailyTaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		8997A9FC21ECCB3300EDF42F /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				89CE16E121EF6170004CE51D /* DailyTaskData.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				8997AA0721ECCC8E00EDF42F /* CheckBox.swift */,
+				89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -326,6 +332,8 @@
 				8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */,
 				897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */,
 				897D130121EC86C50062B0D2 /* DailyGoals.xcdatamodeld in Sources */,
+				89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */,
+				89CE16E221EF6170004CE51D /* DailyTaskData.swift in Sources */,
 				8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

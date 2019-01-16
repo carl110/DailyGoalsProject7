@@ -50,28 +50,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-ZD-yVz" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
-                                <rect key="frame" x="43" y="35" width="59" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ER2-5p-BL3">
+                                <rect key="frame" x="20" y="40" width="335" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="F3s-i3-K9T"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-ZD-yVz" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                                <rect key="frame" x="305" y="60" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Cqj-mY-EOg"/>
+                                    <constraint firstAttribute="height" constant="50" id="hXw-3S-Sdc"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="emptycheckbox"/>
                                 <connections>
                                     <action selector="checkBox:" destination="TwY-vl-L58" eventType="touchUpInside" id="avs-TR-7e2"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ER2-5p-BL3">
-                                <rect key="frame" x="119" y="168" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fHJ-Yb-MKi">
+                                <rect key="frame" x="20" y="150" width="335" height="448"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="56" id="6xg-f3-yCF" customClass="TableViewCell" customModule="DailyGoals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="335" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6xg-f3-yCF" id="lxb-9g-TaK">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="55.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ein-H1-htd">
+                                                    <rect key="frame" x="20" y="16" width="295" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ein-H1-htd" firstAttribute="top" secondItem="lxb-9g-TaK" secondAttribute="topMargin" constant="5" id="2Oe-X0-e0n"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ein-H1-htd" secondAttribute="trailing" constant="5" id="LEu-PL-WWY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ein-H1-htd" secondAttribute="bottom" constant="5" id="dgn-fn-OWq"/>
+                                                <constraint firstItem="Ein-H1-htd" firstAttribute="leading" secondItem="lxb-9g-TaK" secondAttribute="leadingMargin" constant="5" id="s5f-gp-VP0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dailyTasksLabel" destination="Ein-H1-htd" id="jya-ue-BKO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="G5T-ZD-yVz" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="40" id="0UY-lw-oOj"/>
+                            <constraint firstItem="G5T-ZD-yVz" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="40" id="1b5-j6-IKb"/>
+                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="G5T-ZD-yVz" secondAttribute="trailing" constant="20" id="3yM-fA-tyN"/>
+                            <constraint firstItem="fHJ-Yb-MKi" firstAttribute="top" secondItem="ER2-5p-BL3" secondAttribute="bottom" constant="10" id="IwP-8b-4m1"/>
+                            <constraint firstItem="ER2-5p-BL3" firstAttribute="leading" secondItem="pyu-of-Duo" secondAttribute="leading" constant="20" id="NwH-VT-6yJ"/>
+                            <constraint firstItem="pyu-of-Duo" firstAttribute="bottom" secondItem="fHJ-Yb-MKi" secondAttribute="bottom" constant="20" id="Oxx-Or-UhW"/>
+                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="G5T-ZD-yVz" secondAttribute="trailing" constant="20" id="YKW-Y5-0Xy"/>
+                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="ER2-5p-BL3" secondAttribute="trailing" constant="20" id="k4Z-xs-Xwp"/>
+                            <constraint firstItem="fHJ-Yb-MKi" firstAttribute="leading" secondItem="pyu-of-Duo" secondAttribute="leading" constant="20" id="ndB-5p-Pht"/>
+                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="fHJ-Yb-MKi" secondAttribute="trailing" constant="20" id="rqU-K3-8P6"/>
+                            <constraint firstItem="ER2-5p-BL3" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="20" id="zzB-jm-9DU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pyu-of-Duo"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Todays Tasks" id="nuf-BK-fZa"/>
                     <connections>
                         <outlet property="checkBox" destination="G5T-ZD-yVz" id="FNf-Sd-Cbn"/>
+                        <outlet property="dailyTaskTableView" destination="fHJ-Yb-MKi" id="eal-HO-QFu"/>
                         <outlet property="textField" destination="ER2-5p-BL3" id="Pdn-53-UFX"/>
                     </connections>
                 </viewController>
