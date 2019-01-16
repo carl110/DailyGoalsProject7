@@ -62,8 +62,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5T-ZD-yVz" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
                                 <rect key="frame" x="305" y="60" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Cqj-mY-EOg"/>
-                                    <constraint firstAttribute="height" constant="50" id="hXw-3S-Sdc"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="FF6-am-cXq"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="xOh-hO-EZ5"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="emptycheckbox"/>
                                 <connections>
@@ -82,17 +82,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ein-H1-htd">
-                                                    <rect key="frame" x="20" y="16" width="295" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="285" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNP-dB-7bC" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                                                    <rect key="frame" x="285" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="5EH-mP-OXW"/>
+                                                        <constraint firstAttribute="width" secondItem="dNP-dB-7bC" secondAttribute="height" multiplier="1:1" id="rp0-AD-C5S"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Ein-H1-htd" firstAttribute="top" secondItem="lxb-9g-TaK" secondAttribute="topMargin" constant="5" id="2Oe-X0-e0n"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Ein-H1-htd" secondAttribute="trailing" constant="5" id="LEu-PL-WWY"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ein-H1-htd" secondAttribute="bottom" constant="5" id="dgn-fn-OWq"/>
-                                                <constraint firstItem="Ein-H1-htd" firstAttribute="leading" secondItem="lxb-9g-TaK" secondAttribute="leadingMargin" constant="5" id="s5f-gp-VP0"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ein-H1-htd" secondAttribute="bottom" id="4O4-zV-3Xx"/>
+                                                <constraint firstItem="dNP-dB-7bC" firstAttribute="leading" secondItem="Ein-H1-htd" secondAttribute="trailing" id="D1G-0x-HpG"/>
+                                                <constraint firstAttribute="trailing" secondItem="dNP-dB-7bC" secondAttribute="trailing" id="Gyd-bi-pxi"/>
+                                                <constraint firstItem="Ein-H1-htd" firstAttribute="leading" secondItem="lxb-9g-TaK" secondAttribute="leading" id="QyM-hE-R0Z"/>
+                                                <constraint firstItem="Ein-H1-htd" firstAttribute="top" secondItem="lxb-9g-TaK" secondAttribute="top" id="b5C-tg-TKo"/>
+                                                <constraint firstItem="dNP-dB-7bC" firstAttribute="top" secondItem="lxb-9g-TaK" secondAttribute="top" id="p5e-Ru-7cq"/>
+                                                <constraint firstAttribute="bottom" secondItem="dNP-dB-7bC" secondAttribute="bottom" id="xvg-au-54g"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -104,16 +115,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="G5T-ZD-yVz" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="40" id="0UY-lw-oOj"/>
-                            <constraint firstItem="G5T-ZD-yVz" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="40" id="1b5-j6-IKb"/>
-                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="G5T-ZD-yVz" secondAttribute="trailing" constant="20" id="3yM-fA-tyN"/>
                             <constraint firstItem="fHJ-Yb-MKi" firstAttribute="top" secondItem="ER2-5p-BL3" secondAttribute="bottom" constant="10" id="IwP-8b-4m1"/>
+                            <constraint firstItem="G5T-ZD-yVz" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="40" id="LXC-sh-VfI"/>
                             <constraint firstItem="ER2-5p-BL3" firstAttribute="leading" secondItem="pyu-of-Duo" secondAttribute="leading" constant="20" id="NwH-VT-6yJ"/>
                             <constraint firstItem="pyu-of-Duo" firstAttribute="bottom" secondItem="fHJ-Yb-MKi" secondAttribute="bottom" constant="20" id="Oxx-Or-UhW"/>
-                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="G5T-ZD-yVz" secondAttribute="trailing" constant="20" id="YKW-Y5-0Xy"/>
+                            <constraint firstItem="fHJ-Yb-MKi" firstAttribute="top" secondItem="G5T-ZD-yVz" secondAttribute="bottom" constant="40" id="TWz-BZ-VHx"/>
                             <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="ER2-5p-BL3" secondAttribute="trailing" constant="20" id="k4Z-xs-Xwp"/>
                             <constraint firstItem="fHJ-Yb-MKi" firstAttribute="leading" secondItem="pyu-of-Duo" secondAttribute="leading" constant="20" id="ndB-5p-Pht"/>
                             <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="fHJ-Yb-MKi" secondAttribute="trailing" constant="20" id="rqU-K3-8P6"/>
+                            <constraint firstItem="pyu-of-Duo" firstAttribute="trailing" secondItem="G5T-ZD-yVz" secondAttribute="trailing" constant="20" id="yyl-Bd-gbT"/>
                             <constraint firstItem="ER2-5p-BL3" firstAttribute="top" secondItem="pyu-of-Duo" secondAttribute="top" constant="20" id="zzB-jm-9DU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pyu-of-Duo"/>
@@ -121,8 +131,8 @@
                     <tabBarItem key="tabBarItem" title="Todays Tasks" id="nuf-BK-fZa"/>
                     <connections>
                         <outlet property="checkBox" destination="G5T-ZD-yVz" id="FNf-Sd-Cbn"/>
+                        <outlet property="dailyGoal" destination="ER2-5p-BL3" id="Pdn-53-UFX"/>
                         <outlet property="dailyTaskTableView" destination="fHJ-Yb-MKi" id="eal-HO-QFu"/>
-                        <outlet property="textField" destination="ER2-5p-BL3" id="Pdn-53-UFX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVq-Mj-DUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

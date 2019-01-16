@@ -14,15 +14,13 @@ class DailyTaskViewController: UIViewController {
     var tasks: [DailyTaskData] = []
     
     @IBOutlet weak var dailyTaskTableView: UITableView!
-    
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var dailyGoal: UITextField!
     @IBOutlet weak var checkBox: CheckBox!
-    
     @IBAction func checkBox(_ sender: Any) {
         if checkBox.isChecked == false {
-            textField.text = "Checked" }
+            dailyGoal.text = "Checked" }
         else {
-            textField.text = "UnChecked"
+            dailyGoal.text = "UnChecked"
         }
     }
     
@@ -32,6 +30,7 @@ class DailyTaskViewController: UIViewController {
         
         dailyTaskTableView.delegate = self
         dailyTaskTableView.dataSource = self
+        
         
     }
     
@@ -67,7 +66,10 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Todays Tasks"
+    }
     
 }
 
