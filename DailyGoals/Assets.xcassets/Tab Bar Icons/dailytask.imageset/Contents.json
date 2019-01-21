@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "history.png",
+      "filename" : "dailytask.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "history(1).png",
+      "filename" : "dailytask(1).png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "history(2).png",
+      "filename" : "dailytask(2).png",
       "scale" : "3x"
     }
   ],
