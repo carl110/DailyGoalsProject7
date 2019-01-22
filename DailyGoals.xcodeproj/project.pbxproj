@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12F821EC86C50062B0D2 /* AppDelegate.swift */; };
 		897D12FB21EC86C50062B0D2 /* DailyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */; };
-		897D12FE21EC86C50062B0D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897D12FC21EC86C50062B0D2 /* Main.storyboard */; };
 		897D130121EC86C50062B0D2 /* DailyGoals.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */; };
 		897D130321EC86CA0062B0D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897D130221EC86CA0062B0D2 /* Assets.xcassets */; };
 		897D130621EC86CA0062B0D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */; };
@@ -19,7 +18,7 @@
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
 		89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */; };
 		89CE16E221EF6170004CE51D /* DailyTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16E121EF6170004CE51D /* DailyTaskData.swift */; };
-		89CE16E521F1C2D0004CE51D /* TabBarFlowUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89CE16E421F1C2D0004CE51D /* TabBarFlowUI.storyboard */; };
+		89CE16E521F1C2D0004CE51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89CE16E421F1C2D0004CE51D /* Main.storyboard */; };
 		89CE16E721F1C2E7004CE51D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16E621F1C2E7004CE51D /* TabBarController.swift */; };
 		89CE16EA21F1C301004CE51D /* TabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16E921F1C301004CE51D /* TabBarBuilder.swift */; };
 		89CE16EC21F1C311004CE51D /* TabBarFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16EB21F1C311004CE51D /* TabBarFlow.swift */; };
@@ -51,7 +50,6 @@
 		897D12F521EC86C50062B0D2 /* DailyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897D12F821EC86C50062B0D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskViewController.swift; sourceTree = "<group>"; };
-		897D12FD21EC86C50062B0D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		897D130021EC86C50062B0D2 /* DailyGoals.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DailyGoals.xcdatamodel; sourceTree = "<group>"; };
 		897D130221EC86CA0062B0D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		897D130521EC86CA0062B0D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,7 +62,7 @@
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		89CE16E121EF6170004CE51D /* DailyTaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskData.swift; sourceTree = "<group>"; };
-		89CE16E421F1C2D0004CE51D /* TabBarFlowUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarFlowUI.storyboard; sourceTree = "<group>"; };
+		89CE16E421F1C2D0004CE51D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		89CE16E621F1C2E7004CE51D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		89CE16E921F1C301004CE51D /* TabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBuilder.swift; sourceTree = "<group>"; };
 		89CE16EB21F1C311004CE51D /* TabBarFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFlow.swift; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */,
-				897D12FC21EC86C50062B0D2 /* Main.storyboard */,
 				89CE16FA21F1CE7C004CE51D /* DailyTask.storyboard */,
 			);
 			path = "View Controller";
@@ -271,7 +268,7 @@
 		89CE16E321F1C2A1004CE51D /* TabBarFlow */ = {
 			isa = PBXGroup;
 			children = (
-				89CE16E421F1C2D0004CE51D /* TabBarFlowUI.storyboard */,
+				89CE16E421F1C2D0004CE51D /* Main.storyboard */,
 				89CE16E621F1C2E7004CE51D /* TabBarController.swift */,
 				89CE16E821F1C2EC004CE51D /* Flow */,
 			);
@@ -395,13 +392,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89CE16E521F1C2D0004CE51D /* TabBarFlowUI.storyboard in Resources */,
+				89CE16E521F1C2D0004CE51D /* Main.storyboard in Resources */,
 				89CE16F721F1CE56004CE51D /* HistoryView.storyboard in Resources */,
 				89CE16FB21F1CE7C004CE51D /* DailyTask.storyboard in Resources */,
 				89CE16F921F1CE69004CE51D /* ProgressView.storyboard in Resources */,
 				897D130621EC86CA0062B0D2 /* LaunchScreen.storyboard in Resources */,
 				897D130321EC86CA0062B0D2 /* Assets.xcassets in Resources */,
-				897D12FE21EC86C50062B0D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,14 +457,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		897D12FC21EC86C50062B0D2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				897D12FD21EC86C50062B0D2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

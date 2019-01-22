@@ -19,7 +19,7 @@ class TabBarBuilder {
     
     static func showIn(window: UIWindow) {
         
-        let tbController = UIStoryboard(name: "TabBarFlowUI", bundle: nil).instantiateInitialViewController() as! TabBarController
+        let tbController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! TabBarController
         let tbFlow = TabBarFlow(tbController: tbController)
         
         tbController.viewControllers = setupTabControllers(tbFlow: tbFlow)
