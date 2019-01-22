@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939DFC821F743C3001983A6 /* UIColor+extensions.swift */; };
 		897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12F821EC86C50062B0D2 /* AppDelegate.swift */; };
 		897D12FB21EC86C50062B0D2 /* DailyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */; };
 		897D130121EC86C50062B0D2 /* DailyGoals.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8939DFC821F743C3001983A6 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		897D12F521EC86C50062B0D2 /* DailyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897D12F821EC86C50062B0D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8939DFC721F743AC001983A6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8939DFC821F743C3001983A6 /* UIColor+extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		897D12EC21EC86C40062B0D2 = {
 			isa = PBXGroup;
 			children = (
@@ -123,8 +133,8 @@
 				8997A9FB21ECCA5700EDF42F /* Daily Tasks */,
 				8997A9FA21ECCA5500EDF42F /* History View */,
 				8997A9F921ECCA5200EDF42F /* Progress View */,
+				8939DFC721F743AC001983A6 /* Extensions */,
 				8997AA0621ECCC6400EDF42F /* Custom Views */,
-				8997AA0521ECCC5700EDF42F /* Extensions */,
 				897D12F821EC86C50062B0D2 /* AppDelegate.swift */,
 				897D130221EC86CA0062B0D2 /* Assets.xcassets */,
 				897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */,
@@ -247,13 +257,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8997AA0521ECCC5700EDF42F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8997AA0621ECCC6400EDF42F /* Custom Views */ = {
@@ -429,6 +432,7 @@
 				897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */,
 				897D130121EC86C50062B0D2 /* DailyGoals.xcdatamodeld in Sources */,
 				89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */,
+				8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */,
 				89CE170521F5FC26004CE51D /* HistoryFlow.swift in Sources */,
 				89CE16E221EF6170004CE51D /* DailyTaskData.swift in Sources */,
 				8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */,

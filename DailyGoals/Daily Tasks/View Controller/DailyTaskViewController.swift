@@ -15,8 +15,14 @@ class DailyTaskViewController: UIViewController {
     
     
     
+    var tableCellData: Array<Any> = []
+    var tableSectionName: Array<Any> = []
+    
     var tasks: [DailyTaskData] = []
+    
+    var expandedSectionHeaderNumber: Int = -1
 
+    let HeaderSectionTag: Int = 1
     @IBOutlet weak var dailyGoal: UILabel!
     @IBOutlet weak var dailyTaskTableView: UITableView!
     @IBOutlet weak var checkBox: CheckBox!
@@ -30,11 +36,15 @@ class DailyTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tasks = createTasks()
+        tableCellData = [ ["Task 1", "Task 2","Task 3"],
+                         ["Task 1", "Task 2","Task 3"],
+                         ["Task 1", "Task 2","Task 3"] ]
+        tableSectionName = ["Day 1", "Day2", "Day 3"]
 
         dailyTaskTableView.delegate = self
         dailyTaskTableView.dataSource = self
         
+        self.dailyTaskTableView!.tableFooterView = UIView()
         
     }
     
@@ -62,22 +72,132 @@ class DailyTaskViewController: UIViewController {
 }
 
 extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+    
+    //Number of section required for table
+    func numberOfSections(in tableView: UITableView) -> Int {
+
+        return tableSectionName.count
     }
-
+    
+    //Number of rows for each section
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (self.expandedSectionHeaderNumber == section) {
+            let arrayOfItems = self.tableCellData[section] as! NSArray
+            return arrayOfItems.count
+        } else {
+            return 0
+        }
+    }
+    
+    //Name used in the section headers
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (self.tableSectionName.count != 0) {
+            return self.tableSectionName[section] as? String
+        }
+        return ""
+    }
+    //Height of section title boxes
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        //recast view as a UITableViewHeaderFooterView
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#408000")
+        header.textLabel?.textColor = UIColor.white
+        //close open section when another is opened
+        if let viewWithTag = self.view.viewWithTag(HeaderSectionTag + section) {
+            viewWithTag.removeFromSuperview()
+        }
+        let headerFrame = self.view.frame.size
+        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
+        theImageView.image = UIImage(named: "chevron")
+        theImageView.tag = HeaderSectionTag + section
+        header.addSubview(theImageView)
+        
+        // add gesture to header to tap and open
+        header.tag = section
+        let headerTapGesture = UITapGestureRecognizer()
+        headerTapGesture.addTarget(self, action: #selector(DailyTaskViewController.sectionHeaderWasTouched(_:)))
+        header.addGestureRecognizer(headerTapGesture)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let task = tasks[indexPath.row]
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell") as! TableViewCell
-
-        cell.setTask(task: task)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as UITableViewCell
+        let section = self.tableCellData[indexPath.section] as! NSArray
+        cell.textLabel?.textColor = UIColor.black
+        cell.textLabel?.text = section[indexPath.row] as? String
+        
         return cell
     }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Todays Tasks"
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    //Colapsing open sections
+    @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
+        let headerView = sender.view as! UITableViewHeaderFooterView
+        let section    = headerView.tag
+        let eImageView = headerView.viewWithTag(HeaderSectionTag + section) as? UIImageView
+        
+        if (self.expandedSectionHeaderNumber == -1) {
+            self.expandedSectionHeaderNumber = section
+            tableViewExpandSection(section, imageView: eImageView!)
+        } else {
+            if (self.expandedSectionHeaderNumber == section) {
+                tableViewCollapeSection(section, imageView: eImageView!)
+            } else {
+                let cImageView = self.view.viewWithTag(HeaderSectionTag + self.expandedSectionHeaderNumber) as? UIImageView
+                tableViewCollapeSection(self.expandedSectionHeaderNumber, imageView: cImageView!)
+                tableViewExpandSection(section, imageView: eImageView!)
+            }
+        }
+    }
+    
+    func tableViewCollapeSection(_ section: Int, imageView: UIImageView) {
+        let sectionData = self.tableCellData[section] as! NSArray
+        
+        self.expandedSectionHeaderNumber = -1
+        if (sectionData.count == 0) {
+            return
+        } else {
+            //turn chevron around
+            UIView.animate(withDuration: 0.4, animations: {
+                imageView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(Double.pi)) / 180.0)
+            })
+            var indexesPath = [IndexPath]()
+            for i in 0 ..< sectionData.count {
+                let index = IndexPath(row: i, section: section)
+                indexesPath.append(index)
+            }
+            self.dailyTaskTableView!.beginUpdates()
+            self.dailyTaskTableView!.deleteRows(at: indexesPath, with: UITableView.RowAnimation.fade)
+            self.dailyTaskTableView!.endUpdates()
+        }
+    }
+    
+    func tableViewExpandSection(_ section: Int, imageView: UIImageView) {
+        let sectionData = self.tableCellData[section] as! NSArray
+        
+        if (sectionData.count == 0) {
+            self.expandedSectionHeaderNumber = -1
+            return
+        } else {
+            UIView.animate(withDuration: 0.4, animations: {
+                imageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+            })
+            var indexesPath = [IndexPath]()
+            for i in 0 ..< sectionData.count {
+                let index = IndexPath(row: i, section: section)
+                indexesPath.append(index)
+            }
+            self.expandedSectionHeaderNumber = section
+            self.dailyTaskTableView!.beginUpdates()
+            self.dailyTaskTableView!.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
+            self.dailyTaskTableView!.endUpdates()
+        }
     }
 
 }
