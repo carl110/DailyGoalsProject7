@@ -12,14 +12,10 @@ class DailyTaskViewController: UIViewController {
     
     fileprivate var dailyTaskFlow: DailyTaskFlow!
     fileprivate var dailyTaskViewModel: DailyTaskViewModel!
-    
-    
-    
+    //Crate array for table sections and cells
     var tableCellData: Array<Any> = []
     var tableSectionName: Array<Any> = []
-    
-    var tasks: [DailyTaskData] = []
-    
+    //Set intigers for table headers
     var expandedSectionHeaderNumber: Int = -1
     let HeaderSectionTag: Int = 1
     
@@ -35,13 +31,14 @@ class DailyTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableCellData = [["Task 1", "Task 2", "Task 3"], ["Task 1", "Task 2", "Task 3"], ["Task 1", "Task 2", "Task 3"]]
 
+        //delegate and datasource for table
         dailyTaskTableView.delegate = self
         dailyTaskTableView.dataSource = self
         
         self.dailyTaskTableView!.tableFooterView = UIView()
-
+        
+        
         //Create Alert box for Goals input
         showInputDialog(title: "Todays Goal",
                         subtitle: "Please enter your goal for today",
@@ -50,22 +47,28 @@ class DailyTaskViewController: UIViewController {
                         inputPlaceholder: "Enter your new goal here...")
         { (input:String?) in
             self.tableSectionName.append(input ?? "New")
-            self.dailyTaskTableView.reloadData()
+
+            self.showInputDialog(title: "Task 1",
+                            subtitle: "Please enter task 1 to complete your goal",
+                            actionTitle: "Add New Task",
+                            inputPlaceholder: "Enter your new task here...")
+            { (input:String?) in
+                self.tableCellData.append([input ?? ""])
+               
+            }
+             self.dailyTaskTableView.reloadData()
         }
-        
         
 
     }
-    
-    
+    //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow
         self.dailyTaskViewModel = dailyTaskViewModel
     }
-    
-    
-}
 
+}
+//Extension for expanding table
 extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     //Number of section required for table
