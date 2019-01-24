@@ -48,19 +48,19 @@ class DailyTaskViewController: UIViewController {
         { (goalInput:String?) in
             self.tableSectionName.append("Todays Goal - \(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "New")")
             
-            self.showInputDialog(title: "Task 1",
+            self.showInputTasks(title: "Task 1",
                                  subtitle: "Please enter task 1 to complete your goal",
                                  actionTitle: "Add New Task",
                                  inputPlaceholder: "Enter your new task here...")
             { (task1Input:String?) in
                 
-                self.showInputDialog(title: "Task 2",
+                self.showInputTasks(title: "Task 2",
                                      subtitle: "Please enter task 2 to complete your goal",
                                      actionTitle: "Add New Task",
                                      inputPlaceholder: "Enter your new task here...")
                 { (task2Input:String?) in
                     
-                    self.showInputDialog(title: "Task 3",
+                    self.showInputTasks(title: "Task 3",
                                          subtitle: "Please enter task 3 to complete your goal",
                                          actionTitle: "Add New Task",
                                          inputPlaceholder: "Enter your new task here...")
