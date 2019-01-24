@@ -46,7 +46,7 @@ class DailyTaskViewController: UIViewController {
                         cancelTitle: "Use the previous goal",
                         inputPlaceholder: "Enter your new goal here...")
         { (input:String?) in
-            self.tableSectionName.append(input ?? "New")
+            self.tableSectionName.append("Todays Goal \(Date().string(format: "dd/mm/yyyy")) \n \(input ?? "New")")
 
             self.showInputDialog(title: "Task 1",
                             subtitle: "Please enter task 1 to complete your goal",
@@ -94,6 +94,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return ""
     }
+    
     //Height of section title boxes
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
