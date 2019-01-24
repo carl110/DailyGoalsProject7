@@ -36,50 +36,27 @@ class DailyTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableCellData = [["Task 1", "Task 2", "Task 3"], ["Task 1", "Task 2", "Task 3"], ["Task 1", "Task 2", "Task 3"]]
-        tableSectionName = ["Goal 1", "Goal 2", "Goal 3"]
 
         dailyTaskTableView.delegate = self
         dailyTaskTableView.dataSource = self
         
         self.dailyTaskTableView!.tableFooterView = UIView()
-        
-//        tasks = createTasks()
-        
+
+        //Create Alert box for Goals input
         showInputDialog(title: "Todays Goal",
                         subtitle: "Please enter your goal for today",
                         actionTitle: "Add New Goal",
                         cancelTitle: "Use the previous goal",
                         inputPlaceholder: "Enter your new goal here...")
         { (input:String?) in
-            print("Todays \(input ?? "")")
+            self.tableSectionName.append(input ?? "New")
+            self.dailyTaskTableView.reloadData()
         }
+        
+        
 
     }
     
-    func createGoal() -> [DailyGoal] {
-        
-        var tempGoal: [DailyGoal] = []
-        
-        let goal = DailyGoal(goalTitle: "Goal")
-        
-        tempGoal.append(goal)
-        return [goal]
-    }
-    
-    func createTasks() -> [[DailyTaskData]] {
-
-        var tempTasks: [DailyTaskData] = []
-
-        let task1 = DailyTaskData(taskTitle: "Task 1")
-        let task2 = DailyTaskData(taskTitle: "Task 2")
-        let task3 = DailyTaskData(taskTitle: "Task 3")
-
-        tempTasks.append(task1)
-        tempTasks.append(task2)
-        tempTasks.append(task3)
-
-        return [tempTasks]
-    }
     
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow
