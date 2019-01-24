@@ -109,7 +109,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     //Height of section title boxes
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return 40
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
