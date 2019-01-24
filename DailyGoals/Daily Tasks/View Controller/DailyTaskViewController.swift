@@ -17,7 +17,7 @@ class DailyTaskViewController: UIViewController {
     var tableSectionName: Array<Any> = []
     //Set intigers for table headers
     var expandedSectionHeaderNumber: Int = -1
-    let HeaderSectionTag: Int = 1
+    let HeaderSectionTag: Int = 10
     
     @IBOutlet weak var dailyTaskTableView: UITableView!
     
@@ -27,11 +27,11 @@ class DailyTaskViewController: UIViewController {
 //        else {
 //            dailyGoal.text = "UnChecked"
 //        }
-//    }
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //delegate and datasource for table
         dailyTaskTableView.delegate = self
         dailyTaskTableView.dataSource = self
@@ -45,21 +45,33 @@ class DailyTaskViewController: UIViewController {
                         actionTitle: "Add New Goal",
                         cancelTitle: "Use the previous goal",
                         inputPlaceholder: "Enter your new goal here...")
-        { (input:String?) in
-            self.tableSectionName.append("Todays Goal \(Date().string(format: "dd/mm/yyyy")) \n \(input ?? "New")")
-
+        { (goalInput:String?) in
+            self.tableSectionName.append("Todays Goal - \(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "New")")
+            
             self.showInputDialog(title: "Task 1",
-                            subtitle: "Please enter task 1 to complete your goal",
-                            actionTitle: "Add New Task",
-                            inputPlaceholder: "Enter your new task here...")
-            { (input:String?) in
-                self.tableCellData.append([input ?? ""])
-               
+                                 subtitle: "Please enter task 1 to complete your goal",
+                                 actionTitle: "Add New Task",
+                                 inputPlaceholder: "Enter your new task here...")
+            { (task1Input:String?) in
+                
+                self.showInputDialog(title: "Task 2",
+                                     subtitle: "Please enter task 2 to complete your goal",
+                                     actionTitle: "Add New Task",
+                                     inputPlaceholder: "Enter your new task here...")
+                { (task2Input:String?) in
+                    
+                    self.showInputDialog(title: "Task 3",
+                                         subtitle: "Please enter task 3 to complete your goal",
+                                         actionTitle: "Add New Task",
+                                         inputPlaceholder: "Enter your new task here...")
+                    { (task3Input:String?) in
+                        self.tableCellData.append([task1Input ?? "", task2Input ?? "", task3Input ?? ""])
+                    }
+                }
             }
-             self.dailyTaskTableView.reloadData()
+            self.dailyTaskTableView.reloadData()
         }
         
-
     }
     //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
@@ -97,7 +109,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     //Height of section title boxes
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 80
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -105,6 +117,8 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#160C76")
         header.textLabel?.textColor = UIColor.white
+        header.textLabel?.numberOfLines = 2
+        header.textLabel?.lineBreakMode = .byWordWrapping
         //close open section when another is opened
         if let viewWithTag = self.view.viewWithTag(HeaderSectionTag + section) {
             viewWithTag.removeFromSuperview()
