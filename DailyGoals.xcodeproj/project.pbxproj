@@ -18,6 +18,7 @@
 		8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F321ECC31300EDF42F /* HistoryViewController.swift */; };
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
+		89C83EC521F9ED56001C6C5C /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C83EC421F9ED56001C6C5C /* Date+extensions.swift */; };
 		89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */; };
 		89CE16E221EF6170004CE51D /* DailyTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16E121EF6170004CE51D /* DailyTaskData.swift */; };
 		89CE16E521F1C2D0004CE51D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89CE16E421F1C2D0004CE51D /* Main.storyboard */; };
@@ -64,6 +65,7 @@
 		8997A9F321ECC31300EDF42F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		89C83EC421F9ED56001C6C5C /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
 		89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		89CE16E121EF6170004CE51D /* DailyTaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskData.swift; sourceTree = "<group>"; };
 		89CE16E421F1C2D0004CE51D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				8939DFC821F743C3001983A6 /* UIColor+extensions.swift */,
 				8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */,
+				89C83EC421F9ED56001C6C5C /* Date+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				89CE170521F5FC26004CE51D /* HistoryFlow.swift in Sources */,
 				89CE16E221EF6170004CE51D /* DailyTaskData.swift in Sources */,
 				8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */,
+				89C83EC521F9ED56001C6C5C /* Date+extensions.swift in Sources */,
 				89CE16F121F1CBC1004CE51D /* DailyTaskBuilder.swift in Sources */,
 				89CE16F321F1CBD3004CE51D /* HistoryViewBuilder.swift in Sources */,
 				89CE16EA21F1C301004CE51D /* TabBarBuilder.swift in Sources */,
