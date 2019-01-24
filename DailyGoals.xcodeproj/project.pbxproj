@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939DFC821F743C3001983A6 /* UIColor+extensions.swift */; };
+		8939DFCB21F9B522001983A6 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */; };
 		897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12F821EC86C50062B0D2 /* AppDelegate.swift */; };
 		897D12FB21EC86C50062B0D2 /* DailyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */; };
 		897D130121EC86C50062B0D2 /* DailyGoals.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		8939DFC821F743C3001983A6 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
+		8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		897D12F521EC86C50062B0D2 /* DailyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897D12F821EC86C50062B0D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		897D12FA21EC86C50062B0D2 /* DailyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				8939DFC821F743C3001983A6 /* UIColor+extensions.swift */,
+				8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				89CE16FD21F1D244004CE51D /* DailyTaskFlow.swift in Sources */,
 				89CE16F521F1CBE5004CE51D /* ProgressViewBuilder.swift in Sources */,
 				897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */,
+				8939DFCB21F9B522001983A6 /* UIViewController+extensions.swift in Sources */,
 				897D130121EC86C50062B0D2 /* DailyGoals.xcdatamodeld in Sources */,
 				89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */,
 				8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */,

@@ -16,3 +16,11 @@ class DailyTaskData {
         self.taskTitle = taskTitle
     }
 }
+
+class DailyGoal {
+    var goalTitle: String
+    
+    init(goalTitle: String) {
+        self.goalTitle = goalTitle
+    }
+}

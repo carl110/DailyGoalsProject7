@@ -18,25 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUq-ZJ-ouF" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
-                                <rect key="frame" x="320" y="25" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="HUq-ZJ-ouF" secondAttribute="height" multiplier="1:1" id="M5q-ed-yp9"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="ztg-2k-fbY"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="checkBox:" destination="pzr-QE-ODV" eventType="touchUpInside" id="Anc-f5-Siw"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1d-f8-adS">
-                                <rect key="frame" x="5" y="25" width="315" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0z8-w0-SnN">
-                                <rect key="frame" x="5" y="80" width="365" height="582"/>
+                                <rect key="frame" x="5" y="25" width="365" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="cDi-aH-Tsu" customClass="TableViewCell" customModule="DailyGoals" customModuleProvider="target">
@@ -47,20 +30,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBi-ej-xD3">
-                                                    <rect key="frame" x="15" y="11" width="335" height="22"/>
+                                                    <rect key="frame" x="15" y="11" width="310" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jw3-mO-69s" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                                                    <rect key="frame" x="325" y="0.0" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="HVa-Co-fAe"/>
+                                                        <constraint firstAttribute="width" secondItem="jw3-mO-69s" secondAttribute="height" multiplier="1:1" id="vyf-eQ-PDl"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="iBi-ej-xD3" secondAttribute="trailing" id="C5I-dX-gv0"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="iBi-ej-xD3" secondAttribute="bottom" id="UfL-4v-NMc"/>
-                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="top" secondItem="zPO-yy-qwG" secondAttribute="topMargin" id="gtg-bI-XGP"/>
-                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="leading" secondItem="zPO-yy-qwG" secondAttribute="leadingMargin" id="kHe-Hs-y0Y"/>
+                                                <constraint firstItem="jw3-mO-69s" firstAttribute="leading" secondItem="iBi-ej-xD3" secondAttribute="trailing" id="B4H-x5-TwS"/>
+                                                <constraint firstAttribute="trailing" secondItem="jw3-mO-69s" secondAttribute="trailing" id="CXH-PC-Pd9"/>
+                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="leading" secondItem="zPO-yy-qwG" secondAttribute="leadingMargin" id="Lbi-Nt-3Fi"/>
+                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="bottom" secondItem="zPO-yy-qwG" secondAttribute="bottomMargin" id="LzX-dw-CoV"/>
+                                                <constraint firstAttribute="bottom" secondItem="jw3-mO-69s" secondAttribute="bottom" id="Y2p-xm-qO0"/>
+                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="top" secondItem="zPO-yy-qwG" secondAttribute="topMargin" id="c0g-mT-1l2"/>
+                                                <constraint firstItem="jw3-mO-69s" firstAttribute="top" secondItem="zPO-yy-qwG" secondAttribute="top" id="kGb-V7-xEP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkBox" destination="jw3-mO-69s" id="quZ-mh-yft"/>
                                             <outlet property="dailyTasksLabel" destination="iBi-ej-xD3" id="iKc-mJ-hgO"/>
                                         </connections>
                                     </tableViewCell>
@@ -69,23 +64,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HUq-ZJ-ouF" firstAttribute="leading" secondItem="j1d-f8-adS" secondAttribute="trailing" id="0iO-lJ-Lb3"/>
-                            <constraint firstItem="HUq-ZJ-ouF" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="987-9y-g8T"/>
+                            <constraint firstItem="0z8-w0-SnN" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="ESv-8V-zXB"/>
                             <constraint firstItem="jxC-8C-b8W" firstAttribute="bottom" secondItem="0z8-w0-SnN" secondAttribute="bottom" constant="5" id="O9T-9V-H70"/>
-                            <constraint firstItem="0z8-w0-SnN" firstAttribute="top" secondItem="HUq-ZJ-ouF" secondAttribute="bottom" constant="5" id="ZIu-0d-7J2"/>
-                            <constraint firstItem="0z8-w0-SnN" firstAttribute="top" secondItem="HUq-ZJ-ouF" secondAttribute="bottom" constant="5" id="ZnE-Fj-aBh"/>
-                            <constraint firstItem="0z8-w0-SnN" firstAttribute="top" secondItem="j1d-f8-adS" secondAttribute="bottom" constant="5" id="asd-S9-C14"/>
-                            <constraint firstItem="j1d-f8-adS" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="gbr-rP-3Uw"/>
-                            <constraint firstItem="j1d-f8-adS" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="5" id="hKF-r2-4jX"/>
                             <constraint firstItem="jxC-8C-b8W" firstAttribute="trailing" secondItem="0z8-w0-SnN" secondAttribute="trailing" constant="5" id="mEp-VV-Uuo"/>
-                            <constraint firstItem="jxC-8C-b8W" firstAttribute="trailing" secondItem="HUq-ZJ-ouF" secondAttribute="trailing" constant="5" id="q2g-ZJ-laU"/>
                             <constraint firstItem="0z8-w0-SnN" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="5" id="rT0-jb-fr2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jxC-8C-b8W"/>
                     </view>
                     <connections>
-                        <outlet property="checkBox" destination="HUq-ZJ-ouF" id="riI-F2-MMg"/>
-                        <outlet property="dailyGoal" destination="j1d-f8-adS" id="Bx5-8C-X6e"/>
                         <outlet property="dailyTaskTableView" destination="0z8-w0-SnN" id="Xxd-Ss-0R2"/>
                     </connections>
                 </viewController>

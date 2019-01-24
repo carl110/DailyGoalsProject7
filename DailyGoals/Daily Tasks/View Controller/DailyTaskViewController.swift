@@ -21,34 +21,52 @@ class DailyTaskViewController: UIViewController {
     var tasks: [DailyTaskData] = []
     
     var expandedSectionHeaderNumber: Int = -1
-
     let HeaderSectionTag: Int = 1
-    @IBOutlet weak var dailyGoal: UILabel!
+    
     @IBOutlet weak var dailyTaskTableView: UITableView!
-    @IBOutlet weak var checkBox: CheckBox!
-    @IBAction func checkBox(_ sender: Any) {
-        if checkBox.isChecked == false {
-            dailyGoal.text = "Checked" }
-        else {
-            dailyGoal.text = "UnChecked"
-        }
-    }
+    
+//    @IBAction func checkBox(_ sender: Any) {
+//        if checkBox.isChecked == false {
+//            dailyGoal.text = "Checked" }
+//        else {
+//            dailyGoal.text = "UnChecked"
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableCellData = [ ["Task 1", "Task 2","Task 3"],
-                         ["Task 1", "Task 2","Task 3"],
-                         ["Task 1", "Task 2","Task 3"] ]
-        tableSectionName = ["Day 1", "Day2", "Day 3"]
+        tableCellData = [["Task 1", "Task 2", "Task 3"], ["Task 1", "Task 2", "Task 3"], ["Task 1", "Task 2", "Task 3"]]
+        tableSectionName = ["Goal 1", "Goal 2", "Goal 3"]
 
         dailyTaskTableView.delegate = self
         dailyTaskTableView.dataSource = self
         
         self.dailyTaskTableView!.tableFooterView = UIView()
         
+//        tasks = createTasks()
+        
+        showInputDialog(title: "Todays Goal",
+                        subtitle: "Please enter your goal for today",
+                        actionTitle: "Add New Goal",
+                        cancelTitle: "Use the previous goal",
+                        inputPlaceholder: "Enter your new goal here...")
+        { (input:String?) in
+            print("Todays \(input ?? "")")
+        }
+
     }
     
-    func createTasks() -> [DailyTaskData] {
+    func createGoal() -> [DailyGoal] {
+        
+        var tempGoal: [DailyGoal] = []
+        
+        let goal = DailyGoal(goalTitle: "Goal")
+        
+        tempGoal.append(goal)
+        return [goal]
+    }
+    
+    func createTasks() -> [[DailyTaskData]] {
 
         var tempTasks: [DailyTaskData] = []
 
@@ -60,7 +78,7 @@ class DailyTaskViewController: UIViewController {
         tempTasks.append(task2)
         tempTasks.append(task3)
 
-        return tempTasks
+        return [tempTasks]
     }
     
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
@@ -104,7 +122,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         //recast view as a UITableViewHeaderFooterView
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#408000")
+        header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#160C76")
         header.textLabel?.textColor = UIColor.white
         //close open section when another is opened
         if let viewWithTag = self.view.viewWithTag(HeaderSectionTag + section) {

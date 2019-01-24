@@ -29,13 +29,3 @@ class TabBarFlow: NSObject {
         return ProgressViewBuilder.create()
     }
 }
-
-//extension TBFFlow: UITabBarDelegate {
-//    
-//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//        
-//        if let tabbableViewController = (viewController as? UINavigationController)?.viewControllers.first as? TabbableViewControllerProtocol {
-//            tabbableViewController.switchedTo()
-//        }
-//    }
-//}
