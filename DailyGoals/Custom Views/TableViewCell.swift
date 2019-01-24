@@ -31,7 +31,8 @@ class TableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        
+        dailyTasksLabel.text = ""
+        checkBox.isChecked = false
     }
 
 }
