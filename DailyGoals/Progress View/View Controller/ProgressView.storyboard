@@ -17,7 +17,24 @@
                     <view key="view" contentMode="scaleToFill" id="7Z0-AS-1nv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-dD-D41">
+                                <rect key="frame" x="5" y="242.5" width="365" height="182.5"/>
+                                <color key="backgroundColor" red="0.60784313729999995" green="0.26274509800000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mhz-dD-D41" secondAttribute="height" multiplier="2:1" id="zOa-nb-tZV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="mhz-dD-D41" secondAttribute="trailing" constant="5" id="0Ve-fm-6SK"/>
+                            <constraint firstItem="mhz-dD-D41" firstAttribute="centerY" secondItem="7Z0-AS-1nv" secondAttribute="centerY" id="22B-24-kwe"/>
+                            <constraint firstItem="mhz-dD-D41" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" constant="5" id="l5X-Ua-6X7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JZv-T8-ZSi"/>
                     </view>
                 </viewController>

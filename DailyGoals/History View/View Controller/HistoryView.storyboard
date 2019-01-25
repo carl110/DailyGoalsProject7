@@ -17,7 +17,24 @@
                     <view key="view" contentMode="scaleToFill" id="Suu-Ez-1fB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HISTORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04C-gp-moF">
+                                <rect key="frame" x="5" y="242.5" width="365" height="182.5"/>
+                                <color key="backgroundColor" red="0.59005688469999995" green="0.97211796049999999" blue="0.35384048870000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="04C-gp-moF" secondAttribute="height" multiplier="2:1" id="99w-S7-mmt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="04C-gp-moF" firstAttribute="leading" secondItem="uf1-Fb-OHp" secondAttribute="leading" constant="5" id="fMc-A1-HfB"/>
+                            <constraint firstItem="uf1-Fb-OHp" firstAttribute="trailing" secondItem="04C-gp-moF" secondAttribute="trailing" constant="5" id="tT9-xf-EIS"/>
+                            <constraint firstItem="04C-gp-moF" firstAttribute="centerY" secondItem="Suu-Ez-1fB" secondAttribute="centerY" id="yee-tM-km3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uf1-Fb-OHp"/>
                     </view>
                 </viewController>

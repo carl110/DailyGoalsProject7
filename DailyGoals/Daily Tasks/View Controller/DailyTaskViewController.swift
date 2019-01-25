@@ -137,7 +137,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TableViewCell
         let section = self.tableCellData[indexPath.section] as! NSArray
         cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.text = section[indexPath.row] as? String

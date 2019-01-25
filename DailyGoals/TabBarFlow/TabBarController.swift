@@ -19,6 +19,13 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tabBarController?.selectedIndex = 1
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        //select initial VC to show
+        self.selectedIndex = 1
     }
     
     override var navigationItem: UINavigationItem {

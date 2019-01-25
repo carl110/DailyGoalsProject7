@@ -31,7 +31,7 @@ class TabBarBuilder {
     private static func setupTabControllers(tbFlow: TabBarFlow) -> [UIViewController] {
         
         let dailyTasksVC = tbFlow.getDailyTaskController()
-        dailyTasksVC.tabBarItem = UITabBarItem(title: "Daily Task", image: UIImage(named: "dailyTask"), tag: 0)
+        dailyTasksVC.tabBarItem = UITabBarItem(title: "Daily Task", image: UIImage(named: "dailytask"), tag: 0)
         
         let historyVC = tbFlow.getHistoryViewController()
         historyVC.tabBarItem = UITabBarItem(title: "History", image: UIImage(named: "history"), tag: 1)
@@ -39,7 +39,7 @@ class TabBarBuilder {
         let progressVC = tbFlow.getProgressViewController()
         progressVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(named: "progress"), tag: 2)
         
-        let viewControllerList = [dailyTasksVC, historyVC, progressVC]
+        let viewControllerList = [historyVC, dailyTasksVC, progressVC]
         
         return viewControllerList
     }
