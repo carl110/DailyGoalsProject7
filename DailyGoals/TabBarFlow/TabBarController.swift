@@ -26,6 +26,12 @@ class TabBarController: UITabBarController {
         super .viewWillAppear(true)
         //select initial VC to show
         self.selectedIndex = 1
+        //selected item colour
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().unselectedItemTintColor = UIColor.black
+        //set to false to get solid colour of bar
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().barTintColor = UIColor.colorWithHexString(hexStr: "#160C76")
     }
     
     override var navigationItem: UINavigationItem {
