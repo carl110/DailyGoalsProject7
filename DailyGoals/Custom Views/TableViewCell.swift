@@ -13,10 +13,11 @@ class TableViewCell: UITableViewCell {
  
     @IBOutlet weak var checkBox: CheckBox!
     
-    @IBOutlet weak var dailyTasksLabel: UILabel!
+    @IBOutlet weak var label: UILabel!
     
-    func setTask(task: DailyTaskData) {
-        dailyTasksLabel.text = task.taskTitle
+    func config(task: CellData) {
+        label.text = "\(task.text) :: \(task.isSelected)"
+        checkBox.isChecked = task.isSelected
     }
 
     override func awakeFromNib() {
@@ -31,7 +32,7 @@ class TableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        dailyTasksLabel.text = ""
+        label.text = ""
 //        checkBox.isChecked = false
     }
 

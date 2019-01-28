@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="OYZ-YS-Y8c" customClass="TableViewCell" customModule="DailyGoals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OYZ-YS-Y8c" id="bdw-wv-p83">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz2-Jn-QWU">
+                        <rect key="frame" x="10" y="0.0" width="42" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rO-ri-JKi" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                        <rect key="frame" x="335" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="9Vo-EH-zRX"/>
+                            <constraint firstAttribute="width" constant="30" id="oTe-ZN-glU"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="5rO-ri-JKi" secondAttribute="trailing" constant="10" id="GhJ-Y5-Dot"/>
+                    <constraint firstAttribute="bottom" secondItem="mz2-Jn-QWU" secondAttribute="bottom" id="Z1w-Pb-IcL"/>
+                    <constraint firstItem="mz2-Jn-QWU" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" constant="10" id="aei-JH-WY6"/>
+                    <constraint firstItem="5rO-ri-JKi" firstAttribute="centerY" secondItem="bdw-wv-p83" secondAttribute="centerY" id="e2w-BO-wcE"/>
+                    <constraint firstItem="mz2-Jn-QWU" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" id="gP4-K3-rPj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkBox" destination="5rO-ri-JKi" id="HAG-BM-vB9"/>
+                <outlet property="label" destination="mz2-Jn-QWU" id="aks-gM-Y19"/>
+            </connections>
+            <point key="canvasLocation" x="104.8" y="247.37631184407797"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -9,13 +9,20 @@
 import Foundation
 import UIKit
 
-class DailyTaskData {
-    var taskTitle : String
+class CellData {
+
+    var text: String = ""
+    var isSelected: Bool = false
     
-    init(taskTitle: String) {
-        self.taskTitle = taskTitle
+    init(text: String) {
+        self.text = text
     }
-}
+    
+    func toggle() {
+        self.isSelected = !self.isSelected
+    }
+    
+    }
 
 class DailyGoal {
     var goalTitle: String

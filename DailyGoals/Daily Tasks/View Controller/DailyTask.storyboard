@@ -21,45 +21,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0z8-w0-SnN">
                                 <rect key="frame" x="5" y="25" width="365" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="cDi-aH-Tsu" customClass="TableViewCell" customModule="DailyGoals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="365" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cDi-aH-Tsu" id="zPO-yy-qwG">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBi-ej-xD3">
-                                                    <rect key="frame" x="15" y="11" width="310" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jw3-mO-69s" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
-                                                    <rect key="frame" x="325" y="0.0" width="40" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="HVa-Co-fAe"/>
-                                                        <constraint firstAttribute="width" secondItem="jw3-mO-69s" secondAttribute="height" multiplier="1:1" id="vyf-eQ-PDl"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="jw3-mO-69s" firstAttribute="leading" secondItem="iBi-ej-xD3" secondAttribute="trailing" id="B4H-x5-TwS"/>
-                                                <constraint firstAttribute="trailing" secondItem="jw3-mO-69s" secondAttribute="trailing" id="CXH-PC-Pd9"/>
-                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="leading" secondItem="zPO-yy-qwG" secondAttribute="leadingMargin" id="Lbi-Nt-3Fi"/>
-                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="bottom" secondItem="zPO-yy-qwG" secondAttribute="bottomMargin" id="LzX-dw-CoV"/>
-                                                <constraint firstAttribute="bottom" secondItem="jw3-mO-69s" secondAttribute="bottom" id="Y2p-xm-qO0"/>
-                                                <constraint firstItem="iBi-ej-xD3" firstAttribute="top" secondItem="zPO-yy-qwG" secondAttribute="topMargin" id="c0g-mT-1l2"/>
-                                                <constraint firstItem="jw3-mO-69s" firstAttribute="top" secondItem="zPO-yy-qwG" secondAttribute="top" id="kGb-V7-xEP"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="checkBox" destination="jw3-mO-69s" id="quZ-mh-yft"/>
-                                            <outlet property="dailyTasksLabel" destination="iBi-ej-xD3" id="iKc-mJ-hgO"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
