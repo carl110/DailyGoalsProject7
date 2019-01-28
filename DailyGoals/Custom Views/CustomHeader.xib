@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomHeader" customModule="DailyGoals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJr-LN-Kr7">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syc-Cy-lPW" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="syc-Cy-lPW" secondAttribute="height" multiplier="1:1" id="Iuj-Kz-Fz4"/>
+                            </constraints>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwy-U7-BWq">
+                            <rect key="frame" x="100" y="0.0" width="175" height="100"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="rCd-5Q-Hmy">
+                            <rect key="frame" x="275" y="0.0" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="rCd-5Q-Hmy" secondAttribute="height" multiplier="1:1" id="yFY-lt-VmH"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="rCd-5Q-Hmy" firstAttribute="top" secondItem="hJr-LN-Kr7" secondAttribute="top" id="3wL-AH-ran"/>
+                        <constraint firstItem="syc-Cy-lPW" firstAttribute="top" secondItem="hJr-LN-Kr7" secondAttribute="top" id="7sc-eM-t6x"/>
+                        <constraint firstAttribute="bottom" secondItem="syc-Cy-lPW" secondAttribute="bottom" id="Eq0-zs-bOo"/>
+                        <constraint firstItem="Kwy-U7-BWq" firstAttribute="top" secondItem="hJr-LN-Kr7" secondAttribute="top" id="MY8-Rh-HLm"/>
+                        <constraint firstAttribute="bottom" secondItem="rCd-5Q-Hmy" secondAttribute="bottom" id="RV2-eN-dGg"/>
+                        <constraint firstAttribute="bottom" secondItem="Kwy-U7-BWq" secondAttribute="bottom" id="c8P-k3-0Pl"/>
+                        <constraint firstItem="syc-Cy-lPW" firstAttribute="leading" secondItem="hJr-LN-Kr7" secondAttribute="leading" id="cQZ-ap-Z36"/>
+                        <constraint firstItem="Kwy-U7-BWq" firstAttribute="leading" secondItem="syc-Cy-lPW" secondAttribute="trailing" id="gL8-55-jvQ"/>
+                        <constraint firstAttribute="trailing" secondItem="rCd-5Q-Hmy" secondAttribute="trailing" id="joV-EN-tGn"/>
+                        <constraint firstItem="rCd-5Q-Hmy" firstAttribute="leading" secondItem="Kwy-U7-BWq" secondAttribute="trailing" id="zTs-fe-f5L"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hJr-LN-Kr7" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Oaq-UD-QiZ"/>
+                <constraint firstItem="hJr-LN-Kr7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="d2n-3A-J9c"/>
+                <constraint firstItem="hJr-LN-Kr7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dUp-E8-Kdf"/>
+                <constraint firstItem="hJr-LN-Kr7" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="w4I-ZR-53m"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="checkBox" destination="syc-Cy-lPW" id="5Ka-ji-1xf"/>
+                <outlet property="labelTitle" destination="Kwy-U7-BWq" id="gC6-Um-0Y2"/>
+            </connections>
+            <point key="canvasLocation" x="53.600000000000001" y="57.571214392803604"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron" width="35.200000762939453" height="35.200000762939453"/>
+    </resources>
+</document>

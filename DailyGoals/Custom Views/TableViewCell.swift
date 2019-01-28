@@ -17,8 +17,10 @@ class TableViewCell: UITableViewCell {
     
     func config(task: CellData) {
         label.text = "\(task.text) :: \(task.isSelected)"
+//               label.text = "\(task.text) :: \(task.isSelected)"
         checkBox.isChecked = task.isSelected
     }
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

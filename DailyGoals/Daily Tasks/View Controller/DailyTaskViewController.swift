@@ -15,33 +15,19 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskData: CellData!
 //    //Crate array for table sections and cells
 //    var tableCellData: Array<Any> = []
-    var tableSectionName: Array<Any> = []
+
 //    //Set intigers for table headers
 //    var expandedSectionHeaderNumber: Int = -1
 //    let HeaderSectionTag: Int = 10
     
     var cellsData: [CellData] = [CellData(text: "a"),
                                  CellData(text: "b"),
-                                 CellData(text: "c"),
-                                 CellData(text: "d"),
-                                 CellData(text: "e"),
-                                 CellData(text: "f"),
-                                 CellData(text: "g"),
-                                 CellData(text: "h"),
-                                 CellData(text: "i"),
-                                 CellData(text: "j"),
-                                 CellData(text: "k"),
-                                 CellData(text: "l"),
-                                 CellData(text: "m"),
-                                 CellData(text: "n"),
-                                 CellData(text: "o"),
-                                 CellData(text: "p"),
-                                 CellData(text: "r"),
-                                 CellData(text: "s"),
-                                 CellData(text: "t"),
-                                 CellData(text: "u")]
+                                 CellData(text: "c")]
+    
+    var sectionData:[DailyGoal] = [DailyGoal(text: "New Daily Goal")]
     
     @IBOutlet weak var dailyTaskTableView: UITableView!
+    
     
     var sectionExpanded = true
     
@@ -64,43 +50,52 @@ class DailyTaskViewController: UIViewController {
         dailyTaskTableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
         
         
-//        //Create Alert box for Goals input
-//        showInputDialog(title: "Todays Goal",
-//                        subtitle: "Please enter your goal for today",
-//                        actionTitle: "Add New Goal",
-//                        cancelTitle: "Use the previous goal",
-//                        inputPlaceholder: "Enter your new goal here...")
-//        { (goalInput:String?) in
-//            self.tableSectionName.append("Todays Goal - \(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "New")")
-//
-//            self.showInputTasks(title: "Task 1",
-//                                 subtitle: "Please enter task 1 to complete your goal",
-//                                 actionTitle: "Add New Task",
-//                                 inputPlaceholder: "Enter your new task here...")
-//            { (task1Input:String?) in
-//
-//                self.showInputTasks(title: "Task 2",
-//                                     subtitle: "Please enter task 2 to complete your goal",
-//                                     actionTitle: "Add New Task",
-//                                     inputPlaceholder: "Enter your new task here...")
-//                { (task2Input:String?) in
-//
-//                    self.showInputTasks(title: "Task 3",
-//                                         subtitle: "Please enter task 3 to complete your goal",
-//                                         actionTitle: "Add New Task",
-//                                         inputPlaceholder: "Enter your new task here...")
-//                    { (task3Input:String?) in
-////                        DailyTaskData(text: "b")
-//                        self.cellsData.append(DailyTaskData(text: "\(task1Input ?? "")"))
-////                        self.dailyTaskData.config.append(task1Input ?? "no task")
-////                        self.tableCellData.append([task1Input ?? "", task2Input ?? "", task3Input ?? ""])
-//                    }
-//                }
-//            }
-//            self.dailyTaskTableView.reloadData()
-//        }
+        let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
+        dailyTaskTableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         
+        
+        //Create Alert box for Goals input
+        showInputDialog(title: "Todays Goal",
+                        subtitle: "Please enter your goal for today",
+                        actionTitle: "Add New Goal",
+                        cancelTitle: "Use the previous goal",
+                        inputPlaceholder: "Enter your new goal here...")
+        { (goalInput:String?) in
+            self.sectionData = [DailyGoal(text: "Todays Goal - \(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
+//            self.tableSectionName.append("Todays Goal - \(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "New")")
+
+            self.showInputTasks(title: "Task 1",
+                                 subtitle: "Please enter task 1 to complete your goal",
+                                 actionTitle: "Add New Task",
+                                 inputPlaceholder: "Enter your new task here...")
+            { (task1Input:String?) in
+
+                self.showInputTasks(title: "Task 2",
+                                     subtitle: "Please enter task 2 to complete your goal",
+                                     actionTitle: "Add New Task",
+                                     inputPlaceholder: "Enter your new task here...")
+                { (task2Input:String?) in
+
+                    self.showInputTasks(title: "Task 3",
+                                         subtitle: "Please enter task 3 to complete your goal",
+                                         actionTitle: "Add New Task",
+                                         inputPlaceholder: "Enter your new task here...")
+                    { (task3Input:String?) in
+//                        cellsData: [CellData] = [CellData(text: "a")
+                        self.cellsData = [CellData(text: "\(task1Input ?? "")" ),
+                                          CellData(text: "\(task2Input ?? "")" ),
+                                          CellData(text: "\(task3Input ?? "")" )]
+//                        self.cellsData.append(dailyTaskData(text: "\(task1Input ?? "")"))
+//                        self.dailyTaskData.config.append(task1Input ?? "no task")
+//                        self.tableCellData.append([task1Input ?? "", task2Input ?? "", task3Input ?? ""])
+                    }
+                }
+            }
+            self.dailyTaskTableView.reloadData()
+        }
+
     }
+    
     //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow

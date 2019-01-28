@@ -26,21 +26,31 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         return 50
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "custom header"
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "custom header"
+//    }
+
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+        
+        headerView.config(goal: sectionData[section])
+        
+        return headerView
     }
+
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         //recast view as a UITableViewHeaderFooterView
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.lightGray
-        header.textLabel?.textColor = UIColor.white
+        header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#160C76")
+//        header.textLabel?.textColor = UIColor.white
         header.textLabel?.numberOfLines = 2
-        header.textLabel?.lineBreakMode = .byWordWrapping
+//        header.textLabel?.lineBreakMode = .byWordWrapping
         
-        let headerFrame = self.view.frame.size
-        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
-        theImageView.image = UIImage(named: "chevron")
-        header.addSubview(theImageView)
+//        let headerFrame = self.view.frame.size
+//        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
+//        theImageView.image = UIImage(named: "chevron")
+//        header.addSubview(theImageView)
         
         // add gesture to header to tap and open
         header.tag = section

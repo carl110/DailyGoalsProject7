@@ -25,9 +25,15 @@ class CellData {
     }
 
 class DailyGoal {
-    var goalTitle: String
     
-    init(goalTitle: String) {
-        self.goalTitle = goalTitle
+    var text: String = ""
+    var isSelected: Bool = false
+    
+    init(text: String) {
+    self.text = text
+    }
+    
+    func toggle() {
+        self.isSelected = !self.isSelected
     }
 }
