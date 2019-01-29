@@ -19,6 +19,11 @@ class CustomHeader: UITableViewHeaderFooterView {
         checkBox.isChecked = goal.isSelected
         labelTitle.numberOfLines = 2
     }
+    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        labelTitle.preferredMaxLayoutWidth = labelTitle.bounds.width
+//    }
 
 }
 
