@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    //Alertbox with text fields
     func showGoalTaskDialog(title:String? = nil,
                          subtitle:String? = nil,
                          actionTitle:String? = "Add",
@@ -18,7 +19,7 @@ extension UIViewController {
                          task2PlaceHolder:String? = nil,
                          task3PlaceHolder:String? = nil,
                          actionHandler: ((_ goal: String?, _ task1:String?, _ task2:String?, _ task3:String?) -> Void)? = nil) {
-        
+
         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         alert.addTextField { (goalText:UITextField) in
             goalText.placeholder = goalPlaceHolder
@@ -33,7 +34,7 @@ extension UIViewController {
             task3Text.placeholder = task3PlaceHolder
         }
         
-        alert.addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: { (action:UIAlertAction) in
+        let actionButton = UIAlertAction(title: actionTitle, style: .destructive, handler: { (action:UIAlertAction) in
             guard let goalField =  alert.textFields?[0] else {
                 actionHandler?(nil, nil, nil, nil)
                 return
@@ -51,10 +52,8 @@ extension UIViewController {
                 return
             }
             actionHandler?(goalField.text, task1Field.text, task2Field.text, task3Field.text)
-        }))
-        
+        })
+        alert.addAction(actionButton)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
 }

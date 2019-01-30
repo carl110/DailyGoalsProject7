@@ -20,6 +20,8 @@ class CustomHeader: UITableViewHeaderFooterView {
         labelTitle.numberOfLines = 0
     }
     
+    
+    
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
 //        labelTitle.preferredMaxLayoutWidth = labelTitle.bounds.width

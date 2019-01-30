@@ -13,7 +13,6 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
@@ -21,16 +20,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sectionExpanded == true ? cellsData.count : 0
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "custom header"
-//    }
 
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
         
@@ -57,7 +47,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         cell.config(task: cellsData[indexPath.row])
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
-        
+        cell.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "6492a3")
         return cell
     }
     
