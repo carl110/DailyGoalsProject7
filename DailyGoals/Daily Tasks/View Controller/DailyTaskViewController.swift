@@ -75,6 +75,7 @@ class DailyTaskViewController: UIViewController {
         let alert = UIAlertController(title: "Goals and Tasks", message: "You must complete setails for the goal and all 3 tasks", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
             alert.dismiss(animated: true, completion: nil)
+            self.initialAlertBox()
         }))
        present(alert, animated: true, completion: nil)
         
