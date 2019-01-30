@@ -54,7 +54,7 @@ class DailyTaskViewController: UIViewController {
                            task3PlaceHolder: "Input task three here...",
                            actionHandler: { (goalInput:String?, task1Input:String?, task2Input:String?, task3Input:String?) in
                             
-                            if (goalInput?.isEmpty)! {
+                            if (goalInput?.isEmpty)! || (task1Input?.isEmpty)! || (task2Input?.isEmpty)! || (task3Input?.isEmpty)! {
                                 
                                 self.warningMessage()
 
