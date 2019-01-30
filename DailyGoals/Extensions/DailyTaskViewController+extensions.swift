@@ -43,15 +43,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         //recast view as a UITableViewHeaderFooterView
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#160C76")
-//        header.textLabel?.textColor = UIColor.white
-        header.textLabel?.numberOfLines = 2
-//        header.textLabel?.lineBreakMode = .byWordWrapping
-        
-//        let headerFrame = self.view.frame.size
-//        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
-//        theImageView.image = UIImage(named: "chevron")
-//        header.addSubview(theImageView)
-        
+
         // add gesture to header to tap and open
         header.tag = section
         let headerTapGesture = UITapGestureRecognizer()
@@ -63,6 +55,8 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.config(task: cellsData[indexPath.row])
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         
         return cell
     }

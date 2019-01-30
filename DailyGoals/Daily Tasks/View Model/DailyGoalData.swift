@@ -1,15 +1,15 @@
 //
-//  DailyTaskData.swift
+//  DailyGoalData.swift
 //  DailyGoals
 //
-//  Created by Carl Wainwright on 16/01/2019.
+//  Created by Carl Wainwright on 29/01/2019.
 //  Copyright © 2019 Carl Wainwright. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class CellData {
+class DailyGoalData {
     
     var text: String = ""
     var isSelected: Bool = false
@@ -21,6 +21,4 @@ class CellData {
     func toggle() {
         self.isSelected = !self.isSelected
     }
-    
 }
-

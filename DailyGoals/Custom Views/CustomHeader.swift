@@ -14,10 +14,10 @@ class CustomHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var checkBox: CheckBox!
     
-    func config(goal: DailyGoal) {
+    func config(goal: DailyGoalData) {
         labelTitle.text = "\(goal.text)"
         checkBox.isChecked = goal.isSelected
-        labelTitle.numberOfLines = 2
+        labelTitle.numberOfLines = 0
     }
     
 //    override func layoutSubviews() {

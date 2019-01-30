@@ -15,7 +15,7 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskData: CellData!
 
     var cellsData: [CellData] = []
-    var sectionData:[DailyGoal] = [DailyGoal(text: "")]
+    var sectionData:[DailyGoalData] = [DailyGoalData(text: "")]
     var sectionExpanded = true
     
     @IBOutlet weak var dailyTaskTableView: UITableView!
@@ -32,6 +32,8 @@ class DailyTaskViewController: UIViewController {
         dailyTaskTableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         dailyTaskTableView.sectionHeaderHeight = UITableView.automaticDimension
         dailyTaskTableView.estimatedSectionHeaderHeight = 80
+        dailyTaskTableView.estimatedRowHeight = 50
+        dailyTaskTableView.rowHeight = UITableView.automaticDimension
         //Alert box to ad new goal and tasks
         showGoalTaskDialog(title: "Todays Goal ",
                            subtitle: "Please enter your goal for today, and the 3 tasks to achieve your goal",
@@ -41,7 +43,7 @@ class DailyTaskViewController: UIViewController {
                            task2PlaceHolder: "Input task two here...",
                            task3PlaceHolder: "Input task three here...")
         { (goalInput:String?, task1Input:String?, task2Input:String?, task3Input:String?) in
-            self.sectionData = [DailyGoal(text: "\(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
+            self.sectionData = [DailyGoalData(text: "\(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
             self.cellsData = [CellData(text: "\(task1Input ?? "")" ),
                               CellData(text: "\(task2Input ?? "")" ),
                               CellData(text: "\(task3Input ?? "")" )]

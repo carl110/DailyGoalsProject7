@@ -18,8 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz2-Jn-QWU">
-                        <rect key="frame" x="10" y="0.0" width="42" height="43.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz2-Jn-QWU">
+                        <rect key="frame" x="10" y="0.0" width="325" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,6 +34,7 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="5rO-ri-JKi" firstAttribute="leading" secondItem="mz2-Jn-QWU" secondAttribute="trailing" id="9p7-NW-YME"/>
                     <constraint firstAttribute="trailing" secondItem="5rO-ri-JKi" secondAttribute="trailing" constant="10" id="GhJ-Y5-Dot"/>
                     <constraint firstAttribute="bottom" secondItem="mz2-Jn-QWU" secondAttribute="bottom" id="Z1w-Pb-IcL"/>
                     <constraint firstItem="mz2-Jn-QWU" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" constant="10" id="aei-JH-WY6"/>
