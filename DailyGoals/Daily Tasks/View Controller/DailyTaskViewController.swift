@@ -57,9 +57,6 @@ class DailyTaskViewController: UIViewController {
                             if (goalInput?.isEmpty)! {
                                 
                                 self.warningMessage()
-                                
-                                print("initial alert box")
-                                self.initialAlertBox()
 
                             } else {
                                 self.sectionData = [DailyGoalData(text: "\(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
