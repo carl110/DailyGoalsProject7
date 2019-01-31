@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
         UITabBar.appearance().unselectedItemTintColor = UIColor.black
         //set to false to get solid colour of bar
         UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.colorWithHexString(hexStr: "#160C76")
+        UITabBar.appearance().barTintColor = UIColor.colorWithHexString(hexStr: "#6FA0CD")
     }
     
     override var navigationItem: UINavigationItem {

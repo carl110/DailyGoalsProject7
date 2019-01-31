@@ -34,13 +34,15 @@ class DailyTaskViewController: UIViewController {
         dailyTaskTableView.dataSource = self
         //call custom cell
         dailyTaskTableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
-        dailyTaskTableView.estimatedRowHeight = 60
+        dailyTaskTableView.estimatedRowHeight = 100
         dailyTaskTableView.rowHeight = UITableView.automaticDimension
         //call custom header
         let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
         dailyTaskTableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         dailyTaskTableView.sectionHeaderHeight = UITableView.automaticDimension
         dailyTaskTableView.estimatedSectionHeaderHeight = 80
+        //hide unused rows
+        dailyTaskTableView.tableFooterView = UIView()
     }
     
     func initialAlertBox() {

@@ -11,6 +11,7 @@ import UIKit
 class TableViewCell: UITableViewCell {
     
  
+    @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var checkBox: CheckBox!
     
     @IBOutlet weak var label: UILabel!
@@ -21,6 +22,8 @@ class TableViewCell: UITableViewCell {
         checkBox.isChecked = task.isSelected
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        cellBackground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FBDCD")
+
     }
     
 

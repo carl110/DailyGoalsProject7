@@ -26,28 +26,17 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         
         headerView.config(goal: sectionData[section])
         
-        return headerView
-    }
-
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        //recast view as a UITableViewHeaderFooterView
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "#160C76")
-
-        // add gesture to header to tap and open
-        header.tag = section
+        headerView.tag = section
         let headerTapGesture = UITapGestureRecognizer()
         headerTapGesture.addTarget(self, action: #selector(DailyTaskViewController.sectionHeaderWasTouched(_:)))
-        header.addGestureRecognizer(headerTapGesture)
+        headerView.addGestureRecognizer(headerTapGesture)
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.config(task: cellsData[indexPath.row])
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
-        cell.contentView.backgroundColor = UIColor.colorWithHexString(hexStr: "6492a3")
         return cell
     }
     
