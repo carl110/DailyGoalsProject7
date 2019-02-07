@@ -20,6 +20,7 @@
 		897D130321EC86CA0062B0D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897D130221EC86CA0062B0D2 /* Assets.xcassets */; };
 		897D130621EC86CA0062B0D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */; };
 		897D131121EC86CB0062B0D2 /* DailyGoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D131021EC86CB0062B0D2 /* DailyGoalsTests.swift */; };
+		899602EE220C3EA1007C7BE4 /* CheckBoxTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899602ED220C3EA1007C7BE4 /* CheckBoxTest.swift */; };
 		8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F321ECC31300EDF42F /* HistoryViewController.swift */; };
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
@@ -72,6 +73,7 @@
 		897D130C21EC86CB0062B0D2 /* DailyGoalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyGoalsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		897D131021EC86CB0062B0D2 /* DailyGoalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalsTests.swift; sourceTree = "<group>"; };
 		897D131221EC86CB0062B0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		899602ED220C3EA1007C7BE4 /* CheckBoxTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxTest.swift; sourceTree = "<group>"; };
 		8997A9F321ECC31300EDF42F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				897D131021EC86CB0062B0D2 /* DailyGoalsTests.swift */,
 				897D131221EC86CB0062B0D2 /* Info.plist */,
+				899602ED220C3EA1007C7BE4 /* CheckBoxTest.swift */,
 			);
 			path = DailyGoalsTests;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899602EE220C3EA1007C7BE4 /* CheckBoxTest.swift in Sources */,
 				897D131121EC86CB0062B0D2 /* DailyGoalsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

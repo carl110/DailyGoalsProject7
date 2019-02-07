@@ -11,11 +11,19 @@ import XCTest
 
 class DailyGoalsTests: XCTestCase {
 
+    var dailyTaskVC: DailyTaskViewController!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        dailyTaskVC = DailyTaskViewController()
+    }
+    
+    func testGiven_When_Then() {
+
+        
+
+        
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    
 }
