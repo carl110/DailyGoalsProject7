@@ -10,8 +10,27 @@ import Foundation
 import UIKit
 
 extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, CheckBoxDelegate {
+    
+
+    
     func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
         print("checkBox: \(owner.rawValue) \(state)")
+        
+        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
+        
+        if owner == .Goal && state == true {
+            for i in rowCount {
+                cellsData[i.row].isSelected = true
+                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
+            }
+        }
+        if owner == .Goal && state == false {
+            for i in rowCount {
+                cellsData[i.row].isSelected = false
+                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
+            }
+        }
+
     }
     
     

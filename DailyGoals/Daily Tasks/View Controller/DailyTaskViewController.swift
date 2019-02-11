@@ -19,6 +19,7 @@ class DailyTaskViewController: UIViewController {
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "")]
     var sectionExpanded = true
     
+    
     @IBOutlet weak var dailyTaskTableView: UITableView!
 
 

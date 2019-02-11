@@ -12,6 +12,7 @@
 		8909D4FC21FF1D0700C09DEA /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909D4FB21FF1D0700C09DEA /* CustomHeader.swift */; };
 		8909D4FE21FF34D600C09DEA /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909D4FD21FF34D600C09DEA /* CustomHeader.xib */; };
 		8909D50022009E5E00C09DEA /* DailyGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909D4FF22009E5E00C09DEA /* DailyGoalData.swift */; };
+		890FBDF92211F4320017891C /* UITableView + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890FBDF82211F4320017891C /* UITableView + extensions.swift */; };
 		8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939DFC821F743C3001983A6 /* UIColor+extensions.swift */; };
 		8939DFCB21F9B522001983A6 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */; };
 		897D12F921EC86C50062B0D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D12F821EC86C50062B0D2 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		8909D4FB21FF1D0700C09DEA /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		8909D4FD21FF34D600C09DEA /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		8909D4FF22009E5E00C09DEA /* DailyGoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalData.swift; sourceTree = "<group>"; };
+		890FBDF82211F4320017891C /* UITableView + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + extensions.swift"; sourceTree = "<group>"; };
 		8939DFC821F743C3001983A6 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		897D12F521EC86C50062B0D2 /* DailyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 				8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */,
 				89C83EC421F9ED56001C6C5C /* Date+extensions.swift */,
 				8909D4F921FF0F4300C09DEA /* DailyTaskViewController+extensions.swift */,
+				890FBDF82211F4320017891C /* UITableView + extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */,
 				8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */,
 				89CE170521F5FC26004CE51D /* HistoryFlow.swift in Sources */,
+				890FBDF92211F4320017891C /* UITableView + extensions.swift in Sources */,
 				89CE16E221EF6170004CE51D /* CellData.swift in Sources */,
 				8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */,
 				8909D4FA21FF0F4300C09DEA /* DailyTaskViewController+extensions.swift in Sources */,
