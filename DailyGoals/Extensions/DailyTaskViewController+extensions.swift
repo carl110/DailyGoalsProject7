@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
+extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, CheckBoxDelegate {
+    func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
+        print("checkBox: \(owner.rawValue) \(state)")
+    }
+    
     
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -24,8 +28,9 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
         
+        headerView.checkBox.checkBoxDelegate = self
+        headerView.checkBox.owner = .Goal
         headerView.config(goal: sectionData[section])
-        
         headerView.tag = section
         let headerTapGesture = UITapGestureRecognizer()
         headerTapGesture.addTarget(self, action: #selector(DailyTaskViewController.sectionHeaderWasTouched(_:)))
@@ -37,6 +42,8 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.config(task: cellsData[indexPath.row])
+        cell.checkBox.checkBoxDelegate = self
+        cell.checkBox.owner = .Task
         return cell
     }
     

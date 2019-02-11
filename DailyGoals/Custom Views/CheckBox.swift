@@ -8,14 +8,29 @@
 
 import UIKit
 
+protocol CheckBoxDelegate {
+    func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool)
+}
+
 class CheckBox: UIButton {
+    
+    enum CheckBoxOwner: String {
+        case Goal = "Goal"
+        case Task = "Task"
+        
+        case none
+    }
     // Images
     let checkedImage = UIImage(named: "tickedcheckbox")! as UIImage
     let uncheckedImage = UIImage(named: "emptycheckbox")! as UIImage
     
+    var checkBoxDelegate: CheckBoxDelegate? = nil
+    var owner: CheckBoxOwner = .none
+    
     // Bool property chooses images for the variables
     var isChecked: Bool = false {
         didSet{
+            checkBoxDelegate?.checkBoxDidClick(owner: owner, state: isChecked)
             if isChecked == true {
                 self.setImage(checkedImage, for: .normal)
             } else {
