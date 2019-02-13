@@ -18,18 +18,22 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         
         let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
         
-        if owner == .Goal && state == true {
-            for i in rowCount {
-                cellsData[i.row].isSelected = true
-                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
-            }
-        }
+
+        
         if owner == .Goal && state == false {
             for i in rowCount {
+                cellsData[i.row].isSelected = true
+//                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
+            }
+        } else if owner == .Goal && state == true {
+            for i in rowCount {
                 cellsData[i.row].isSelected = false
-                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
+//                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
             }
         }
+
+        
+
 
     }
     
@@ -64,6 +68,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         cell.checkBox.checkBoxDelegate = self
         cell.checkBox.owner = .Task
         return cell
+ 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -72,7 +77,8 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
     }
     
     @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
-        sectionExpanded = !sectionExpanded
+//        sectionExpanded = !sectionExpanded
+        sectionData[0].toggle()
         dailyTaskTableView.reloadData()
     }
 }

@@ -17,8 +17,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     
     func config(task: CellData) {
-        label.text = "\(task.text)"
-//               label.text = "\(task.text) :: \(task.isSelected)"
+//        label.text = "\(task.text)"
+               label.text = "\(task.text) :: \(task.isSelected)"
         checkBox.isChecked = task.isSelected
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

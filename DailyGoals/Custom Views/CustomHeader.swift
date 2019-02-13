@@ -22,7 +22,7 @@ class CustomHeader: UITableViewHeaderFooterView {
     var delegate: HeaderSectionDelegate?
     
     func config(goal: DailyGoalData) {
-        labelTitle.text = "\(goal.text)"
+        labelTitle.text = "\(goal.text) :: \(goal.isSelected)"
         checkBox.isChecked = goal.isSelected
         labelTitle.numberOfLines = 0
         headerBachground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FA0CD")

@@ -15,7 +15,7 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
 
-    var cellsData: [CellData] = []
+    var cellsData: [CellData] = [CellData(text: ""), CellData(text: ""), CellData(text: "")]
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "")]
     var sectionExpanded = true
     
