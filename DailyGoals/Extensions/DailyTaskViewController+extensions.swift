@@ -14,8 +14,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
 
     
     func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
-        print("checkBox: \(owner.rawValue) \(state)")
-        
+
 //        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
         //        if owner == .Goal && state == false {
         //            for i in rowCount {
@@ -31,7 +30,6 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         
         checkHeaderCheckBox()
         checkRowCheckBox()
-        
         
     }
     
@@ -52,10 +50,8 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
     
     func checkRowCheckBox() {
         if cellsData[0].isSelected == true && cellsData[1].isSelected == true && cellsData[2].isSelected == true {
-            print ("all goals complete")
             sectionData[0].isSelected = true
         } else if cellsData[0].isSelected == false || cellsData[1].isSelected == false || cellsData[2].isSelected == false {
-            print ("all goals complete")
             sectionData[0].isSelected = false
         }
     }
