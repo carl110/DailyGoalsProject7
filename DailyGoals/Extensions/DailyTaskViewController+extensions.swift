@@ -29,7 +29,8 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         //        }
         
         checkHeaderCheckBox()
-        checkRowCheckBox()
+//        checkRowCheckBox()
+
         
     }
     
@@ -39,7 +40,6 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         if sectionData[0].isSelected == true {
             for i in rowCount {
                 cellsData[i.row].isSelected = true
-                print (i)
             }
         }         else if sectionData[0].isSelected == false {
             for i in rowCount {
