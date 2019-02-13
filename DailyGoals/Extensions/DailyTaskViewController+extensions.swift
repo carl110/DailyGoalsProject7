@@ -16,23 +16,24 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
     func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
 
         let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
-                if owner == .Goal && state == false {
-                    for i in rowCount {
-                        cellsData[i.row].isSelected = true
-        //                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
-                    }
-                } else if owner == .Goal && state == true {
-                    for i in rowCount {
-                        cellsData[i.row].isSelected = false
-        //                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
-                    }
-                }
         
-        if cellsData[0].isSelected == true && cellsData[1].isSelected == true && cellsData[2].isSelected == true {
-            sectionData[0].isSelected = true
-        } else if cellsData[0].isSelected == false || cellsData[1].isSelected == false || cellsData[2].isSelected == false {
-            sectionData[0].isSelected = false
+        if owner == .Goal {
+            if state == false {
+                for i in rowCount {
+                    cellsData[i.row].isSelected = true
+                }
+            } else {
+                for i in rowCount {
+                    cellsData[i.row].isSelected = false
+                }
+            }
         }
+        
+//        if cellsData[0].isSelected == true && cellsData[1].isSelected == true && cellsData[2].isSelected == true {
+//            sectionData[0].isSelected = true
+//        } else if cellsData[0].isSelected == false || cellsData[1].isSelected == false || cellsData[2].isSelected == false {
+//            sectionData[0].isSelected = false
+//        }
     
         
 //        checkHeaderCheckBox()
