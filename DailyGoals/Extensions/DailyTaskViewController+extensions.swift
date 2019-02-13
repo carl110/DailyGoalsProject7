@@ -16,28 +16,50 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
     func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
         print("checkBox: \(owner.rawValue) \(state)")
         
-        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
+//        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
+        //        if owner == .Goal && state == false {
+        //            for i in rowCount {
+        //                cellsData[i.row].isSelected = true
+        ////                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
+        //            }
+        //        } else if owner == .Goal && state == true {
+        //            for i in rowCount {
+        //                cellsData[i.row].isSelected = false
+        ////                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
+        //            }
+        //        }
         
-
+        checkHeaderCheckBox()
+        checkRowCheckBox()
         
-        if owner == .Goal && state == false {
-            for i in rowCount {
-                cellsData[i.row].isSelected = true
-//                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
-            }
-        } else if owner == .Goal && state == true {
-            for i in rowCount {
-                cellsData[i.row].isSelected = false
-//                dailyTaskTableView.reloadRows(at: [i as IndexPath], with: .fade)
-            }
-        }
-
         
-
-
     }
     
+    func checkHeaderCheckBox() {
+        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
+        
+        if sectionData[0].isSelected == true {
+            for i in rowCount {
+                cellsData[i.row].isSelected = true
+                print (i)
+            }
+        }         else if sectionData[0].isSelected == false {
+            for i in rowCount {
+                cellsData[i.row].isSelected = false
+            }
+        }
+}
     
+    func checkRowCheckBox() {
+        if cellsData[0].isSelected == true && cellsData[1].isSelected == true && cellsData[2].isSelected == true {
+            print ("all goals complete")
+            sectionData[0].isSelected = true
+        } else if cellsData[0].isSelected == false || cellsData[1].isSelected == false || cellsData[2].isSelected == false {
+            print ("all goals complete")
+            sectionData[0].isSelected = false
+        }
+    }
+
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
