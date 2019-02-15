@@ -16,14 +16,25 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     
-    func config(task: CellData) {
+    var isToggled: Bool = false
+    var isPreviouseState: Bool = false
+    
+    func toggle() {
+        checkBox.isChecked = !checkBox.isChecked
+        isToggled = checkBox.isChecked
+    }
+    
+    func config(task: CellData, checkBoxState: Bool?) {
 //        label.text = "\(task.text)"
                label.text = "\(task.text) :: \(task.isSelected)"
         checkBox.isChecked = task.isSelected
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         cellBackground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FBDCD")
-
+        
+        if let _checkboxState = checkBoxState {
+            checkBox.isChecked = _checkboxState
+        }
     }
     
     override func prepareForReuse() {

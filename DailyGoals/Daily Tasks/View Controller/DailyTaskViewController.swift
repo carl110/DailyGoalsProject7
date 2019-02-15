@@ -18,6 +18,7 @@ class DailyTaskViewController: UIViewController {
     var cellsData: [CellData] = [CellData(text: ""), CellData(text: ""), CellData(text: "")]
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "")]
     var sectionExpanded = true
+    var goalState: Bool? = nil
     
     
     @IBOutlet weak var dailyTaskTableView: UITableView!

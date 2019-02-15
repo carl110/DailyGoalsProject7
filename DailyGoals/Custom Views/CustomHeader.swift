@@ -21,21 +21,20 @@ class CustomHeader: UITableViewHeaderFooterView {
     
     var delegate: HeaderSectionDelegate?
     
-    func config(goal: DailyGoalData) {
-        labelTitle.text = "\(goal.text) :: \(goal.isSelected)"
-        checkBox.isChecked = goal.isSelected
-        labelTitle.numberOfLines = 0
-        headerBachground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FA0CD")
-        delegate?.headerSectionCell(self)
-
+    func toggle() {
+        checkBox.isChecked = !checkBox.isChecked
     }
     
+    func config(goal: DailyGoalData) {
+        labelTitle.text = "\(goal.text) :: \(goal.isSelected)"
+        labelTitle.numberOfLines = 0
+        headerBachground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FA0CD")
+    }
     
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        labelTitle.preferredMaxLayoutWidth = labelTitle.bounds.width
-//    }
+    @IBAction func cliclAction(_ sender: Any) {
+        checkBox.isChecked = !checkBox.isChecked
+        delegate?.headerSectionCell(self)
+    }
 
 }
 

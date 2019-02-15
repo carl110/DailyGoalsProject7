@@ -19,6 +19,12 @@
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="hJr-LN-Kr7">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj4-ed-wAS">
+                            <rect key="frame" x="50" y="0.0" width="325" height="100"/>
+                            <connections>
+                                <action selector="cliclAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="4mM-GM-1jq"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syc-Cy-lPW" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="25" width="50" height="50"/>
                             <constraints>
@@ -27,28 +33,23 @@
                             </constraints>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kwy-U7-BWq">
-                            <rect key="frame" x="50" y="0.0" width="275" height="100"/>
+                            <rect key="frame" x="50" y="0.0" width="325" height="100"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="chevron" translatesAutoresizingMaskIntoConstraints="NO" id="rCd-5Q-Hmy">
-                            <rect key="frame" x="325" y="25" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="dti-Um-kmu"/>
-                                <constraint firstAttribute="width" secondItem="rCd-5Q-Hmy" secondAttribute="height" multiplier="1:1" id="yFY-lt-VmH"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="cj4-ed-wAS" secondAttribute="bottom" id="2vL-Pz-tb2"/>
                         <constraint firstItem="syc-Cy-lPW" firstAttribute="centerY" secondItem="hJr-LN-Kr7" secondAttribute="centerY" id="8bT-Fb-7bo"/>
-                        <constraint firstItem="rCd-5Q-Hmy" firstAttribute="centerY" secondItem="hJr-LN-Kr7" secondAttribute="centerY" id="AGA-WR-mMp"/>
+                        <constraint firstItem="cj4-ed-wAS" firstAttribute="leading" secondItem="syc-Cy-lPW" secondAttribute="trailing" id="Bp8-eh-KXv"/>
+                        <constraint firstAttribute="trailing" secondItem="cj4-ed-wAS" secondAttribute="trailing" id="H3K-bd-FVL"/>
                         <constraint firstItem="Kwy-U7-BWq" firstAttribute="top" secondItem="hJr-LN-Kr7" secondAttribute="top" id="MY8-Rh-HLm"/>
                         <constraint firstAttribute="bottom" secondItem="Kwy-U7-BWq" secondAttribute="bottom" id="c8P-k3-0Pl"/>
                         <constraint firstItem="syc-Cy-lPW" firstAttribute="leading" secondItem="hJr-LN-Kr7" secondAttribute="leading" id="cQZ-ap-Z36"/>
-                        <constraint firstItem="rCd-5Q-Hmy" firstAttribute="leading" secondItem="Kwy-U7-BWq" secondAttribute="trailing" id="eXx-DV-NrF"/>
+                        <constraint firstItem="cj4-ed-wAS" firstAttribute="top" secondItem="hJr-LN-Kr7" secondAttribute="top" id="ekt-7R-xah"/>
                         <constraint firstItem="Kwy-U7-BWq" firstAttribute="leading" secondItem="syc-Cy-lPW" secondAttribute="trailing" id="gL8-55-jvQ"/>
-                        <constraint firstAttribute="trailing" secondItem="rCd-5Q-Hmy" secondAttribute="trailing" id="joV-EN-tGn"/>
+                        <constraint firstAttribute="trailing" secondItem="Kwy-U7-BWq" secondAttribute="trailing" id="vuI-58-6aI"/>
                     </constraints>
                 </view>
             </subviews>
@@ -69,7 +70,4 @@
             <point key="canvasLocation" x="53.600000000000001" y="57.571214392803604"/>
         </view>
     </objects>
-    <resources>
-        <image name="chevron" width="35.200000762939453" height="35.200000762939453"/>
-    </resources>
 </document>

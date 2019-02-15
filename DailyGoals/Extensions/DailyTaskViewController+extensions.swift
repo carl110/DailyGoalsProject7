@@ -9,61 +9,13 @@
 import Foundation
 import UIKit
 
-extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, CheckBoxDelegate {
+extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, CheckBoxDelegate, HeaderSectionDelegate {
     
 
     
     func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
-
-        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
-        
-        if owner == .Goal {
-            if state == false {
-                for i in rowCount {
-                    cellsData[i.row].isSelected = true
-                }
-            } else {
-                for i in rowCount {
-                    cellsData[i.row].isSelected = false
-                }
-            }
-        }
-        
-//        if cellsData[0].isSelected == true && cellsData[1].isSelected == true && cellsData[2].isSelected == true {
-//            sectionData[0].isSelected = true
-//        } else if cellsData[0].isSelected == false || cellsData[1].isSelected == false || cellsData[2].isSelected == false {
-//            sectionData[0].isSelected = false
-//        }
-    
-        
-//        checkHeaderCheckBox()
-//        checkRowCheckBox()
-
-        
     }
     
-    func checkHeaderCheckBox() {
-        let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
-        
-        if sectionData[0].isSelected == true {
-            for i in rowCount {
-                cellsData[i.row].isSelected = true
-            }
-        }         else if sectionData[0].isSelected == false {
-            for i in rowCount {
-                cellsData[i.row].isSelected = false
-            }
-        }
-    }
-    
-    func checkRowCheckBox() {
-        if cellsData[0].isSelected == true && cellsData[1].isSelected == true && cellsData[2].isSelected == true {
-            sectionData[0].isSelected = true
-        } else if cellsData[0].isSelected == false || cellsData[1].isSelected == false || cellsData[2].isSelected == false {
-            sectionData[0].isSelected = false
-        }
-    }
-
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -76,35 +28,49 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-        
         headerView.checkBox.checkBoxDelegate = self
         headerView.checkBox.owner = .Goal
         headerView.config(goal: sectionData[section])
         headerView.tag = section
-        let headerTapGesture = UITapGestureRecognizer()
-        headerTapGesture.addTarget(self, action: #selector(DailyTaskViewController.sectionHeaderWasTouched(_:)))
-        headerView.addGestureRecognizer(headerTapGesture)
+        headerView.delegate = self
         return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
-        cell.config(task: cellsData[indexPath.row])
+        cell.config(task: cellsData[indexPath.row], checkBoxState: goalState)
         cell.checkBox.checkBoxDelegate = self
         cell.checkBox.owner = .Task
         return cell
- 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cellsData[indexPath.row].toggle()
-        dailyTaskTableView.reloadRows(at: [indexPath], with: .fade)
+        
+        let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+        cell.toggle()
+        //check if any task cell is false
+        if cell.isToggled == false {
+            goalState = nil
+            let header = tableView.headerView(forSection: 0) as! CustomHeader
+            header.checkBox.isChecked = false
+        }
+        //Check if all tasks cells are true
+        let cells = dailyTaskTableView.visibleCells
+        var trueCount = 0
+        cells.forEach { (cell) in
+            if (cell as! TableViewCell).isToggled == true {
+                trueCount += 1
+            }
+        }
+        print (trueCount)
+        let header = dailyTaskTableView.headerView(forSection: 0) as! CustomHeader
+        if trueCount == 3 {
+            header.checkBox.isChecked = true
+        }
     }
     
-    @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
-//        sectionExpanded = !sectionExpanded
-        sectionData[0].toggle()
+    func headerSectionCell(_ cell: CustomHeader) {
+        goalState = cell.checkBox.isChecked
         dailyTaskTableView.reloadData()
     }
 }
