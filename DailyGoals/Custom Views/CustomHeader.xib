@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj4-ed-wAS">
-                            <rect key="frame" x="50" y="0.0" width="325" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                             <connections>
                                 <action selector="cliclAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="4mM-GM-1jq"/>
                             </connections>
@@ -41,8 +41,8 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="cj4-ed-wAS" secondAttribute="bottom" id="2vL-Pz-tb2"/>
+                        <constraint firstItem="cj4-ed-wAS" firstAttribute="leading" secondItem="hJr-LN-Kr7" secondAttribute="leading" id="4eo-fe-O82"/>
                         <constraint firstItem="syc-Cy-lPW" firstAttribute="centerY" secondItem="hJr-LN-Kr7" secondAttribute="centerY" id="8bT-Fb-7bo"/>
-                        <constraint firstItem="cj4-ed-wAS" firstAttribute="leading" secondItem="syc-Cy-lPW" secondAttribute="trailing" id="Bp8-eh-KXv"/>
                         <constraint firstAttribute="trailing" secondItem="cj4-ed-wAS" secondAttribute="trailing" id="H3K-bd-FVL"/>
                         <constraint firstItem="Kwy-U7-BWq" firstAttribute="top" secondItem="hJr-LN-Kr7" secondAttribute="top" id="MY8-Rh-HLm"/>
                         <constraint firstAttribute="bottom" secondItem="Kwy-U7-BWq" secondAttribute="bottom" id="c8P-k3-0Pl"/>

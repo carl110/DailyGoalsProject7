@@ -62,17 +62,60 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
                 trueCount += 1
             }
         }
-        print (trueCount)
         let header = dailyTaskTableView.headerView(forSection: 0) as! CustomHeader
-        if trueCount == 3 {
+        if trueCount == cells.count {
             header.checkBox.isChecked = true
         }
+//        cell.isPreviouseState = cell.isToggled
+//
+//        if header.checkBox.isChecked == false {
+//            cell.isToggled = cell.isPreviouseState
+//        }
+//
     }
     
     func headerSectionCell(_ cell: CustomHeader) {
-        goalState = cell.checkBox.isChecked
-        dailyTaskTableView.reloadData()
+        //if goal is true then all tasks true
+        let rowCell = dailyTaskTableView.visibleCells
+        
+        if cell.checkBox.isChecked == true {
+            rowCell.forEach{ (row) in
+                (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).isToggled
+                
+            }
+            
+            
+            goalState = true
+            dailyTaskTableView.reloadData()
+        } else { // if goal false
+            //needs work not loading the data
+            let rowCount = dailyTaskTableView.indexPathsForRowsInSection(0)
+            rowCell.forEach { (row) in
+                //                goalState = nil
+                print ("goalstate \(String(describing: goalState))")
+                (row as! TableViewCell).isToggled = (row as! TableViewCell).isPreviouseState
+                goalState = (row as! TableViewCell).isPreviouseState
+                
+                
+
+//                for i in 0...dailyTaskTableView.visibleCells.endIndex - 1 {
+//                    let indexPath = IndexPath(row: i, section: 0)
+//                dailyTaskTableView.reloadRows(at: [indexPath], with: .fade)
+
+                
+                
+
+                    if (row as! TableViewCell).isPreviouseState == true {
+                        goalState = true
+                    } else {
+                        goalState = false
+                    }
+
+                dailyTaskTableView.reloadData()
+        }
+
     }
+    
 }
 
-
+}
