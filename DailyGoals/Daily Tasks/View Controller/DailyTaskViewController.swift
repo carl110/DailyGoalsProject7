@@ -45,6 +45,8 @@ class DailyTaskViewController: UIViewController {
         dailyTaskTableView.estimatedSectionHeaderHeight = 80
         //hide unused rows
         dailyTaskTableView.tableFooterView = UIView()
+        
+        let visableCells = dailyTaskTableView.visibleCells
     }
     
     func initialAlertBox() {
