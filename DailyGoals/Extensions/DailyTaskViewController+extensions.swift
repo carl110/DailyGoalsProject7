@@ -45,8 +45,12 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+        let rows = dailyTaskTableView.visibleCells
+        //set previouse state
+        rows.forEach{ (cell) in
+            (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
+        }
         cell.toggle()
         //check if any task cell is false
         if cell.isToggled == false {
@@ -55,15 +59,18 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
             header.checkBox.isChecked = false
         }
         //Check if all tasks cells are true
-        let cells = dailyTaskTableView.visibleCells
         var trueCount = 0
-        cells.forEach { (cell) in
-            if (cell as! TableViewCell).isToggled == true {
+
+
+        
+        rows.forEach { (cell) in
+//            (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
+            if (cell as! TableViewCell).checkBox.isChecked == true {
                 trueCount += 1
             }
         }
         let header = dailyTaskTableView.headerView(forSection: 0) as! CustomHeader
-        if trueCount == cells.count {
+        if trueCount == rows.count {
             header.checkBox.isChecked = true
         }
     }
