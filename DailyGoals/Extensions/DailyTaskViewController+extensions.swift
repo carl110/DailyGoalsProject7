@@ -38,6 +38,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.config(task: cellsData[indexPath.row], checkBoxState: goalState)
         cell.checkBox.checkBoxDelegate = self
         cell.checkBox.owner = .Task
@@ -73,6 +74,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         if trueCount == rows.count {
             header.checkBox.isChecked = true
         }
+        
     }
     
     func headerSectionCell(_ cell: CustomHeader) {
