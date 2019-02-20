@@ -74,6 +74,9 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
             header.checkBox.isChecked = true
             congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         }
+        if trueCount < rows.count {
+            congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
+        }
         
     }
     

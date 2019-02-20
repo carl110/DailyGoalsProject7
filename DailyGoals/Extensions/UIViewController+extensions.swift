@@ -59,8 +59,11 @@ extension UIViewController {
     
     func congratsMessage(title: String? = nil,
                          message: String? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        self.present(alert, animated: true, completion: nil)
-        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
+        }
+
     }
 }
