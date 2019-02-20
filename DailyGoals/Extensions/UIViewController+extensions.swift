@@ -56,4 +56,11 @@ extension UIViewController {
         alert.addAction(actionButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func congratsMessage(title: String? = nil,
+                         message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
+    }
 }

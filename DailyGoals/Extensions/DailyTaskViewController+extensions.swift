@@ -53,17 +53,16 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
             (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
         }
         cell.toggle()
+        
         //check if any task cell is false
         if cell.isToggled == false {
             goalState = nil
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
+            congratsMessage(title: "You'll get there", message: "Keep on going")
         }
         //Check if all tasks cells are true
         var trueCount = 0
-
-
-        
         rows.forEach { (cell) in
 //            (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
             if (cell as! TableViewCell).checkBox.isChecked == true {
@@ -73,6 +72,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
         let header = dailyTaskTableView.headerView(forSection: 0) as! CustomHeader
         if trueCount == rows.count {
             header.checkBox.isChecked = true
+            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         }
         
     }
@@ -87,6 +87,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
             }
             goalState = true
             dailyTaskTableView.reloadData()
+            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             rowCell.forEach { (row) in
@@ -94,6 +95,7 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
                 goalState = (row as! TableViewCell).isPreviouseState
                 dailyTaskTableView.reloadRows(at: [indexPath], with: .fade)
                 rowIndex += 1
+                congratsMessage(title: "You'll get there", message: "Keep on going")
             }
             
         }
