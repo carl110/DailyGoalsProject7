@@ -59,12 +59,11 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
             goalState = nil
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
-            congratsMessage(title: "You'll get there", message: "Keep on going")
+//            congratsMessage(title: "You'll get there", message: "Keep on going")
         }
         //Check if all tasks cells are true
         var trueCount = 0
         rows.forEach { (cell) in
-//            (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
             if (cell as! TableViewCell).checkBox.isChecked == true {
                 trueCount += 1
             }
@@ -98,9 +97,9 @@ extension DailyTaskViewController: UITableViewDataSource, UITableViewDelegate, C
                 goalState = (row as! TableViewCell).isPreviouseState
                 dailyTaskTableView.reloadRows(at: [indexPath], with: .fade)
                 rowIndex += 1
-                congratsMessage(title: "You'll get there", message: "Keep on going")
+                
             }
-            
+            congratsMessage(title: "You'll get there", message: "Keep on going")
         }
         
     }

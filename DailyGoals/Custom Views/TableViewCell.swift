@@ -25,9 +25,7 @@ class TableViewCell: UITableViewCell {
     }
     
     func config(task: CellData, checkBoxState: Bool?) {
-//        label.text = "\(task.text)"
-               label.text = "\(task.text) :: \(task.isSelected)"
-        checkBox.isChecked = task.isSelected
+        label.text = "\(task.text)"
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         cellBackground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FBDCD")
@@ -39,7 +37,6 @@ class TableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         label.text = ""
-//        checkBox.isChecked = false
     }
 
 }

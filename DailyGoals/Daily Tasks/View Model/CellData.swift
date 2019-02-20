@@ -12,15 +12,9 @@ import UIKit
 class CellData {
     
     var text: String = ""
-    var isSelected: Bool = false
-    
+
     init(text: String) {
         self.text = text
     }
-    
-    func toggle() {
-        self.isSelected = !self.isSelected
-    }
-    
 }
 
