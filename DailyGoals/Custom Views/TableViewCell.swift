@@ -28,7 +28,7 @@ class TableViewCell: UITableViewCell {
         label.text = "\(task.text)"
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        cellBackground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FBDCD")
+        cellBackground.backgroundColor = UIColor.CustomColour.Blue.softBlue
         
         if let _checkboxState = checkBoxState {
             checkBox.isChecked = _checkboxState

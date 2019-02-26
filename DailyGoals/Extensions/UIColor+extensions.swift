@@ -34,4 +34,17 @@ extension UIColor {
             return colorWithHex(rgbValue: rgbValue);
         }
     }
+    
+    struct CustomColour {
+        struct Blue {
+            static let lightBlue = UIColor.colorWithHexString(hexStr: "#6FA0CD")
+            static let softBlue = UIColor.colorWithHexString(hexStr: "#6FBDCD")
+            static let 
+
+//        struct  Green {
+//            static let newGreen = 
+//        }
+
+    }
+}
 }

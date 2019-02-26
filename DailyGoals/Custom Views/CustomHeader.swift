@@ -28,7 +28,7 @@ class CustomHeader: UITableViewHeaderFooterView {
     func config(goal: DailyGoalData) {
         labelTitle.text = "\(goal.text)"
         labelTitle.numberOfLines = 0
-        headerBachground.backgroundColor = UIColor.colorWithHexString(hexStr: "#6FA0CD")
+        headerBachground.backgroundColor = UIColor.CustomColour.Blue.lightBlue
     }
     
     @IBAction func cliclAction(_ sender: Any) {
