@@ -15,10 +15,9 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
 
-    var cellsData: [CellData] = [CellData(text: ""), CellData(text: ""), CellData(text: "")]
-    var sectionData:[DailyGoalData] = [DailyGoalData(text: "")]
-    var sectionExpanded = true
-    var goalState: Bool? = nil
+    var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
+    var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
+
     
     
     @IBOutlet weak var dailyTaskTableView: UITableView!
@@ -26,26 +25,7 @@ class DailyTaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableSetUp()
         initialAlertBox()
-    }
-    
-    func tableSetUp() {
-        //delegate and datasource for table
-        dailyTaskTableView.delegate = self
-        dailyTaskTableView.dataSource = self
-        //call custom cell
-        dailyTaskTableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
-        dailyTaskTableView.estimatedRowHeight = 100
-        dailyTaskTableView.rowHeight = UITableView.automaticDimension
-        //call custom header
-        let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
-        dailyTaskTableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
-        dailyTaskTableView.sectionHeaderHeight = UITableView.automaticDimension
-        dailyTaskTableView.estimatedSectionHeaderHeight = 80
-        //hide unused rows
-        dailyTaskTableView.tableFooterView = UIView()
-
     }
     
     func initialAlertBox() {

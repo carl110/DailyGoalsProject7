@@ -18,22 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0z8-w0-SnN">
-                                <rect key="frame" x="5" y="25" width="365" height="637"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0aD-0y-SGm" customClass="CustomTable" customModule="DailyGoals" customModuleProvider="target">
+                                <rect key="frame" x="5" y="25" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0z8-w0-SnN" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="ESv-8V-zXB"/>
-                            <constraint firstItem="jxC-8C-b8W" firstAttribute="bottom" secondItem="0z8-w0-SnN" secondAttribute="bottom" constant="5" id="O9T-9V-H70"/>
-                            <constraint firstItem="jxC-8C-b8W" firstAttribute="trailing" secondItem="0z8-w0-SnN" secondAttribute="trailing" constant="5" id="mEp-VV-Uuo"/>
-                            <constraint firstItem="0z8-w0-SnN" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="5" id="rT0-jb-fr2"/>
+                            <constraint firstItem="0aD-0y-SGm" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="5" id="CWW-kW-eaC"/>
+                            <constraint firstItem="0aD-0y-SGm" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="PBN-8O-AAP"/>
+                            <constraint firstItem="0aD-0y-SGm" firstAttribute="bottom" secondItem="jxC-8C-b8W" secondAttribute="bottom" constant="5" id="Rnp-sf-5cv"/>
+                            <constraint firstItem="0aD-0y-SGm" firstAttribute="trailing" secondItem="jxC-8C-b8W" secondAttribute="trailing" constant="5" id="iwU-AI-VJM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jxC-8C-b8W"/>
                     </view>
                     <connections>
-                        <outlet property="dailyTaskTableView" destination="0z8-w0-SnN" id="Xxd-Ss-0R2"/>
+                        <outlet property="dailyTaskTableView" destination="0aD-0y-SGm" id="USw-7E-rmm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6t1-JV-SG7" userLabel="First Responder" sceneMemberID="firstResponder"/>

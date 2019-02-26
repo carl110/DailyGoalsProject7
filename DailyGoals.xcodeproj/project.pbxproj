@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8909D4F821FEFA9900C09DEA /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909D4F721FEFA9900C09DEA /* TableViewCell.xib */; };
-		8909D4FA21FF0F4300C09DEA /* DailyTaskViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909D4F921FF0F4300C09DEA /* DailyTaskViewController+extensions.swift */; };
 		8909D4FC21FF1D0700C09DEA /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909D4FB21FF1D0700C09DEA /* CustomHeader.swift */; };
 		8909D4FE21FF34D600C09DEA /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8909D4FD21FF34D600C09DEA /* CustomHeader.xib */; };
 		8909D50022009E5E00C09DEA /* DailyGoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8909D4FF22009E5E00C09DEA /* DailyGoalData.swift */; };
@@ -25,6 +24,7 @@
 		8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F321ECC31300EDF42F /* HistoryViewController.swift */; };
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
+		89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C12F1C2223F4F400A85FA0 /* CustomTable.swift */; };
 		89C83EC521F9ED56001C6C5C /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C83EC421F9ED56001C6C5C /* Date+extensions.swift */; };
 		89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */; };
 		89CE16E221EF6170004CE51D /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16E121EF6170004CE51D /* CellData.swift */; };
@@ -58,7 +58,6 @@
 
 /* Begin PBXFileReference section */
 		8909D4F721FEFA9900C09DEA /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		8909D4F921FF0F4300C09DEA /* DailyTaskViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyTaskViewController+extensions.swift"; sourceTree = "<group>"; };
 		8909D4FB21FF1D0700C09DEA /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		8909D4FD21FF34D600C09DEA /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		8909D4FF22009E5E00C09DEA /* DailyGoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalData.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		8997A9F321ECC31300EDF42F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		89C12F1C2223F4F400A85FA0 /* CustomTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTable.swift; sourceTree = "<group>"; };
 		89C83EC421F9ED56001C6C5C /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
 		89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		89CE16E121EF6170004CE51D /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
@@ -124,7 +124,6 @@
 				8939DFC821F743C3001983A6 /* UIColor+extensions.swift */,
 				8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */,
 				89C83EC421F9ED56001C6C5C /* Date+extensions.swift */,
-				8909D4F921FF0F4300C09DEA /* DailyTaskViewController+extensions.swift */,
 				890FBDF82211F4320017891C /* UITableView + extensions.swift */,
 			);
 			path = Extensions;
@@ -291,6 +290,7 @@
 				8909D4F721FEFA9900C09DEA /* TableViewCell.xib */,
 				8909D4FB21FF1D0700C09DEA /* CustomHeader.swift */,
 				8909D4FD21FF34D600C09DEA /* CustomHeader.xib */,
+				89C12F1C2223F4F400A85FA0 /* CustomTable.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -469,11 +469,11 @@
 				890FBDF92211F4320017891C /* UITableView + extensions.swift in Sources */,
 				89CE16E221EF6170004CE51D /* CellData.swift in Sources */,
 				8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */,
-				8909D4FA21FF0F4300C09DEA /* DailyTaskViewController+extensions.swift in Sources */,
 				89C83EC521F9ED56001C6C5C /* Date+extensions.swift in Sources */,
 				89CE16F121F1CBC1004CE51D /* DailyTaskBuilder.swift in Sources */,
 				89CE16F321F1CBD3004CE51D /* HistoryViewBuilder.swift in Sources */,
 				89CE16EA21F1C301004CE51D /* TabBarBuilder.swift in Sources */,
+				89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
