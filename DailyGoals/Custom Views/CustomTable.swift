@@ -52,7 +52,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
         headerView.checkBox.checkBoxDelegate = self
         headerView.checkBox.owner = .Goal
-//        headerView.config(goal: dailyTaskViewController.sectionData[section])
+        headerView.config(goal: sectionData[section])
         headerView.tag = section
         headerView.delegate = self
         return headerView
@@ -61,7 +61,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-//        cell.config(task: dailyTaskViewController.cellsData[indexPath.row], checkBoxState: goalState)
+        cell.config(task: cellsData[indexPath.row], checkBoxState: goalState)
         cell.checkBox.checkBoxDelegate = self
         cell.checkBox.owner = .Task
         return cell
@@ -69,7 +69,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
-        let rows = dailyTaskViewController.dailyTaskTableView.visibleCells
+        let rows = self.visibleCells
         //set previouse state
         rows.forEach{ (cell) in
             (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
@@ -90,7 +90,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 trueCount += 1
             }
         }
-        let header = dailyTaskViewController.dailyTaskTableView.headerView(forSection: 0) as! CustomHeader
+        let header = self.headerView(forSection: 0) as! CustomHeader
         if trueCount == rows.count {
             header.checkBox.isChecked = true
 //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
@@ -103,21 +103,21 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     
     func headerSectionCell(_ cell: CustomHeader) {
         //if goal is true then all tasks true
-        let rowCell = dailyTaskViewController.dailyTaskTableView.visibleCells
+        let rowCell = self.visibleCells
         if cell.checkBox.isChecked == true {
             //set previouse state to checkboxState
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
             }
 //            goalState = true
-            dailyTaskViewController.dailyTaskTableView.reloadData()
+            self.reloadData()
 //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
                 goalState = (row as! TableViewCell).isPreviouseState
-                dailyTaskViewController.dailyTaskTableView.reloadRows(at: [indexPath], with: .fade)
+                self.reloadRows(at: [indexPath], with: .fade)
                 rowIndex += 1
                 
             }
