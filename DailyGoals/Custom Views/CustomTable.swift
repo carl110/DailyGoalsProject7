@@ -109,7 +109,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
             }
-//            goalState = true
+            goalState = true
             self.reloadData()
 //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
