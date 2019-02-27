@@ -41,6 +41,7 @@ class DailyGoalsTests: XCTestCase {
                                         }
         })
         XCTAssertEqual(dailyTaskVC.cellsData.count, 3)
+        XCTAssertEqual(dailyTaskVC.sectionData[0].text, "Title")
         
     }
 }
