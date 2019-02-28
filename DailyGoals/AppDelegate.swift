@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,6 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         TabBarBuilder.showIn(window: window!)
         window?.makeKeyAndVisible()
+        
+        //set tabBar appearence
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().unselectedItemTintColor = UIColor.black
+        //set to false to get solid colour of bar
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().barTintColor = UIColor.Blue.lightBlue
  
         return true
     }
