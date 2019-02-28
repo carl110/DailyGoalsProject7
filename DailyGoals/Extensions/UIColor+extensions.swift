@@ -11,40 +11,52 @@ import UIKit
 
 extension UIColor {
     
-    // custom color methods
-    class func colorWithHex(rgbValue: UInt32) -> UIColor {
+    // custom color methods converst hex value to rgb value
+    class private func colourWithHex(rgbValue: UInt32) -> UIColor {
         return UIColor( red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
                         green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
                         blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
                         alpha: CGFloat(1.0))
     }
-    
-    class func colorWithHexString(hexStr: String) -> UIColor {
+    class private func colourWithHexString(hexStr: String) -> UIColor {
         var cString:String = hexStr.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
         if (hexStr.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
         if (cString.isEmpty || (cString.count) != 6) {
-            return colorWithHex(rgbValue: 0xFF5300);
+            return colourWithHex(rgbValue: 0xFF5300);
         } else {
             var rgbValue:UInt32 = 0
             Scanner(string: cString).scanHexInt32(&rgbValue)
-            
-            return colorWithHex(rgbValue: rgbValue);
+            return colourWithHex(rgbValue: rgbValue);
         }
     }
-    
-    struct CustomColour {
-        struct Blue {
-            static let lightBlue = UIColor.colorWithHexString(hexStr: "#6FA0CD")
-            static let softBlue = UIColor.colorWithHexString(hexStr: "#6FBDCD")
-
-
-//        struct  Green {
-//            static let newGreen = 
-//        }
-
+    //Custom colours
+    struct Red {
+        static let standardRed = UIColor.colourWithHexString(hexStr: "#FF0000")
+    }
+    struct Blue {
+        static let standardBlue = UIColor.colourWithHexString(hexStr: "#0000FF")
+        static let lightBlue = UIColor.colourWithHexString(hexStr: "#6FA0CD")
+        static let softBlue = UIColor.colourWithHexString(hexStr: "#6FBDCD")
+    }
+    struct Yellow {
+        static let standardYellow = UIColor.colourWithHexString(hexStr: "#FFFF00")
+        
+    }
+    struct Purple {
+        static let standardPurple = UIColor.colourWithHexString(hexStr: "#800080")
+    }
+    struct Orange {
+        static let standardOrange = UIColor.colourWithHexString(hexStr: "#FFA500")
+    }
+    struct  Green {
+        static let standardGreen = UIColor.colourWithHexString(hexStr: "#00FF00")
+    }
+    struct Shades {
+        static let standardGrey = UIColor.colourWithHexString(hexStr: "#808080")
+        static let standardBlack = UIColor.colourWithHexString(hexStr: "#000000")
+        static let standardWhite = UIColor.colourWithHexString(hexStr: "#FFFFFF")
     }
 }
-}
+
