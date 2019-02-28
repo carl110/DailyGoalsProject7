@@ -9,17 +9,20 @@
 import XCTest
 @testable import DailyGoals
 
-class CheckBoxTest: XCTestCase {
-
-    var checkBox:CheckBox!
+class CustomColoursTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        checkBox = CheckBox()
-        
     }
     
-    func testGivenChekcBoxEmptyWhenCheckBoxTouchedThenCheckIsChecked() {
+    func testHexConversiontoUIColor() {
+        
+        XCTAssertEqual(UIColor.Shades.standardWhite, UIColor(red: 1, green: 1, blue: 1, alpha: 1), "This colour should be white")
+        XCTAssertEqual(UIColor.Shades.standardBlack, UIColor(red: 0, green: 0, blue: 0, alpha: 1), "This colour should be black")
+        XCTAssertEqual(UIColor.Red.standardRed, UIColor(red: 1, green: 0, blue: 0, alpha: 1), "This colour should be red")
+        XCTAssertEqual(UIColor.Green.standardGreen , UIColor(red: 0, green: 1, blue: 0, alpha: 1), "This colour should be green")
+        XCTAssertEqual(UIColor.Blue.standardBlue, UIColor(red: 0, green: 0, blue: 1, alpha: 1), "This colour should be blue")
+        
 
     }
     
