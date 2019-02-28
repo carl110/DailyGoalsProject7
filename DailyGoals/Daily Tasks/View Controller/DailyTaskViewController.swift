@@ -37,7 +37,7 @@ class DailyTaskViewController: UIViewController {
                                 //Alert reruns initial alert
                                 self.alertBoxWithAction(title: "Goals and Tasks",
                                                         message: "You must complete setails for the goal and all 3 tasks",
-                                                        options: "1") { (option) in
+                                                        options: "Complete Inputs") { (option) in
                                                             print("option: \(option)")
                                                             switch(option) {
                                                             case 0:
@@ -46,7 +46,7 @@ class DailyTaskViewController: UIViewController {
                                                                 break
                                                             }
                                 }
-                            } else {
+                            } else { //append data from alertbox to arrays
                                 self.dailyTaskTableView.sectionData = [DailyGoalData(text: "\(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
                                 self.dailyTaskTableView.cellsData = [CellData(text: "\(task1Input ?? "")" ),
                                                                      CellData(text: "\(task2Input ?? "")" ),

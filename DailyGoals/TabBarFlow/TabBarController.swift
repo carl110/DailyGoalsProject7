@@ -17,21 +17,10 @@ class TabBarController: UITabBarController {
         self.tbFlow = tbFlow
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        self.tabBarController?.selectedIndex = 1
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         //select initial VC to show
         self.selectedIndex = 1
-        //selected item colour
-        UITabBar.appearance().tintColor = UIColor.white
-        UITabBar.appearance().unselectedItemTintColor = UIColor.black
-        //set to false to get solid colour of bar
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.Blue.lightBlue
     }
     
     override var navigationItem: UINavigationItem {

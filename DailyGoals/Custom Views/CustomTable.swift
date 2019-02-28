@@ -11,31 +11,27 @@ import UIKit
 
 class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  CheckBoxDelegate, HeaderSectionDelegate  {
     
-    var dailyTaskViewController: DailyTaskViewController!
     var goalState: Bool? = nil
     var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
-
-       
+    
     override func awakeFromNib() {
-        
         delegate = self
         dataSource = self
         
+        //setup custom cell
         self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
         self.estimatedRowHeight = 100
         self.rowHeight = UITableView.automaticDimension
+        
         //call custom header
         let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
         self.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         self.sectionHeaderHeight = UITableView.automaticDimension
         self.estimatedSectionHeaderHeight = 80
+        
         //hide unused rows
         self.tableFooterView = UIView()
-        
-    }
-    
-    func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {
     }
     
     //Number of section required for table
@@ -48,6 +44,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         return 3
     }
     
+    //setup custom header as header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
         headerView.checkBox.checkBoxDelegate = self
@@ -58,6 +55,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         return headerView
     }
     
+    //setup custom cell as row cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -67,11 +65,12 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         return cell
     }
     
+    //what to do when row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
-        let rows = self.visibleCells
+        
         //set previouse state
-        rows.forEach{ (cell) in
+        self.visibleCells.forEach{ (cell) in
             (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
         }
         cell.toggle()
@@ -83,7 +82,11 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             header.checkBox.isChecked = false
             //            congratsMessage(title: "You'll get there", message: "Keep on going")
         }
-        //Check if all tasks cells are true
+        allCellsTrue(rows: self.visibleCells)
+    }
+    
+    //check to see if all cells show true (isChecked)
+    func allCellsTrue(rows: [UITableViewCell]) {
         var trueCount = 0
         rows.forEach { (cell) in
             if (cell as! TableViewCell).checkBox.isChecked == true {
@@ -91,14 +94,14 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             }
         }
         let header = self.headerView(forSection: 0) as! CustomHeader
+        //Messages for checking/unchecking goal
         if trueCount == rows.count {
             header.checkBox.isChecked = true
-//            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
+            //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         }
         if trueCount < rows.count {
-//            congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
+            //            congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
         }
-        
     }
     
     func headerSectionCell(_ cell: CustomHeader) {
@@ -111,7 +114,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             }
             goalState = true
             self.reloadData()
-//            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
+            //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             rowCell.forEach { (row) in
@@ -121,10 +124,6 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 rowIndex += 1
                 
             }
-//            congratsMessage(title: "You'll get there", message: "Keep on going")
         }
-        
-}
-    
-
+    }
 }
