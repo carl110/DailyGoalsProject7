@@ -11,4 +11,5 @@ import UIKit
 
 class DailyTaskViewModel {
     
+    var goalState: Bool? = nil
 }

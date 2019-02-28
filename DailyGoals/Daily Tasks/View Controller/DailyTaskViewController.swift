@@ -52,12 +52,13 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task2Input ?? "")" ),
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
+                                
                             }
         })
     }
     //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow
-        self.dailyTaskViewModel = dailyTaskViewModel
+//        self.dailyTaskViewModel = dailyTaskViewModel
     }
 }

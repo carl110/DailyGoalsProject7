@@ -11,7 +11,8 @@ import UIKit
 
 class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  CheckBoxDelegate, HeaderSectionDelegate  {
     
-    var goalState: Bool? = nil
+    fileprivate var dailyTaskViewModel = DailyTaskViewModel()
+    
     var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
     
@@ -59,7 +60,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.config(task: cellsData[indexPath.row], checkBoxState: goalState)
+        cell.config(task: cellsData[indexPath.row], checkBoxState: dailyTaskViewModel.goalState)
         cell.checkBox.checkBoxDelegate = self
         cell.checkBox.owner = .Task
         return cell
@@ -77,7 +78,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         
         //check if any task cell is false
         if cell.isToggled == false {
-            goalState = nil
+            dailyTaskViewModel.goalState = nil
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
             //            congratsMessage(title: "You'll get there", message: "Keep on going")
@@ -112,14 +113,14 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
             }
-            goalState = true
+            dailyTaskViewModel.goalState = true
             self.reloadData()
             //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
-                goalState = (row as! TableViewCell).isPreviouseState
+                dailyTaskViewModel.goalState = (row as! TableViewCell).isPreviouseState
                 self.reloadRows(at: [indexPath], with: .fade)
                 rowIndex += 1
                 
