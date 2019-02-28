@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  CheckBoxDelegate, HeaderSectionDelegate  {
     
     var dailyTaskViewController: DailyTaskViewController!
@@ -17,8 +16,9 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
 
-    
+       
     override func awakeFromNib() {
+        
         delegate = self
         dataSource = self
         

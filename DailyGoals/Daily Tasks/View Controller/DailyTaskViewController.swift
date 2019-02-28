@@ -14,15 +14,9 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskViewModel: DailyTaskViewModel!
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
-
-    var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
-    var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
-
     
+    @IBOutlet weak var dailyTaskTableView: CustomTable!
     
-    @IBOutlet weak var dailyTaskTableView: UITableView!
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         initialAlertBox()
@@ -40,29 +34,27 @@ class DailyTaskViewController: UIViewController {
                            actionHandler: { (goalInput:String?, task1Input:String?, task2Input:String?, task3Input:String?) in
                             
                             if (goalInput?.isEmpty)! || (task1Input?.isEmpty)! || (task2Input?.isEmpty)! || (task3Input?.isEmpty)! {
-                                
-                                self.warningMessage()
-
+                                //Alert reruns initial alert
+                                self.alertBoxWithAction(title: "Goals and Tasks",
+                                                        message: "You must complete setails for the goal and all 3 tasks",
+                                                        options: "1") { (option) in
+                                                            print("option: \(option)")
+                                                            switch(option) {
+                                                            case 0:
+                                                                self.initialAlertBox()
+                                                            default:
+                                                                break
+                                                            }
+                                }
                             } else {
-                                self.sectionData = [DailyGoalData(text: "\(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
-                                self.cellsData = [CellData(text: "\(task1Input ?? "")" ),
-                                                  CellData(text: "\(task2Input ?? "")" ),
-                                                  CellData(text: "\(task3Input ?? "")" )]
+                                self.dailyTaskTableView.sectionData = [DailyGoalData(text: "\(Date().string(format: "dd MMM yyyy")) \n \(goalInput ?? "")")]
+                                self.dailyTaskTableView.cellsData = [CellData(text: "\(task1Input ?? "")" ),
+                                                                     CellData(text: "\(task2Input ?? "")" ),
+                                                                     CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
                             }
         })
     }
-    
-    func warningMessage() {
-        let alert = UIAlertController(title: "Goals and Tasks", message: "You must complete setails for the goal and all 3 tasks", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            alert.dismiss(animated: true, completion: nil)
-            self.initialAlertBox()
-        }))
-       present(alert, animated: true, completion: nil)
-        
-    }
-    
     //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow

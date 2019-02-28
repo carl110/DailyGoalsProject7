@@ -56,8 +56,8 @@ extension UIViewController {
         alert.addAction(actionButton)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    func congratsMessage(title: String? = nil,
+    //times alert with no buttons
+    func alertBoxWithTimer(title: String? = nil,
                          message: String? = nil) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -66,4 +66,16 @@ extension UIViewController {
         }
 
     }
+    //alert box with switch to show options per button set up
+    func alertBoxWithAction(title: String, message: String, options: String..., completion: @escaping (Int) -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        for (index, option) in options.enumerated() {
+            alertController.addAction(UIAlertAction.init(title: option, style: .default, handler: { (action) in
+                completion(index)
+            }))
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
+
 }
+
