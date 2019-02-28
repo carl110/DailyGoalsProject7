@@ -12,6 +12,10 @@ protocol CheckBoxDelegate {
     func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool)
 }
 
+extension CheckBoxDelegate {
+    func checkBoxDidClick(owner: CheckBox.CheckBoxOwner, state: Bool) {}
+}
+
 class CheckBox: UIButton {
     
     enum CheckBoxOwner: String {
