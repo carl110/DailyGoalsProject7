@@ -25,6 +25,7 @@
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
 		89A46C7222281DE200218A76 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A46C7122281DE200218A76 /* DateTests.swift */; };
+		89A46C76222D2D6900218A76 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A46C75222D2D6900218A76 /* CoreDataManager.swift */; };
 		89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C12F1C2223F4F400A85FA0 /* CustomTable.swift */; };
 		89C83EC521F9ED56001C6C5C /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C83EC421F9ED56001C6C5C /* Date+extensions.swift */; };
 		89CE16E021EF5E6B004CE51D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */; };
@@ -80,6 +81,7 @@
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		89A46C7122281DE200218A76 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		89A46C75222D2D6900218A76 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		89C12F1C2223F4F400A85FA0 /* CustomTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTable.swift; sourceTree = "<group>"; };
 		89C83EC421F9ED56001C6C5C /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
 		89CE16DF21EF5E6B004CE51D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */,
 				897D130721EC86CA0062B0D2 /* Info.plist */,
 				897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */,
+				89A46C75222D2D6900218A76 /* CoreDataManager.swift */,
 			);
 			path = DailyGoals;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				89CE16F121F1CBC1004CE51D /* DailyTaskBuilder.swift in Sources */,
 				89CE16F321F1CBD3004CE51D /* HistoryViewBuilder.swift in Sources */,
 				89CE16EA21F1C301004CE51D /* TabBarBuilder.swift in Sources */,
+				89A46C76222D2D6900218A76 /* CoreDataManager.swift in Sources */,
 				89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

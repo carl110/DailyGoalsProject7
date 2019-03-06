@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DailyTaskViewController: UIViewController {
     
@@ -14,13 +15,23 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskViewModel: DailyTaskViewModel!
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
+    //setup for coreData
+    var goalItem = [DailyGoal]()
+    var context:NSManagedObjectContext!
+    var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     @IBOutlet weak var dailyTaskTableView: CustomTable!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initialAlertBox()
+        
+        context = appDelegate?.persistentContainer.viewContext
+        
     }
+    
+
+
     
     func initialAlertBox() {
         //Alert box to add new goal and tasks
@@ -52,6 +63,17 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task2Input ?? "")" ),
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
+                                
+                                //save to coredata
+                                let goal = DailyGoal(context: self.context)
+                                
+                                goal.setValue(goalInput, forKey: "goal")
+                                goal.setValue(task1Input, forKey: "task1")
+                                goal.setValue(task2Input, forKey: "task2")
+                                goal.setValue(task3Input, forKey: "task3")
+                                goal.setValue(Date().string(format: "dd MM yyyy"), forKey: "date")
+                                
+                                self.appDelegate?.saveContext()
                                 
                             }
         })
