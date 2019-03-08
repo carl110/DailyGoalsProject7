@@ -16,9 +16,9 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
     //setup for coreData
-    var goalItem = [DailyGoal]()
-    var context:NSManagedObjectContext!
-    var appDelegate = UIApplication.shared.delegate as? AppDelegate
+//    var goalItem = [DailyGoal]()
+//    var context:NSManagedObjectContext!
+//    var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     @IBOutlet weak var dailyTaskTableView: CustomTable!
     
@@ -26,7 +26,7 @@ class DailyTaskViewController: UIViewController {
         super.viewDidLoad()
         initialAlertBox()
         
-        context = appDelegate?.persistentContainer.viewContext
+//        context = appDelegate?.persistentContainer.viewContext
         
     }
     
@@ -64,17 +64,21 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
                                 
-                                //save to coredata
-                                let goal = DailyGoal(context: self.context)
                                 
-                                goal.setValue(goalInput, forKey: "goal")
-                                goal.setValue(task1Input, forKey: "task1")
-                                goal.setValue(task2Input, forKey: "task2")
-                                goal.setValue(task3Input, forKey: "task3")
-                                goal.setValue(Date().string(format: "dd MM yyyy"), forKey: "date")
+                                CoreDataManager.shared.saveGoalData(goal: goalInput!, task1: task1Input!, task2: task2Input!, task3: task3Input!, date: NSDate())
                                 
-                                self.appDelegate?.saveContext()
                                 
+//                                //save to coredata
+//                                let goal = DailyGoal(context: self.context)
+//
+//                                goal.setValue(goalInput, forKey: "goal")
+//                                goal.setValue(task1Input, forKey: "task1")
+//                                goal.setValue(task2Input, forKey: "task2")
+//                                goal.setValue(task3Input, forKey: "task3")
+//                                goal.setValue(NSDate(), forKey: "date")
+//
+//                                self.appDelegate?.saveContext()
+//
                             }
         })
     }

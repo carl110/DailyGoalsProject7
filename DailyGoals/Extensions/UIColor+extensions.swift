@@ -32,25 +32,25 @@ extension UIColor {
         }
     }
     //Custom colours
-    struct Red {
+    struct Reds {
         static let standardRed = UIColor.colourWithHexString(hexStr: "#FF0000")
     }
-    struct Blue {
+    struct Blues {
         static let standardBlue = UIColor.colourWithHexString(hexStr: "#0000FF")
         static let lightBlue = UIColor.colourWithHexString(hexStr: "#6FA0CD")
         static let softBlue = UIColor.colourWithHexString(hexStr: "#6FBDCD")
     }
-    struct Yellow {
+    struct Yellows {
         static let standardYellow = UIColor.colourWithHexString(hexStr: "#FFFF00")
         
     }
-    struct Purple {
+    struct Purples {
         static let standardPurple = UIColor.colourWithHexString(hexStr: "#800080")
     }
-    struct Orange {
+    struct Oranges {
         static let standardOrange = UIColor.colourWithHexString(hexStr: "#FFA500")
     }
-    struct  Green {
+    struct  Greens {
         static let standardGreen = UIColor.colourWithHexString(hexStr: "#00FF00")
     }
     struct Shades {

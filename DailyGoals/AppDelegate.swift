@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().unselectedItemTintColor = UIColor.black
         //set to false to get solid colour of bar
         UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.Blue.lightBlue
+        UITabBar.appearance().barTintColor = UIColor.Blues.lightBlue
  
         return true
     }
