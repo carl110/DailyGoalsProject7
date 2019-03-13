@@ -15,7 +15,8 @@ protocol HeaderSectionDelegate {
 
 class CustomHeader: UITableViewHeaderFooterView {
     
-    @IBOutlet weak var labelTitle: UILabel!
+
+    @IBOutlet weak var labelTitle: UITextField!
     @IBOutlet weak var headerBachground: UIView!
     @IBOutlet weak var checkBox: CheckBox!
     
@@ -27,7 +28,9 @@ class CustomHeader: UITableViewHeaderFooterView {
     
     func config(goal: DailyGoalData) {
         labelTitle.text = "\(goal.text)"
-        labelTitle.numberOfLines = 0
+        labelTitle.backgroundColor = UIColor.clear
+        labelTitle.isEnabled = false
+//        labelTitle.numberOfLines = 0
         headerBachground.backgroundColor = UIColor.Blues.lightBlue
     }
     

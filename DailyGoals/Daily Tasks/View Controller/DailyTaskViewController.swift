@@ -15,23 +15,54 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskViewModel: DailyTaskViewModel!
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
-    //setup for coreData
-//    var goalItem = [DailyGoal]()
-//    var context:NSManagedObjectContext!
-//    var appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
+
     @IBOutlet weak var dailyTaskTableView: CustomTable!
+    
+    @IBOutlet weak var editTasks: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initialAlertBox()
-        
-//        context = appDelegate?.persistentContainer.viewContext
-        
+        DispatchQueue.main.async {
+            self.editTaskButtonSetUp()
+        }
     }
     
+    @IBAction func editTasks(_ sender: Any) {
+        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
+        let rowCell = dailyTaskTableView.visibleCells
+        
+        //check state of labelTitle
+        if tableHeader.labelTitle.isEnabled == false {
+        
+            //enable edit for goal and tasks and change background colours
+            tableHeader.labelTitle.isEnabled = true
+            tableHeader.backgroundColor = UIColor.Shades.standardWhite
+            rowCell.forEach{ (row) in
+                (row as! TableViewCell).label.isEnabled = true
+                (row as! TableViewCell).label.backgroundColor = UIColor.Shades.standardWhite
+            }
+            
+            //update title on button
+            editTasks.setTitle("Finish Editing", for: UIControl.State.normal)
+        
+        } else { //stop editing of text buttons
+            tableHeader.labelTitle.isEnabled = false
+            tableHeader.backgroundColor = UIColor.clear
+            rowCell.forEach{ (row) in
+                (row as! TableViewCell).label.isEnabled = false
+                (row as! TableViewCell).label.backgroundColor = UIColor.clear
+            }
+            editTasks.setTitle("Edit Tasks", for: .normal)
+        }
+    }
 
-
+    func editTaskButtonSetUp() {
+        editTasks.setTitle("Edit Tasks", for: UIControl.State.normal)
+        editTasks.roundCorners(for: .allCorners, cornerRadius: 8)
+        editTasks.centerTextHorizontally(spacing: 1)
+        editTasks.backgroundColor = UIColor.Blues.softBlue
+    }
     
     func initialAlertBox() {
         //Alert box to add new goal and tasks
@@ -64,21 +95,7 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
                                 
-                                
                                 CoreDataManager.shared.saveGoalData(goal: goalInput!, task1: task1Input!, task2: task2Input!, task3: task3Input!, date: NSDate())
-                                
-                                
-//                                //save to coredata
-//                                let goal = DailyGoal(context: self.context)
-//
-//                                goal.setValue(goalInput, forKey: "goal")
-//                                goal.setValue(task1Input, forKey: "task1")
-//                                goal.setValue(task2Input, forKey: "task2")
-//                                goal.setValue(task3Input, forKey: "task3")
-//                                goal.setValue(NSDate(), forKey: "date")
-//
-//                                self.appDelegate?.saveContext()
-//
                             }
         })
     }

@@ -19,15 +19,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3y1-2a-3w0">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="42"/>
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="31"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz2-Jn-QWU">
-                        <rect key="frame" x="10" y="11" width="325" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cfX-kS-AwZ">
+                        <rect key="frame" x="10" y="6" width="320" height="19"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rO-ri-JKi" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
                         <rect key="frame" x="340" y="5" width="30" height="30"/>
                         <constraints>
@@ -39,23 +39,23 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="5rO-ri-JKi" secondAttribute="bottom" constant="5" id="1Rw-EF-A1l"/>
-                    <constraint firstItem="mz2-Jn-QWU" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="topMargin" id="Fwk-Tg-qfE"/>
-                    <constraint firstItem="5rO-ri-JKi" firstAttribute="leading" secondItem="mz2-Jn-QWU" secondAttribute="trailing" constant="5" id="H6p-Rb-Qjm"/>
+                    <constraint firstItem="cfX-kS-AwZ" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" constant="10" id="60I-AX-zRk"/>
+                    <constraint firstAttribute="bottom" secondItem="cfX-kS-AwZ" secondAttribute="bottom" constant="6" id="GvS-sk-IgC"/>
                     <constraint firstAttribute="bottom" secondItem="3y1-2a-3w0" secondAttribute="bottom" id="MOM-wd-EoV"/>
                     <constraint firstAttribute="leading" secondItem="3y1-2a-3w0" secondAttribute="trailing" constant="-340" id="Pdk-NG-mDK"/>
                     <constraint firstItem="5rO-ri-JKi" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" constant="5" id="SnG-HY-dSE"/>
                     <constraint firstItem="3y1-2a-3w0" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" id="Vbc-NE-lxx"/>
-                    <constraint firstItem="mz2-Jn-QWU" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" constant="10" id="WAm-6h-PgC"/>
                     <constraint firstItem="3y1-2a-3w0" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" id="XyT-JU-40T"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="mz2-Jn-QWU" secondAttribute="bottom" id="bew-TY-94x"/>
+                    <constraint firstItem="5rO-ri-JKi" firstAttribute="leading" secondItem="cfX-kS-AwZ" secondAttribute="trailing" constant="10" id="duZ-6K-OA4"/>
                     <constraint firstAttribute="trailing" secondItem="5rO-ri-JKi" secondAttribute="trailing" constant="5" id="g8h-1T-4Fd"/>
+                    <constraint firstItem="3y1-2a-3w0" firstAttribute="centerY" secondItem="cfX-kS-AwZ" secondAttribute="centerY" id="mCh-om-6II"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cellBackground" destination="3y1-2a-3w0" id="ARq-6h-Mjt"/>
                 <outlet property="checkBox" destination="5rO-ri-JKi" id="HAG-BM-vB9"/>
                 <outlet property="contentView" destination="bdw-wv-p83" id="B5z-bG-fAg"/>
-                <outlet property="label" destination="mz2-Jn-QWU" id="aks-gM-Y19"/>
+                <outlet property="label" destination="cfX-kS-AwZ" id="DgO-tT-1q5"/>
             </connections>
             <point key="canvasLocation" x="104.8" y="247.37631184407797"/>
         </tableViewCell>

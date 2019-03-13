@@ -19,21 +19,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0aD-0y-SGm" customClass="CustomTable" customModule="DailyGoals" customModuleProvider="target">
-                                <rect key="frame" x="5" y="25" width="375" height="647"/>
+                                <rect key="frame" x="5" y="25" width="375" height="612"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNT-bI-hQO">
+                                <rect key="frame" x="100" y="637" width="175" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="editTasks:" destination="pzr-QE-ODV" eventType="touchUpInside" id="nLz-od-OAL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0aD-0y-SGm" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="5" id="CWW-kW-eaC"/>
+                            <constraint firstItem="jxC-8C-b8W" firstAttribute="trailing" secondItem="oNT-bI-hQO" secondAttribute="trailing" constant="100" id="MIF-hC-H3P"/>
                             <constraint firstItem="0aD-0y-SGm" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="PBN-8O-AAP"/>
-                            <constraint firstItem="0aD-0y-SGm" firstAttribute="bottom" secondItem="jxC-8C-b8W" secondAttribute="bottom" constant="5" id="Rnp-sf-5cv"/>
+                            <constraint firstItem="oNT-bI-hQO" firstAttribute="top" secondItem="0aD-0y-SGm" secondAttribute="bottom" id="PeO-af-l2H"/>
+                            <constraint firstItem="oNT-bI-hQO" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="100" id="RaX-GJ-JTp"/>
+                            <constraint firstItem="oNT-bI-hQO" firstAttribute="centerX" secondItem="YO7-im-orR" secondAttribute="centerX" id="ab4-Ph-y8l"/>
                             <constraint firstItem="0aD-0y-SGm" firstAttribute="trailing" secondItem="jxC-8C-b8W" secondAttribute="trailing" constant="5" id="iwU-AI-VJM"/>
+                            <constraint firstItem="oNT-bI-hQO" firstAttribute="bottom" secondItem="jxC-8C-b8W" secondAttribute="bottom" id="w39-Ez-aq5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jxC-8C-b8W"/>
                     </view>
                     <connections>
                         <outlet property="dailyTaskTableView" destination="0aD-0y-SGm" id="USw-7E-rmm"/>
+                        <outlet property="editTasks" destination="oNT-bI-hQO" id="RtQ-kq-tHN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6t1-JV-SG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
