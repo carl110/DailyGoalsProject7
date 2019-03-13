@@ -53,11 +53,11 @@ class DailyTaskViewController: UIViewController {
                 (row as! TableViewCell).label.isEnabled = false
                 (row as! TableViewCell).label.backgroundColor = UIColor.clear
                 
-                CoreDataManager.shared.updateGoalData(taskData: (row as! TableViewCell).label.text!, date: NSDate())
+//                CoreDataManager.shared.updateGoalData(taskData: (row as! TableViewCell).label.text!, date: NSDate())
             }
             editTasks.setTitle("Edit Tasks", for: .normal)
             
-            CoreDataManager.shared.updateGoalData(taskData: tableHeader.labelTitle.text!, date: NSDate())
+//            CoreDataManager.shared.updateGoalData(taskData: tableHeader.labelTitle.text!, date: NSDate())
 
         }
     }
