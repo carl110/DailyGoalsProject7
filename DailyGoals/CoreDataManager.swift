@@ -38,40 +38,48 @@ class CoreDataManager {
         
         do {
             try managedContext.save()
-      
         } catch {
             let error = error as NSError
             fatalError("Could not save. \(error), \(error.userInfo)")
         }
-        
-        
     }
     
-    func updateGoalData (goal: String) {
+    func updateGoalData (taskData: String, date: NSDate) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "DailyGoal")
+        let predicate = NSPredicate(format: "\(date)")
+        fetchRequest.predicate = predicate
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            if object.count == 1
+            {
+                let objectUpdate = object.first as! NSManagedObject
+                objectUpdate.setValue(taskData, forKey: taskData)
+                do{
+                    try managedContext.save()
+                }
+                catch {
+                    print (error)
+                }
+            }
+        }
+        catch {
+            print (error)
+        }
 
         
     }
     
-//    func fetchGoalData() {
-//        
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//        
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        
-//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "goal")
-//        
-//        fetchRequest.predicate =
-//        
-//        do {
-//            try managedContext.fetch(fetchRequest)
-//        } catch {
-//            let error = error as NSError
-//            fatalError("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//        
-//    }
+    func fetchGoalData(date: NSDate) {
+        
+        
+        
+    }
     
     
 }

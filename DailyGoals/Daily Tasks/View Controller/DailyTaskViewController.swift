@@ -44,7 +44,7 @@ class DailyTaskViewController: UIViewController {
             }
             
             //update title on button
-            editTasks.setTitle("Finish Editing", for: UIControl.State.normal)
+            editTasks.setTitle("Save Changes", for: UIControl.State.normal)
         
         } else { //stop editing of text buttons
             tableHeader.labelTitle.isEnabled = false
@@ -52,8 +52,13 @@ class DailyTaskViewController: UIViewController {
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).label.isEnabled = false
                 (row as! TableViewCell).label.backgroundColor = UIColor.clear
+                
+                CoreDataManager.shared.updateGoalData(taskData: (row as! TableViewCell).label.text!, date: NSDate())
             }
             editTasks.setTitle("Edit Tasks", for: .normal)
+            
+            CoreDataManager.shared.updateGoalData(taskData: tableHeader.labelTitle.text!, date: NSDate())
+
         }
     }
 
