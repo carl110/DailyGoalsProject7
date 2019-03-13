@@ -27,14 +27,14 @@ class CoreDataManager {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let dailyGoal = NSEntityDescription.entity(forEntityName: "DailyGoal", in: managedContext)!
-        let goalData = NSManagedObject(entity: dailyGoal, insertInto: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "DailyGoal", in: managedContext)!
+        let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        goalData.setValue(goal, forKey: "goal")
-        goalData.setValue(task1, forKey: "task1")
-        goalData.setValue(task2, forKey: "task2")
-        goalData.setValue(task3, forKey: "task3")
-        goalData.setValue(date, forKey: "date")
+        managedObject.setValue(goal, forKey: "goal")
+        managedObject.setValue(task1, forKey: "task1")
+        managedObject.setValue(task2, forKey: "task2")
+        managedObject.setValue(task3, forKey: "task3")
+        managedObject.setValue(date, forKey: "date")
         
         do {
             try managedContext.save()
@@ -46,5 +46,32 @@ class CoreDataManager {
         
         
     }
+    
+    func updateGoalData (goal: String) {
+
+        
+    }
+    
+//    func fetchGoalData() {
+//        
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//        
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "goal")
+//        
+//        fetchRequest.predicate =
+//        
+//        do {
+//            try managedContext.fetch(fetchRequest)
+//        } catch {
+//            let error = error as NSError
+//            fatalError("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//        
+//    }
+    
     
 }
