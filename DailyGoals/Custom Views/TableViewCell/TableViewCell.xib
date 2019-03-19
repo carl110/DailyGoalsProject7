@@ -11,44 +11,45 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="OYZ-YS-Y8c" customClass="TableViewCell" customModule="DailyGoals" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" rowHeight="50" id="OYZ-YS-Y8c" customClass="TableViewCell" customModule="DailyGoals" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OYZ-YS-Y8c" id="bdw-wv-p83">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3y1-2a-3w0">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="31"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="49.5" id="wra-rf-FM9"/>
+                        </constraints>
                     </view>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cfX-kS-AwZ">
-                        <rect key="frame" x="10" y="6" width="320" height="19"/>
+                        <rect key="frame" x="6" y="6" width="318.5" height="37.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rO-ri-JKi" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
-                        <rect key="frame" x="340" y="5" width="30" height="30"/>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rO-ri-JKi" customClass="CheckBox" customModule="DailyGoals" customModuleProvider="target">
+                        <rect key="frame" x="330.5" y="5" width="39.5" height="39.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="UHW-IW-WKH"/>
-                            <constraint firstAttribute="width" constant="30" id="woL-gj-Fg5"/>
+                            <constraint firstAttribute="width" secondItem="5rO-ri-JKi" secondAttribute="height" multiplier="1:1" id="1FN-A0-4Wu"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="5rO-ri-JKi" secondAttribute="bottom" constant="5" id="1Rw-EF-A1l"/>
-                    <constraint firstItem="cfX-kS-AwZ" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" constant="10" id="60I-AX-zRk"/>
-                    <constraint firstAttribute="bottom" secondItem="cfX-kS-AwZ" secondAttribute="bottom" constant="6" id="GvS-sk-IgC"/>
-                    <constraint firstAttribute="bottom" secondItem="3y1-2a-3w0" secondAttribute="bottom" id="MOM-wd-EoV"/>
-                    <constraint firstAttribute="leading" secondItem="3y1-2a-3w0" secondAttribute="trailing" constant="-340" id="Pdk-NG-mDK"/>
-                    <constraint firstItem="5rO-ri-JKi" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" constant="5" id="SnG-HY-dSE"/>
-                    <constraint firstItem="3y1-2a-3w0" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" id="Vbc-NE-lxx"/>
-                    <constraint firstItem="3y1-2a-3w0" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" id="XyT-JU-40T"/>
-                    <constraint firstItem="5rO-ri-JKi" firstAttribute="leading" secondItem="cfX-kS-AwZ" secondAttribute="trailing" constant="10" id="duZ-6K-OA4"/>
-                    <constraint firstAttribute="trailing" secondItem="5rO-ri-JKi" secondAttribute="trailing" constant="5" id="g8h-1T-4Fd"/>
-                    <constraint firstItem="3y1-2a-3w0" firstAttribute="centerY" secondItem="cfX-kS-AwZ" secondAttribute="centerY" id="mCh-om-6II"/>
+                    <constraint firstAttribute="trailing" secondItem="5rO-ri-JKi" secondAttribute="trailing" constant="5" id="Clc-OQ-ite"/>
+                    <constraint firstItem="3y1-2a-3w0" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" id="MQ7-8O-YFL"/>
+                    <constraint firstAttribute="trailing" secondItem="3y1-2a-3w0" secondAttribute="trailing" id="Pxa-wG-VCy"/>
+                    <constraint firstItem="5rO-ri-JKi" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" constant="5" id="Riw-YO-cMr"/>
+                    <constraint firstItem="cfX-kS-AwZ" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" constant="6" id="TAT-R4-irC"/>
+                    <constraint firstAttribute="bottom" secondItem="cfX-kS-AwZ" secondAttribute="bottom" constant="6" id="Y3T-XA-DaH"/>
+                    <constraint firstAttribute="bottom" secondItem="5rO-ri-JKi" secondAttribute="bottom" constant="5" id="YS9-yn-Mdk"/>
+                    <constraint firstItem="5rO-ri-JKi" firstAttribute="leading" secondItem="cfX-kS-AwZ" secondAttribute="trailing" constant="6" id="abL-6m-U3j"/>
+                    <constraint firstItem="cfX-kS-AwZ" firstAttribute="leading" secondItem="bdw-wv-p83" secondAttribute="leading" constant="6" id="jDn-aU-MIA"/>
+                    <constraint firstAttribute="bottom" secondItem="3y1-2a-3w0" secondAttribute="bottom" id="rAD-Yb-H8X"/>
+                    <constraint firstItem="3y1-2a-3w0" firstAttribute="top" secondItem="bdw-wv-p83" secondAttribute="top" id="xdL-bh-0UD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -57,7 +58,7 @@
                 <outlet property="contentView" destination="bdw-wv-p83" id="B5z-bG-fAg"/>
                 <outlet property="label" destination="cfX-kS-AwZ" id="DgO-tT-1q5"/>
             </connections>
-            <point key="canvasLocation" x="104.8" y="247.37631184407797"/>
+            <point key="canvasLocation" x="101.59999999999999" y="251.87406296851577"/>
         </tableViewCell>
     </objects>
 </document>
