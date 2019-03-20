@@ -17,8 +17,6 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyGoalData: DailyGoalData!
     
     let todaysDate = Date().string(format: "dd MMM yyyy")
-    
-    var allData: [NSManagedObject] = []
 
     @IBOutlet weak var dailyTaskTableView: CustomTable!
     
@@ -30,9 +28,6 @@ class DailyTaskViewController: UIViewController {
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
         }
-
-        
-//        print (CoreDataManager.shared.fetchIndividualData(date: self.todaysDate, managedObject: "task1"))
     }
     
     @IBAction func editTasks(_ sender: Any) {
@@ -57,10 +52,20 @@ class DailyTaskViewController: UIViewController {
         } else { //stop editing of text buttons
             tableHeader.labelTitle.isEnabled = false
 
-
-            CoreDataManager.shared.update(goal: tableHeader.textLabel?.text ?? "No new value", date: todaysDate)
+//
+//            CoreDataManager.shared.update(goal: tableHeader.textLabel?.text ?? "No new value", date: todaysDate)
 
             tableHeader.backgroundColor = UIColor.clear
+            
+            //Update array for header
+            dailyTaskTableView.sectionData = [DailyGoalData(text: tableHeader.labelTitle.text!)]
+            
+            //update array for tableCells
+            for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
+                let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
+                dailyTaskTableView.cellsData[i] = CellData(text: cell.label.text ?? "No Value")
+            }
+            
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).label.isEnabled = false
                 (row as! TableViewCell).label.backgroundColor = UIColor.clear
@@ -74,21 +79,6 @@ class DailyTaskViewController: UIViewController {
             
 //            CoreDataManager.shared.updateGoalData(taskData: tableHeader.labelTitle.text!, date: NSDate())
 
-        }
-    }
-
-    
-    
-    func fetchAllData(){
-        if CoreDataManager.shared.fetchGoalData() != nil{
-            allData = CoreDataManager.shared.fetchGoalData()!
-        }
-    }
-    
-    
-    func fetchSingleTask(date: String, managedObject: String) {
-        if CoreDataManager.shared.fetchIndividualData(date: date, managedObject: managedObject) != nil {
-            allData = CoreDataManager.shared.fetchIndividualData(date: date, managedObject: managedObject)!
         }
     }
     
