@@ -112,18 +112,21 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             //set previouse state to checkboxState
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
+                dailyTaskViewModel.goalState = true
             }
-            dailyTaskViewModel.goalState = true
             self.reloadData()
             //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
-                dailyTaskViewModel.goalState = (row as! TableViewCell).isPreviouseState
-                self.reloadRows(at: [indexPath], with: .fade)
+                if (row as! TableViewCell).isPreviouseState == true {
+                    dailyTaskViewModel.goalState = true
+                } else {
+                    dailyTaskViewModel.goalState = false
+                    self.reloadRows(at: [indexPath], with: .none)
+                }
                 rowIndex += 1
-                
             }
         }
     }
