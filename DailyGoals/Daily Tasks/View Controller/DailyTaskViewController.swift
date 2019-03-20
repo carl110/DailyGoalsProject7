@@ -32,7 +32,7 @@ class DailyTaskViewController: UIViewController {
         initialAlertBox()
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
-        }
+        }    
     }
     
     @IBAction func editTasks(_ sender: Any) {
@@ -41,6 +41,8 @@ class DailyTaskViewController: UIViewController {
         
         //check state of labelTitle
         if tableHeader.labelTitle.isEnabled == false {
+            
+
         
             //enable edit for goal and tasks and change background colours
             tableHeader.labelTitle.isEnabled = true

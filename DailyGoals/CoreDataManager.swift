@@ -44,6 +44,30 @@ class CoreDataManager {
         }
     }
     
+    func deleteEntireTable(entityToFetch: String) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        fetchRequest.entity = NSEntityDescription.entity(forEntityName: entityToFetch, in: context)
+        fetchRequest.includesPropertyValues = false
+        do {
+            let results = try context.fetch(fetchRequest) as! [NSManagedObject]
+            for result in results {
+                context.delete(result)
+            }
+            try context.save()
+            
+        } catch {
+            
+            print("fetch error -\(error.localizedDescription)")
+        }
+    }
+    
     func delete(object: NSManagedObject, completion: () -> Void)
     {
         guard let appDelegate =
@@ -174,8 +198,7 @@ class CoreDataManager {
             
         }
         
-    } 
-    
-    
+    }
+
     
 }
