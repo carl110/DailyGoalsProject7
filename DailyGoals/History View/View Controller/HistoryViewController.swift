@@ -13,6 +13,11 @@ class HistoryViewController: UIViewController {
     private var historyViewModel: HistoryViewModel!
     private var historyFlow: HistoryFlow!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

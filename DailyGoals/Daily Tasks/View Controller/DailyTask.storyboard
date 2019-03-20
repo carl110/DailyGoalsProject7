@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0aD-0y-SGm" customClass="CustomTable" customModule="DailyGoals" customModuleProvider="target">
-                                <rect key="frame" x="5" y="25" width="375" height="612"/>
+                                <rect key="frame" x="5" y="90" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNT-bI-hQO">
@@ -32,17 +32,30 @@
                                     <action selector="editTasks:" destination="pzr-QE-ODV" eventType="touchUpInside" id="nLz-od-OAL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYT-2J-aEO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="hVK-gC-IrA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Trebuchet-BoldItalic" family="Trebuchet MS" pointSize="45"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0aD-0y-SGm" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="5" id="CWW-kW-eaC"/>
+                            <constraint firstItem="jxC-8C-b8W" firstAttribute="trailing" secondItem="zYT-2J-aEO" secondAttribute="trailing" id="JtA-GH-E7L"/>
                             <constraint firstItem="jxC-8C-b8W" firstAttribute="trailing" secondItem="oNT-bI-hQO" secondAttribute="trailing" constant="100" id="MIF-hC-H3P"/>
-                            <constraint firstItem="0aD-0y-SGm" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" constant="5" id="PBN-8O-AAP"/>
                             <constraint firstItem="oNT-bI-hQO" firstAttribute="top" secondItem="0aD-0y-SGm" secondAttribute="bottom" id="PeO-af-l2H"/>
                             <constraint firstItem="oNT-bI-hQO" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" constant="100" id="RaX-GJ-JTp"/>
                             <constraint firstItem="oNT-bI-hQO" firstAttribute="centerX" secondItem="YO7-im-orR" secondAttribute="centerX" id="ab4-Ph-y8l"/>
+                            <constraint firstItem="0aD-0y-SGm" firstAttribute="top" secondItem="zYT-2J-aEO" secondAttribute="bottom" id="e7I-P5-Bul"/>
                             <constraint firstItem="0aD-0y-SGm" firstAttribute="trailing" secondItem="jxC-8C-b8W" secondAttribute="trailing" constant="5" id="iwU-AI-VJM"/>
+                            <constraint firstItem="zYT-2J-aEO" firstAttribute="top" secondItem="jxC-8C-b8W" secondAttribute="top" id="kJc-Zj-3Vx"/>
+                            <constraint firstItem="0aD-0y-SGm" firstAttribute="top" secondItem="zYT-2J-aEO" secondAttribute="bottom" id="oRj-2i-WHO"/>
                             <constraint firstItem="oNT-bI-hQO" firstAttribute="bottom" secondItem="jxC-8C-b8W" secondAttribute="bottom" id="w39-Ez-aq5"/>
+                            <constraint firstItem="zYT-2J-aEO" firstAttribute="leading" secondItem="jxC-8C-b8W" secondAttribute="leading" id="yZP-Bs-9WK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jxC-8C-b8W"/>
                     </view>

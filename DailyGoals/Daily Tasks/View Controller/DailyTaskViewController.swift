@@ -22,6 +22,11 @@ class DailyTaskViewController: UIViewController {
     
     @IBOutlet weak var editTasks: UIButton!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialAlertBox()
