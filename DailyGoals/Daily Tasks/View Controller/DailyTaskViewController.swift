@@ -32,7 +32,20 @@ class DailyTaskViewController: UIViewController {
         initialAlertBox()
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
-        }    
+        }
+        
+        checkFetchData()
+    }
+    
+    func checkFetchData() {
+                CoreDataManager.shared.deleteEntireTable()
+        
+        CoreDataManager.shared.saveGoalData(goal: "Goal", task1: "Task1", task2: "Task2", task3: "Task3", date: "Data \(todaysDate)")
+        
+        let fetchData = CoreDataManager.shared.fetchGoalData()
+        
+        print ("fetched: \(fetchData?.count)")
+        
     }
     
     @IBAction func editTasks(_ sender: Any) {

@@ -44,7 +44,7 @@ class CoreDataManager {
         }
     }
     
-    func deleteEntireTable(entityToFetch: String) {
+    func deleteEntireTable() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -53,7 +53,7 @@ class CoreDataManager {
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
-        fetchRequest.entity = NSEntityDescription.entity(forEntityName: entityToFetch, in: context)
+        fetchRequest.entity = NSEntityDescription.entity(forEntityName: "DailyGoal", in: context)
         fetchRequest.includesPropertyValues = false
         do {
             let results = try context.fetch(fetchRequest) as! [NSManagedObject]
@@ -95,10 +95,9 @@ class CoreDataManager {
         }
     }
     
-    
-    func fetchGoalData() -> [DailyGoal]?{
+    func fetchGoalData() -> [DataForDailyGoals]?{
         
-     
+        
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
@@ -107,13 +106,32 @@ class CoreDataManager {
         
         do {
             let tasks = try managedContext.fetch(fetchRequest)
-            return tasks as? [DailyGoal]
+            
+            var taskObjects: [DataForDailyGoals] = []
+            
+            tasks.forEach { (taskObject) in
+                
+                taskObjects.append(DataForDailyGoals(object: taskObject))
+                
+            }
+            
+            taskObjects.forEach { (obj) in
+                print (obj.goal)
+                print (obj.task1)
+                print (obj.task2)
+                print (obj.task3)
+                
+            }
+            
+            return taskObjects
         } catch let error as NSError {
-            print ("Could not fetch. \(error). \(error.userInfo)")
+            print ("Could not fetch. \(error) \(error.userInfo)")
             return nil
+            
         }
-        
     }
+    
+
     
     func fetchIndividualData(date: String, managedObject: String) -> [DailyGoal]? {
         
@@ -201,4 +219,21 @@ class CoreDataManager {
     }
 
     
+}
+
+
+class DataForDailyGoals {
+    
+    var goal: String
+    var task1: String
+    var task2: String
+    var task3: String
+    
+    init(object: NSManagedObject) {
+        
+        self.goal = object.value(forKey: "goal") as! String
+        self.task1 = object.value(forKey: "task1") as! String
+        self.task2 = object.value(forKey: "task2") as! String
+        self.task3 = object.value(forKey: "task3") as! String
+    }
 }
