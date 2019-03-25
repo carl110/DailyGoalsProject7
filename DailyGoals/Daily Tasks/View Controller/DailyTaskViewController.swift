@@ -33,19 +33,6 @@ class DailyTaskViewController: UIViewController {
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
         }
-        
-        checkFetchData()
-    }
-    
-    func checkFetchData() {
-                CoreDataManager.shared.deleteEntireTable()
-        
-        CoreDataManager.shared.saveGoalData(goal: "Goal", task1: "Task1", task2: "Task2", task3: "Task3", date: "Data \(todaysDate)")
-        
-        let fetchData = CoreDataManager.shared.fetchGoalData()
-        
-        print ("fetched: \(fetchData?.count)")
-        
     }
     
     @IBAction func editTasks(_ sender: Any) {
@@ -55,11 +42,8 @@ class DailyTaskViewController: UIViewController {
         //check state of labelTitle
         if tableHeader.labelTitle.isEnabled == false {
             
-
-        
             //enable edit for goal and tasks and change background colours
             tableHeader.labelTitle.isEnabled = true
-
             tableHeader.backgroundColor = UIColor.Shades.standardWhite
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).label.isEnabled = true
@@ -71,34 +55,30 @@ class DailyTaskViewController: UIViewController {
         
         } else { //stop editing of text buttons
             tableHeader.labelTitle.isEnabled = false
-
-//
-//            CoreDataManager.shared.update(goal: tableHeader.textLabel?.text ?? "No new value", date: todaysDate)
-
             tableHeader.backgroundColor = UIColor.clear
             
-            //Update array for header
+            //Update array for header and the coredata
             dailyTaskTableView.sectionData = [DailyGoalData(text: tableHeader.labelTitle.text!)]
-            
-            //update array for tableCells
+            CoreDataManager.shared.update(object: "goal", data: tableHeader.labelTitle.text!, date: todaysDate)
+
+            //update array for tableCells and coredata for tasks
             for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
                 let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
                 dailyTaskTableView.cellsData[i] = CellData(text: cell.label.text ?? "No Value")
+                let taskNumber = "task\(i + 1)"
+                CoreDataManager.shared.update(object: taskNumber, data: cell.label.text! as String, date: todaysDate)
             }
             
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).label.isEnabled = false
                 (row as! TableViewCell).label.backgroundColor = UIColor.clear
                 
-                
-//                self.update(taskData: (rowCell.t textLabel?.text)!, dailyGoal: DailyGoal.self as! DailyGoal)
-//                CoreDataManager.shared.updateGoalData(taskData: (row as! TableViewCell).label.text!, date: NSDate())
+                //print table data to check
+                let updateData = CoreDataManager.shared.fetchGoalData()
+                print (updateData!)
+
             }
-
             editTasks.setTitle("Edit Tasks", for: .normal)
-            
-//            CoreDataManager.shared.updateGoalData(taskData: tableHeader.labelTitle.text!, date: NSDate())
-
         }
     }
     
@@ -134,13 +114,13 @@ class DailyTaskViewController: UIViewController {
                                                             }
                                 }
                             } else { //append data from alertbox to arrays
-                                self.dailyTaskTableView.sectionData = [DailyGoalData(text: "\(self.todaysDate) \n \(goalInput ?? "")")]
+                                self.dailyTaskTableView.sectionData = [DailyGoalData(text: "\(goalInput ?? "")")]
                                 self.dailyTaskTableView.cellsData = [CellData(text: "\(task1Input ?? "")" ),
                                                                      CellData(text: "\(task2Input ?? "")" ),
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
                                 
-                                CoreDataManager.shared.saveGoalData(goal: "\(self.todaysDate) \n \(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate)
+                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate)
                                 
                             }
         })
@@ -150,6 +130,5 @@ class DailyTaskViewController: UIViewController {
     //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow
-//        self.dailyTaskViewModel = dailyTaskViewModel
     }
 }
