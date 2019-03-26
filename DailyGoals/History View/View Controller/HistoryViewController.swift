@@ -14,6 +14,7 @@ class HistoryViewController: UIViewController {
     private var historyFlow: HistoryFlow!
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dailyTasksTableView: CustomTable!
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)

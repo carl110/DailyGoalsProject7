@@ -31,10 +31,32 @@ class DailyTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTitle()
-        initialAlertBox()
+//        initialAlertBox()
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
         }
+        checkCoreData()
+    }
+    
+    func checkCoreData() {//if todays data exists then go straight to table, if not show alertybox
+        let checkToday = CoreDataManager.shared.fetchGoalDataForToday(date: todaysDate)
+        
+        if (checkToday?.count)! > 0 {
+         
+            for i in checkToday! {
+                dailyTaskTableView.sectionData = [DailyGoalData(text: i.goal)]
+                
+                dailyTaskTableView.cellsData[0] = CellData(text: i.task1)
+                dailyTaskTableView.cellsData[1] = CellData(text: i.task2)
+                dailyTaskTableView.cellsData[2] = CellData(text: i.task3)
+                
+            }
+        } else {
+            initialAlertBox()
+        }
+        
+        
+        
     }
     
     func setUpTitle() {
@@ -105,11 +127,14 @@ class DailyTaskViewController: UIViewController {
                 (row as! TableViewCell).label.isEnabled = false
                 (row as! TableViewCell).label.backgroundColor = UIColor.clear
                 
-                //print table data to check
-                let updateData = CoreDataManager.shared.fetchGoalData()
-                dump(updateData)
+
+                
             }
             editTasks.setTitle("Edit Tasks", for: .normal)
+            
+            //print table data to check
+            let updatedData = CoreDataManager.shared.fetchGoalData()
+            dump(updatedData)
         }
     
     func editTaskButtonSetUp() {

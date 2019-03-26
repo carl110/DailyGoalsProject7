@@ -91,6 +91,31 @@ class CoreDataManager {
             return nil
         }
     }
+  
+    func fetchGoalDataForToday(date: String) -> [DataForDailyGoals]?{
+        
+        let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        
+        let predicate = NSPredicate(format: "date = %@", date)
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DailyGoal")
+        fetchRequest.predicate = predicate
+        
+        do {
+            let tasks = try managedContext.fetch(fetchRequest)
+            var taskObjects: [DataForDailyGoals] = []
+            
+            tasks.forEach { (taskObject) in
+                taskObjects.append(DataForDailyGoals(object: taskObject))
+            }
+            
+            return taskObjects
+        } catch let error as NSError {
+            print ("Could not fetch. \(error) \(error.userInfo)")
+            return nil
+        }
+    }
     
     func update(object: String,updatedEntry: String, date: String) {
         
