@@ -18,6 +18,7 @@ class DailyTaskViewController: UIViewController {
     
     let todaysDate = Date().string(format: "dd MMM yyyy")
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dailyTaskTableView: CustomTable!
     
     @IBOutlet weak var editTasks: UIButton!
@@ -29,10 +30,16 @@ class DailyTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTitle()
         initialAlertBox()
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
         }
+    }
+    
+    func setUpTitle() {
+        titleLabel.titleLabelFormat(colour: UIColor.Blues.lightBlue)
+        titleLabel.text = "Daily Tasks"
     }
 
     @IBAction func editTasks(_ sender: Any) {
