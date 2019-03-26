@@ -68,6 +68,7 @@ class CoreDataManager {
         }
     }
     
+
     func fetchGoalData() -> [DataForDailyGoals]?{
         
         let appDelegate =
@@ -84,23 +85,14 @@ class CoreDataManager {
                 taskObjects.append(DataForDailyGoals(object: taskObject))
             }
             
-            taskObjects.forEach { (obj) in
-                print (obj.goal)
-                print (obj.task1)
-                print (obj.task2)
-                print (obj.task3)
-                
-            }
-            
             return taskObjects
         } catch let error as NSError {
             print ("Could not fetch. \(error) \(error.userInfo)")
             return nil
-            
         }
     }
     
-    func update(object: String,data: String, date: String) {
+    func update(object: String,updatedEntry: String, date: String) {
         
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
@@ -113,11 +105,11 @@ class CoreDataManager {
         do {
             let tasks = try managedContext.fetch(fetchRequest)
             if let last = tasks.last {
-                let obj = DataForDailyGoals(object: last)
-                print(obj.goal)
-                print(obj.date)
+//                let obj = DataForDailyGoals(object: last)
+//                print(obj.goal)
+//                print(obj.date)
                 
-                last.setValue(data, forKey: object)
+                last.setValue(updatedEntry, forKey: object)
                 
                 do {
                     try managedContext.save()
@@ -133,7 +125,6 @@ class CoreDataManager {
         }
     }
 }
-
 
 class DataForDailyGoals {
     

@@ -34,14 +34,36 @@ class DailyTaskViewController: UIViewController {
             self.editTaskButtonSetUp()
         }
     }
-    
+
     @IBAction func editTasks(_ sender: Any) {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
-        
+
         //check state of labelTitle
         if tableHeader.labelTitle.isEnabled == false {
+        editTableData()
+        } else {
             
+            rowCell.forEach{ (row) in
+                if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
+                    
+                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
+                        switch(option) {
+                            case 0:
+                                self.editTableData()
+                        default:
+                            break
+                        }
+                    }
+                }
+            }
+            saveTableData()
+        }
+    }
+    
+    func editTableData() {
+        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
+        let rowCell = dailyTaskTableView.visibleCells
             //enable edit for goal and tasks and change background colours
             tableHeader.labelTitle.isEnabled = true
             tableHeader.backgroundColor = UIColor.Shades.standardWhite
@@ -52,21 +74,24 @@ class DailyTaskViewController: UIViewController {
             
             //update title on button
             editTasks.setTitle("Save Changes", for: UIControl.State.normal)
+    }
         
-        } else { //stop editing of text buttons
+        func saveTableData() {
+            let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
+            let rowCell = dailyTaskTableView.visibleCells
             tableHeader.labelTitle.isEnabled = false
             tableHeader.backgroundColor = UIColor.clear
             
             //Update array for header and the coredata
             dailyTaskTableView.sectionData = [DailyGoalData(text: tableHeader.labelTitle.text!)]
-            CoreDataManager.shared.update(object: "goal", data: tableHeader.labelTitle.text!, date: todaysDate)
-
+            CoreDataManager.shared.update(object: "goal", updatedEntry: tableHeader.labelTitle.text!, date: todaysDate)
+            
             //update array for tableCells and coredata for tasks
             for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
                 let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
                 dailyTaskTableView.cellsData[i] = CellData(text: cell.label.text ?? "No Value")
                 let taskNumber = "task\(i + 1)"
-                CoreDataManager.shared.update(object: taskNumber, data: cell.label.text! as String, date: todaysDate)
+                CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: todaysDate)
             }
             
             rowCell.forEach{ (row) in
@@ -75,12 +100,10 @@ class DailyTaskViewController: UIViewController {
                 
                 //print table data to check
                 let updateData = CoreDataManager.shared.fetchGoalData()
-                print (updateData!)
-
+                dump(updateData)
             }
             editTasks.setTitle("Edit Tasks", for: .normal)
         }
-    }
     
     func editTaskButtonSetUp() {
         editTasks.setTitle("Edit Tasks", for: UIControl.State.normal)
@@ -105,7 +128,6 @@ class DailyTaskViewController: UIViewController {
                                 self.alertBoxWithAction(title: "Goals and Tasks",
                                                         message: "You must complete setails for the goal and all 3 tasks",
                                                         options: "Complete Inputs") { (option) in
-                                                            print("option: \(option)")
                                                             switch(option) {
                                                             case 0:
                                                                 self.initialAlertBox()
