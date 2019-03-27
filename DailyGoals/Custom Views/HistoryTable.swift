@@ -17,10 +17,10 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         delegate = self
         dataSource = self
         
-//        //setup custom cell
-//        self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
-//        self.estimatedRowHeight = 100
-//        self.rowHeight = UITableView.automaticDimension
+        //setup custom cell
+        self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
+        self.estimatedRowHeight = 100
+        self.rowHeight = UITableView.automaticDimension
 //        
 //        //call custom header
 //        let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
@@ -55,12 +55,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     //Number of rows for each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.expandedSectionHeaderNumber == section) {
-            let arrayOfItems = self.tableCellData[section] as! NSArray
-            return arrayOfItems.count
-        } else {
-            return 0
-        }
+        return 3
     }
     
     //Name used in the section headers
@@ -99,7 +94,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         let section = self.tableCellData[indexPath.section] as! NSArray
         cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.text = section[indexPath.row] as? String

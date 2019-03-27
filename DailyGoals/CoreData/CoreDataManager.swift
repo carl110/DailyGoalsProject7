@@ -161,6 +161,9 @@ class DataForDailyGoals {
     var task2: String
     var task3: String
     var date: String
+    var task1Complete: Bool
+    var task2Complete: Bool
+    var task3Complete: Bool
     
     init(object: NSManagedObject) {
         
@@ -169,5 +172,8 @@ class DataForDailyGoals {
         self.task2 = object.value(forKey: "task2") as! String
         self.task3 = object.value(forKey: "task3") as! String
         self.date = object.value(forKey: "date") as! String
+        self.task1Complete = object.value(forKey: "task1Complete") as! Bool
+        self.task2Complete = object.value(forKey: "task2Complete") as! Bool
+        self.task3Complete = object.value(forKey: "task3Complete") as! Bool
     }
 }
