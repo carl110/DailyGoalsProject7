@@ -13,6 +13,9 @@ class ProgressViewController: UIViewController {
     private var progressViewModel: ProgressViewModel!
     private var progressFlow: ProgressFlow!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -20,6 +23,12 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabelSetUp()
+    }
+    
+    func titleLabelSetUp() {
+        titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
+        titleLabel.text = "Progress"
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {

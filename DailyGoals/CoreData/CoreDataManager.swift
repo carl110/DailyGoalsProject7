@@ -19,7 +19,7 @@ class CoreDataManager {
         return Singleton.instance
     }
     
-    func saveGoalData (goal: String, task1: String, task2: String, task3: String, date: String) {
+    func saveGoalData (goal: String, task1: String, task2: String, task3: String, date: String, task1Complete: Bool) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -35,7 +35,7 @@ class CoreDataManager {
         managedObject.setValue(task2, forKey: "task2")
         managedObject.setValue(task3, forKey: "task3")
         managedObject.setValue(date, forKey: "date")
-        managedObject.setValue(false, forKey: "task1Complete")
+        managedObject.setValue(task1Complete, forKey: "task1Complete")
         managedObject.setValue(false, forKey: "task2Complete")
         managedObject.setValue(false, forKey: "task3Complete")
         

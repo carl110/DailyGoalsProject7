@@ -51,6 +51,7 @@
 		89CE170721F5FD8F004CE51D /* ProgressFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE170621F5FD8F004CE51D /* ProgressFlow.swift */; };
 		89F3BE5C224A5878004C79BE /* UIFont+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE5B224A5878004C79BE /* UIFont+extensions.swift */; };
 		89F3BE5E224A5896004C79BE /* UILabel+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE5D224A5896004C79BE /* UILabel+extensions.swift */; };
+		89F3BE61224B7C31004C79BE /* HistoryTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE60224B7C30004C79BE /* HistoryTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		89CE170621F5FD8F004CE51D /* ProgressFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlow.swift; sourceTree = "<group>"; };
 		89F3BE5B224A5878004C79BE /* UIFont+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extensions.swift"; sourceTree = "<group>"; };
 		89F3BE5D224A5896004C79BE /* UILabel+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extensions.swift"; sourceTree = "<group>"; };
+		89F3BE60224B7C30004C79BE /* HistoryTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +308,7 @@
 				89A46C74222823DD00218A76 /* CustomHeader */,
 				89A46C73222823CA00218A76 /* TableViewCell */,
 				89C12F1C2223F4F400A85FA0 /* CustomTable.swift */,
+				89F3BE60224B7C30004C79BE /* HistoryTable.swift */,
 				8997AA0721ECCC8E00EDF42F /* CheckBox.swift */,
 			);
 			path = "Custom Views";
@@ -521,6 +524,7 @@
 				89CE16EA21F1C301004CE51D /* TabBarBuilder.swift in Sources */,
 				89A46C76222D2D6900218A76 /* CoreDataManager.swift in Sources */,
 				89F3BE5C224A5878004C79BE /* UIFont+extensions.swift in Sources */,
+				89F3BE61224B7C31004C79BE /* HistoryTable.swift in Sources */,
 				89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

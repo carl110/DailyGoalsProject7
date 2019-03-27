@@ -50,6 +50,7 @@ class DailyTaskViewController: UIViewController {
                 dailyTaskTableView.cellsData[0] = CellData(text: i.task1)
                 dailyTaskTableView.cellsData[1] = CellData(text: i.task2)
                 dailyTaskTableView.cellsData[2] = CellData(text: i.task3)
+                
             }
         } else {
             initialAlertBox()
@@ -171,7 +172,7 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
                                 
-                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate)
+                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate, task1Complete: false)
                                 
                             }
         })
