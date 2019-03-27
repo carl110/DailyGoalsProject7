@@ -74,8 +74,12 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         let taskComplete = indexPath.row + 1
         if cell.checkBox.isChecked {
             CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
+            let updatedData = CoreDataManager.shared.fetchGoalData()
+            dump(updatedData)
         } else {
             CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+            let updatedData = CoreDataManager.shared.fetchGoalData()
+            dump(updatedData)
         }
         
         //set previouse state
@@ -149,5 +153,8 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 taskComplete += 1
             }
         }
+        
+        let updatedData = CoreDataManager.shared.fetchGoalData()
+        dump(updatedData)
     }
 }

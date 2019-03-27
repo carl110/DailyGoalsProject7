@@ -124,9 +124,6 @@ class DailyTaskViewController: UIViewController {
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).label.isEnabled = false
                 (row as! TableViewCell).label.backgroundColor = UIColor.clear
-                
-
-                
             }
             editTasks.setTitle("Edit Tasks", for: .normal)
             
