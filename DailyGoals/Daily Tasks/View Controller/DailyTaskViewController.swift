@@ -36,33 +36,25 @@ class DailyTaskViewController: UIViewController {
             self.editTaskButtonSetUp()
         }
         checkCoreData()
-        
     }
     
-    func checkCoreData() {//if todays data exists then go straight to table, if not show alertybox
+    func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
         let checkToday = CoreDataManager.shared.fetchGoalDataForToday(date: todaysDate)
-        
         if (checkToday?.count)! > 0 {
-         
-            for i in checkToday! {
-                dailyTaskTableView.sectionData = [DailyGoalData(text: i.goal)]
-                
-                dailyTaskTableView.cellsData[0] = CellData(text: i.task1)
-                dailyTaskTableView.cellsData[1] = CellData(text: i.task2)
-                dailyTaskTableView.cellsData[2] = CellData(text: i.task3)
-                
-                
-                if i.task1Complete == true {
-                    dailyTaskTableView.selectRow(at: NSIndexPath(row: 0, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
-                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: 0, section: 0) as IndexPath)
+            for savedData in checkToday! {
+                //Update text in section and rows
+                dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
+                let taskArray = [savedData.task1, savedData.task2, savedData.task3]
+                for index in 0 ..< taskArray.count {
+                    dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index])
                 }
-                if i.task2Complete == true {
-                    dailyTaskTableView.selectRow(at: NSIndexPath(row: 1, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
-                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: 1, section: 0) as IndexPath)
-                }
-                if i.task3Complete == true {
-                    dailyTaskTableView.selectRow(at: NSIndexPath(row: 2, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
-                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: 2, section: 0) as IndexPath)
+                //update checkboxes
+                let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
+                for index in 0 ..< taskCompleteArray.count {
+                    if taskCompleteArray[index] {
+                        dailyTaskTableView.selectRow(at: NSIndexPath(row: index, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
+                        dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: index, section: 0) as IndexPath)
+                    }
                 }
             }
         } else {

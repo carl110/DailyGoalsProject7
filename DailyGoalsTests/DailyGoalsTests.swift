@@ -41,8 +41,6 @@ class CoreDataTests: XCTestCase {
     func fetchGoals() {
         let results = coreDataManager.fetchGoalData()
         
-        dump(results)
-        
         XCTAssertEqual(results?.count, 2)
     }
     
