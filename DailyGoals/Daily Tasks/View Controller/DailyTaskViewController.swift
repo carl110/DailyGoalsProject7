@@ -51,6 +51,19 @@ class DailyTaskViewController: UIViewController {
                 dailyTaskTableView.cellsData[1] = CellData(text: i.task2)
                 dailyTaskTableView.cellsData[2] = CellData(text: i.task3)
                 
+                
+                if i.task1Complete == true {
+                    dailyTaskTableView.selectRow(at: NSIndexPath(row: 0, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
+                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: 0, section: 0) as IndexPath)
+                }
+                if i.task2Complete == true {
+                    dailyTaskTableView.selectRow(at: NSIndexPath(row: 1, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
+                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: 1, section: 0) as IndexPath)
+                }
+                if i.task3Complete == true {
+                    dailyTaskTableView.selectRow(at: NSIndexPath(row: 2, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
+                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: 2, section: 0) as IndexPath)
+                }
             }
         } else {
             initialAlertBox()
