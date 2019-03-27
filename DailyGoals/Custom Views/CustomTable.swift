@@ -69,6 +69,14 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     //what to do when row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+
+        //Set thaskcomplete marker in core data
+        let taskComplete = indexPath.row + 1
+        if cell.checkBox.isChecked {
+            CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
+        } else {
+            CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+        }
         
         //set previouse state
         self.visibleCells.forEach{ (cell) in
