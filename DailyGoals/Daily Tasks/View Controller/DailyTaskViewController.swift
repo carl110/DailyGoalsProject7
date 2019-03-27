@@ -36,6 +36,7 @@ class DailyTaskViewController: UIViewController {
             self.editTaskButtonSetUp()
         }
         checkCoreData()
+        
     }
     
     func checkCoreData() {//if todays data exists then go straight to table, if not show alertybox
@@ -49,14 +50,10 @@ class DailyTaskViewController: UIViewController {
                 dailyTaskTableView.cellsData[0] = CellData(text: i.task1)
                 dailyTaskTableView.cellsData[1] = CellData(text: i.task2)
                 dailyTaskTableView.cellsData[2] = CellData(text: i.task3)
-                
             }
         } else {
             initialAlertBox()
         }
-        
-        
-        
     }
     
     func setUpTitle() {

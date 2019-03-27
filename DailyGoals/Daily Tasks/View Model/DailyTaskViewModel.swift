@@ -12,4 +12,5 @@ import UIKit
 class DailyTaskViewModel {
     
     var goalState: Bool? = nil
+    let todaysDate = Date().string(format: "dd MMM yyyy")
 }

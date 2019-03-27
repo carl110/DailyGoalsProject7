@@ -114,10 +114,20 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
                 dailyTaskViewModel.goalState = true
             }
+            
+            CoreDataManager.shared.update(object: "task1Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+            CoreDataManager.shared.update(object: "task2Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+            CoreDataManager.shared.update(object: "task3Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+            
+            let data = CoreDataManager.shared.fetchGoalData()
+            
+            print ("This is the data I am looking for")
+            dump(data)
             self.reloadData()
             //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
+            var taskComplete = 1
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
                 if (row as! TableViewCell).isPreviouseState == true {
@@ -125,8 +135,10 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 } else {
                     dailyTaskViewModel.goalState = false
                     self.reloadRows(at: [indexPath], with: .none)
+                    CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
                 }
                 rowIndex += 1
+                taskComplete += 1
             }
         }
     }

@@ -35,6 +35,9 @@ class CoreDataManager {
         managedObject.setValue(task2, forKey: "task2")
         managedObject.setValue(task3, forKey: "task3")
         managedObject.setValue(date, forKey: "date")
+        managedObject.setValue(false, forKey: "task1Complete")
+        managedObject.setValue(false, forKey: "task2Complete")
+        managedObject.setValue(false, forKey: "task3Complete")
         
         do {
             try managedContext.save()
@@ -117,7 +120,7 @@ class CoreDataManager {
         }
     }
     
-    func update(object: String,updatedEntry: String, date: String) {
+    func update(object: String,updatedEntry: Any, date: String) {
         
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate

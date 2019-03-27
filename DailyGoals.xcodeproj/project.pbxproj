@@ -173,12 +173,11 @@
 				8997A9F921ECCA5200EDF42F /* Progress View */,
 				8939DFC721F743AC001983A6 /* Extensions */,
 				8997AA0621ECCC6400EDF42F /* Custom Views */,
+				89F3BE5F224A6FBA004C79BE /* CoreData */,
 				897D12F821EC86C50062B0D2 /* AppDelegate.swift */,
 				897D130221EC86CA0062B0D2 /* Assets.xcassets */,
 				897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */,
 				897D130721EC86CA0062B0D2 /* Info.plist */,
-				897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */,
-				89A46C75222D2D6900218A76 /* CoreDataManager.swift */,
 			);
 			path = DailyGoals;
 			sourceTree = "<group>";
@@ -374,6 +373,15 @@
 				89CE170621F5FD8F004CE51D /* ProgressFlow.swift */,
 			);
 			path = Flow;
+			sourceTree = "<group>";
+		};
+		89F3BE5F224A6FBA004C79BE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */,
+				89A46C75222D2D6900218A76 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
