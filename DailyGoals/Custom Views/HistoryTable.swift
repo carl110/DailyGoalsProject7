@@ -38,10 +38,8 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
 //    var sectionExpanded = true
     
     
-    var tableCellData: Array<Any> = [ ["Task 1a", "Task 2b","Task 3c"],
-                                      ["Task 1d", "Task 2e","Task 3f"],
-                                      ["Task 1", "Task 2","Task 3"] ]
-    var tableSectionName: Array<Any> = ["Day 1a", "Day2b", "Day 3"]
+    var tableCellData: [CellData] = [CellData(text: "History Task 1"), CellData(text: "History Task 2"), CellData(text: "History Task 3")]
+    var tableSectionName:[DailyGoalData] = [DailyGoalData(text: "History Goal")]
     
     var expandedSectionHeaderNumber: Int = -1
     
@@ -56,8 +54,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     //Number of rows for each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.expandedSectionHeaderNumber == section) {
-            let arrayOfItems = self.tableCellData[section] as! NSArray
-            return arrayOfItems.count
+            return 3
         } else {
             return 0
         }

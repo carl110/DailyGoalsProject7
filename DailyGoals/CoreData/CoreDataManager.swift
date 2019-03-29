@@ -94,6 +94,30 @@ class CoreDataManager {
             return nil
         }
     }
+    
+    func fetchIndividualData(savedObject: String) -> [String]? {
+        
+        let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        
+        let fetchRequet = NSFetchRequest<DailyGoal>(entityName: "DailyGoal")
+        
+        do {
+            let fetchedResults = try managedContext.fetch(fetchRequet)
+            
+            var newArray = [String]()
+            for item in fetchedResults {
+                print (item.value(forKey: savedObject)!)
+                newArray.append(item.value(forKey: savedObject) as! String)
+                
+            }
+    return newArray
+        } catch let error as NSError {
+            print (error.description)
+        }
+        return nil
+    }
   
     func fetchGoalDataForToday(date: String) -> [DataForDailyGoals]?{
         
