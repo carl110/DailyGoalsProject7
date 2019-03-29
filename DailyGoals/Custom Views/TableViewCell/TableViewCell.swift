@@ -44,7 +44,7 @@ class TableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        label.text = ""
+//        label.text = ""
     }
 
 }

@@ -31,6 +31,30 @@ class HistoryViewController: UIViewController {
         titleLabel.text = "History"
     }
     
+    func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
+        let checkToday = CoreDataManager.shared.fetchGoalDataForToday(date: todaysDate)
+        if (checkToday?.count)! > 0 {
+            for savedData in checkToday! {
+                //Update text in section and rows
+                dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
+                let taskArray = [savedData.task1, savedData.task2, savedData.task3]
+                for index in 0 ..< taskArray.count {
+                    dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index])
+                }
+                //update checkboxes
+                let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
+                for index in 0 ..< taskCompleteArray.count {
+                    if taskCompleteArray[index] {
+                        dailyTaskTableView.selectRow(at: NSIndexPath(row: index, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
+                        dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: index, section: 0) as IndexPath)
+                    }
+                }
+            }
+        } else {
+            initialAlertBox()
+        }
+    }
+    
     func assignDependencies(historyViewModel: HistoryViewModel, historyFlow: HistoryFlow) {
         self.historyFlow = historyFlow
         self.historyViewModel = historyViewModel

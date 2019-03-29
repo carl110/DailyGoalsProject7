@@ -16,12 +16,12 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         delegate = self
         dataSource = self
-        
-        //setup custom cell
-        self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
-        self.estimatedRowHeight = 100
-        self.rowHeight = UITableView.automaticDimension
-//        
+//
+//        //setup custom cell
+//        self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
+//        self.estimatedRowHeight = 100
+//        self.rowHeight = UITableView.automaticDimension
+//
 //        //call custom header
 //        let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
 //        self.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
@@ -32,16 +32,16 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
 //        self.tableFooterView = UIView()
     }
     
-    var cellsData: [CellData] = [CellData(text: "History Task 1"), CellData(text: "History Task 2"), CellData(text: "History Task 3")]
-    var sectionData:[DailyGoalData] = [DailyGoalData(text: "History Goal")]
+//    var cellsData: [CellData] = [CellData(text: "History Task 1"), CellData(text: "History Task 2"), CellData(text: "History Task 3")]
+//    var sectionData:[DailyGoalData] = [DailyGoalData(text: "History Goal")]
+//
+//    var sectionExpanded = true
     
-    var sectionExpanded = true
     
-    
-    var tableCellData: Array<Any> = [ ["Task 1", "Task 2","Task 3"],
-                                      ["Task 1", "Task 2","Task 3"],
+    var tableCellData: Array<Any> = [ ["Task 1a", "Task 2b","Task 3c"],
+                                      ["Task 1d", "Task 2e","Task 3f"],
                                       ["Task 1", "Task 2","Task 3"] ]
-    var tableSectionName: Array<Any> = ["Day 1", "Day2", "Day 3"]
+    var tableSectionName: Array<Any> = ["Day 1a", "Day2b", "Day 3"]
     
     var expandedSectionHeaderNumber: Int = -1
     
@@ -50,12 +50,17 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return sectionData.count
+        return tableSectionName.count
     }
     
     //Number of rows for each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if (self.expandedSectionHeaderNumber == section) {
+            let arrayOfItems = self.tableCellData[section] as! NSArray
+            return arrayOfItems.count
+        } else {
+            return 0
+        }
     }
     
     //Name used in the section headers
@@ -78,7 +83,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         //close open section when another is opened
         if let viewWithTag = self.viewWithTag(HeaderSectionTag + section) {
             viewWithTag.removeFromSuperview()
-//        }
+        }
         let headerFrame = self.frame.size
         let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
         theImageView.image = UIImage(named: "chevron")
@@ -88,13 +93,21 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         // add gesture to header to tap and open
         header.tag = section
         let headerTapGesture = UITapGestureRecognizer()
-            headerTapGesture.addTarget(self, action: #selector(self.sectionHeaderWasTouched(_:)))
+        headerTapGesture.addTarget(self, action: #selector(self.sectionHeaderWasTouched(_:)))
         header.addGestureRecognizer(headerTapGesture)
     }
-    }
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
+//        let section = self.tableCellData[indexPath.section] as! NSArray
+//        cell.textLabel?.textColor = UIColor.black
+//        cell.textLabel?.text = section[indexPath.row] as? String
+//
+//        return cell
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as UITableViewCell
         let section = self.tableCellData[indexPath.section] as! NSArray
         cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.text = section[indexPath.row] as? String
