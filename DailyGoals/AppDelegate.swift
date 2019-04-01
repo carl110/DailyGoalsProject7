@@ -20,6 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //Dummy data to load to core data
+        //remove all old data
+        CoreDataManager.shared.deleteEntireTable()
+        let today = Date()
+        for i in 1...10 {
+            
+            let newDate = today.add(days: -i)?.string(format: "dd MM yyyy")
+            CoreDataManager.shared.saveGoalData(goal: "goal \(i)", task1: "taska \(i)", task2: "taskb \(i)", task3: "taskc \(i)", date: newDate!)
+            let completeArray = ["task1Complete", "task2Complete", "task3Complete"]
+            for task in completeArray{
+                CoreDataManager.shared.update(object: task, updatedEntry: true, date: newDate!)
+            }
+        }
+        
+        //Code to change yesterdays goal to incomplete
+        let updateDate = today.add(days: -1)?.string(format: "dd MM yyyy")
+        CoreDataManager.shared.update(object: "task1Complete", updatedEntry: false, date: updateDate!)
+        
+        let test = CoreDataManager.shared.fetchGoalData()
+        
+        print ("Dump of new data from loop")
+        
+        dump (test)
+        
         //Prints location of the SQL data to view with DB Browser
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
  
@@ -57,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        
         self.saveContext()
     }
 
