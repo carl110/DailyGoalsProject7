@@ -16,30 +16,14 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         delegate = self
         dataSource = self
-//
-//        //setup custom cell
-//        self.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCell")
-//        self.estimatedRowHeight = 100
-//        self.rowHeight = UITableView.automaticDimension
-//
-//        //call custom header
-//        let headerNib = UINib.init(nibName: "CustomHeader", bundle: Bundle.main)
-//        self.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeader")
-//        self.sectionHeaderHeight = UITableView.automaticDimension
-//        self.estimatedSectionHeaderHeight = 80
-        
-        //hide unused rows
-//        self.tableFooterView = UIView()
+//        sectionHeaderHeight = UITableView.automaticDimension
+//        estimatedSectionHeaderHeight = 40
     }
-    
-//    var cellsData: [CellData] = [CellData(text: "History Task 1"), CellData(text: "History Task 2"), CellData(text: "History Task 3")]
-//    var sectionData:[DailyGoalData] = [DailyGoalData(text: "History Goal")]
-//
-//    var sectionExpanded = true
-    
-    
-    var tableCellData: [CellData] = [CellData(text: "History Task 1"), CellData(text: "History Task 2"), CellData(text: "History Task 3")]
-    var tableSectionName:[DailyGoalData] = [DailyGoalData(text: "History Goal")]
+
+    var tableCellData: Array<Any> = [ ["Task 1", "Task 2","Task 3"],
+                                      ["Task 1", "Task 2","Task 3"],
+                                      ["Task 1", "Task 2","Task 3"] ]
+    var tableSectionName: Array<Any> = ["Day 1", "Day2", "Day 3"]
     
     var expandedSectionHeaderNumber: Int = -1
     
@@ -54,7 +38,8 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     //Number of rows for each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.expandedSectionHeaderNumber == section) {
-            return 3
+            let arrayOfItems = self.tableCellData[section] as! NSArray
+            return arrayOfItems.count
         } else {
             return 0
         }
@@ -67,16 +52,18 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         }
         return ""
     }
-    //Height of section title boxes
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
+//    //Height of section title boxes
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         //recast view as a UITableViewHeaderFooterView
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.Blues.softBlue
+        header.contentView.backgroundColor = UIColor.Blues.lightBlue
         header.textLabel?.textColor = UIColor.white
+        header.textLabel?.numberOfLines = 0
+        header.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         //close open section when another is opened
         if let viewWithTag = self.viewWithTag(HeaderSectionTag + section) {
             viewWithTag.removeFromSuperview()
@@ -152,9 +139,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
                 let index = IndexPath(row: i, section: section)
                 indexesPath.append(index)
             }
-            self.beginUpdates()
             self.deleteRows(at: indexesPath, with: UITableView.RowAnimation.fade)
-            self.endUpdates()
         }
     }
     
@@ -174,9 +159,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
                 indexesPath.append(index)
             }
             self.expandedSectionHeaderNumber = section
-            self.beginUpdates()
             self.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
-            self.endUpdates()
         }
     }
 

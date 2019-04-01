@@ -157,9 +157,6 @@ class CoreDataManager {
         do {
             let tasks = try managedContext.fetch(fetchRequest)
             if let last = tasks.last {
-//                let obj = DataForDailyGoals(object: last)
-//                print(obj.goal)
-//                print(obj.date)
                 
                 last.setValue(updatedEntry, forKey: object)
                 

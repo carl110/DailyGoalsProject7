@@ -174,12 +174,9 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task3Input ?? "")" )]
                                 self.dailyTaskTableView.reloadData()
                                 
-                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate, task1Complete: false)
-                                
+                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate)
                             }
         })
-        
-        
     }
     //func for TabBarController
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
