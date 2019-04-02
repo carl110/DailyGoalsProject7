@@ -16,8 +16,6 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         delegate = self
         dataSource = self
-//        sectionHeaderHeight = UITableView.automaticDimension
-//        estimatedSectionHeaderHeight = 40
     }
 
     var tableCellData: Array<Any> = [ ["Task 1", "Task 2","Task 3"],
@@ -52,10 +50,6 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         }
         return ""
     }
-//    //Height of section title boxes
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         //recast view as a UITableViewHeaderFooterView
@@ -80,15 +74,6 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         headerTapGesture.addTarget(self, action: #selector(self.sectionHeaderWasTouched(_:)))
         header.addGestureRecognizer(headerTapGesture)
     }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
-//        let section = self.tableCellData[indexPath.section] as! NSArray
-//        cell.textLabel?.textColor = UIColor.black
-//        cell.textLabel?.text = section[indexPath.row] as? String
-//
-//        return cell
-//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as UITableViewCell
