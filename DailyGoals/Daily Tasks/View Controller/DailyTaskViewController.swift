@@ -17,7 +17,8 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyGoalData: DailyGoalData!
     
     let todaysDate = Date().string(format: "dd MMM yyyy")
-
+    var daySubtraction = 1
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dailyTaskTableView: CustomTable!
     
@@ -31,7 +32,7 @@ class DailyTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTitle()
-//        initialAlertBox()
+        //        initialAlertBox()
         DispatchQueue.main.async {
             self.editTaskButtonSetUp()
         }
@@ -58,22 +59,83 @@ class DailyTaskViewController: UIViewController {
                 }
             }
         } else {
-            initialAlertBox()
+            checkPreviouseGoalStatus()
+            
         }
     }
+
+    func checkPreviouseGoalStatus() {
+        
+        let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForToday(date: Date().subtract(days: daySubtraction)!.string(format: "dd MM yyyy"))
+        
+        if CoreDataManager.shared.fetchGoalData()?.count == 0 {
+            initialAlertBox()
+        } else {
+            //if no data for previouse day go back another day
+            while (checkPreviouseGoal?.count)! == 0 {
+                daySubtraction += 1
+            }
+            //If any task is incomplete
+            for date in checkPreviouseGoal! {
+                
+                if date.task1Complete == false || date.task2Complete == false || date.task3Complete == false {
+                    alertBoxWithAction(title: "You have a previously incomplete task",
+                                       message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: "Use previouse Goal", "Enter new Goal and tasks") { (option) in
+                                        switch(option) {
+                                        case 0:
+                                            self.usePreviouseGoal()
+                                        case 1:
+                                            self.initialAlertBox()
+                                            
+                                        default:
+                                            break
+                                        }
+                                        
+                    }
+                    
+                    
+                    
+                }
+            }
+        }
+    }
+    
+    func usePreviouseGoal() {
+        
+        let previouseDate = CoreDataManager.shared.fetchGoalDataForToday(date: (Date().subtract(days: daySubtraction)?.string(format: "dd MM yyyy"))!)
+        
+        for savedData in previouseDate! {
+            //Update text in section and rows
+            dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
+            let taskArray = [savedData.task1, savedData.task2, savedData.task3]
+            for index in 0 ..< taskArray.count {
+                dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index])
+            }
+            //update checkboxes
+            let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
+            for index in 0 ..< taskCompleteArray.count {
+                if taskCompleteArray[index] {
+                    dailyTaskTableView.selectRow(at: NSIndexPath(row: index, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
+                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: index, section: 0) as IndexPath)
+                }
+            }
+        }
+        dailyTaskTableView.reloadData()
+    }
+    
     
     func setUpTitle() {
         titleLabel.titleLabelFormat(colour: UIColor.Blues.lightBlue)
         titleLabel.text = "Daily Tasks"
     }
-
+    
     @IBAction func editTasks(_ sender: Any) {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
-
+        
         //check state of labelTitle
         if tableHeader.labelTitle.isEnabled == false {
-        editTableData()
+            editTableData()
         } else {
             
             rowCell.forEach{ (row) in
@@ -81,8 +143,8 @@ class DailyTaskViewController: UIViewController {
                     
                     alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
                         switch(option) {
-                            case 0:
-                                self.editTableData()
+                        case 0:
+                            self.editTableData()
                         default:
                             break
                         }
@@ -96,46 +158,46 @@ class DailyTaskViewController: UIViewController {
     func editTableData() {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
-            //enable edit for goal and tasks and change background colours
-            tableHeader.labelTitle.isEnabled = true
-            tableHeader.backgroundColor = UIColor.Shades.standardWhite
-            rowCell.forEach{ (row) in
-                (row as! TableViewCell).label.isEnabled = true
-                (row as! TableViewCell).label.backgroundColor = UIColor.Shades.standardWhite
-            }
-            
-            //update title on button
-            editTasks.setTitle("Save Changes", for: UIControl.State.normal)
-    }
-        
-        func saveTableData() {
-            let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
-            let rowCell = dailyTaskTableView.visibleCells
-            tableHeader.labelTitle.isEnabled = false
-            tableHeader.backgroundColor = UIColor.clear
-            
-            //Update array for header and the coredata
-            dailyTaskTableView.sectionData = [DailyGoalData(text: tableHeader.labelTitle.text!)]
-            CoreDataManager.shared.update(object: "goal", updatedEntry: tableHeader.labelTitle.text!, date: todaysDate)
-            
-            //update array for tableCells and coredata for tasks
-            for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
-                let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
-                dailyTaskTableView.cellsData[i] = CellData(text: cell.label.text ?? "No Value")
-                let taskNumber = "task\(i + 1)"
-                CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: todaysDate)
-            }
-            
-            rowCell.forEach{ (row) in
-                (row as! TableViewCell).label.isEnabled = false
-                (row as! TableViewCell).label.backgroundColor = UIColor.clear
-            }
-            editTasks.setTitle("Edit Tasks", for: .normal)
-            
-            //print table data to check
-            let updatedData = CoreDataManager.shared.fetchGoalData()
-            dump(updatedData)
+        //enable edit for goal and tasks and change background colours
+        tableHeader.labelTitle.isEnabled = true
+        tableHeader.backgroundColor = UIColor.Shades.standardWhite
+        rowCell.forEach{ (row) in
+            (row as! TableViewCell).label.isEnabled = true
+            (row as! TableViewCell).label.backgroundColor = UIColor.Shades.standardWhite
         }
+        
+        //update title on button
+        editTasks.setTitle("Save Changes", for: UIControl.State.normal)
+    }
+    
+    func saveTableData() {
+        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
+        let rowCell = dailyTaskTableView.visibleCells
+        tableHeader.labelTitle.isEnabled = false
+        tableHeader.backgroundColor = UIColor.clear
+        
+        //Update array for header and the coredata
+        dailyTaskTableView.sectionData = [DailyGoalData(text: tableHeader.labelTitle.text!)]
+        CoreDataManager.shared.update(object: "goal", updatedEntry: tableHeader.labelTitle.text!, date: todaysDate)
+        
+        //update array for tableCells and coredata for tasks
+        for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
+            let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
+            dailyTaskTableView.cellsData[i] = CellData(text: cell.label.text ?? "No Value")
+            let taskNumber = "task\(i + 1)"
+            CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: todaysDate)
+        }
+        
+        rowCell.forEach{ (row) in
+            (row as! TableViewCell).label.isEnabled = false
+            (row as! TableViewCell).label.backgroundColor = UIColor.clear
+        }
+        editTasks.setTitle("Edit Tasks", for: .normal)
+        
+        //print table data to check
+        let updatedData = CoreDataManager.shared.fetchGoalData()
+        dump(updatedData)
+    }
     
     func editTaskButtonSetUp() {
         editTasks.setTitle("Edit Tasks", for: UIControl.State.normal)

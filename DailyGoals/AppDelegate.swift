@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 CoreDataManager.shared.update(object: task, updatedEntry: true, date: newDate!)
             }
         }
-//
-//        //Code to change yesterdays goal to incomplete
-//        let updateDate = today.add(days: -1)?.string(format: "dd MM yyyy")
-//        CoreDataManager.shared.update(object: "task1Complete", updatedEntry: false, date: updateDate!)
+
+        //Code to change yesterdays goal to incomplete
+        let updateDate = today.add(days: -1)?.string(format: "dd MM yyyy")
+        CoreDataManager.shared.update(object: "task1Complete", updatedEntry: false, date: updateDate!)
 
         
         //Prints location of the SQL data to view with DB Browser
