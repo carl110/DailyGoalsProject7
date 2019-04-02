@@ -147,6 +147,10 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
             self.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
         }
     }
+    //Reload data when table is scrolled to ensure no missing sections
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.reloadData()
+    }
 
 }
 
