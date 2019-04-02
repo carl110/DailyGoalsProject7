@@ -40,14 +40,21 @@ class HistoryViewController: UIViewController {
         
         //Only run if there is saved data
         if CoreDataManager.shared.fetchGoalData() != nil {
+            
             let test = CoreDataManager.shared.fetchGoalData()
 
             //for each entry on CoreData append to correct array
             for i in test! {
-                dailyTasksTableView.tableSectionName.append("\(i.date) \n \(i.goal)")
+                
+                if i.task1Complete == true && i.task2Complete == true && i.task3Complete == true {
+                    dailyTasksTableView.tableSectionName.append("\(i.date) \(i.goal) - Complete")
+                } else {
+                    dailyTasksTableView.tableSectionName.append("\(i.date) \(i.goal) - Not Complete")
+                }
+
                 dailyTasksTableView.tableCellData.append([i.task1, i.task2, i.task3])
                 }
-            
+
             //remove entry for todays goal
             dailyTasksTableView.tableSectionName.removeLast()
             dailyTasksTableView.tableCellData.removeLast()
