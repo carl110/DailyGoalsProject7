@@ -56,8 +56,10 @@ class HistoryViewController: UIViewController {
                 }
 
             //remove entry for todays goal
+            if dailyTasksTableView.tableSectionName.count > 0 {
             dailyTasksTableView.tableSectionName.removeLast()
             dailyTasksTableView.tableCellData.removeLast()
+            }
         }
     }
    
