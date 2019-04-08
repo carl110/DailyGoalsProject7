@@ -34,9 +34,10 @@ class HistoryViewController: UIViewController {
     }
     
     func savedData() {
-        //Cleare the arrays
+        //Clear the arrays
         dailyTasksTableView.tableSectionName.removeAll()
         dailyTasksTableView.tableCellData.removeAll()
+        dailyTasksTableView.taskCompletetion.removeAll()
         
         //Only run if there is saved data
         if CoreDataManager.shared.fetchGoalData() != nil {
@@ -53,12 +54,22 @@ class HistoryViewController: UIViewController {
                 }
 
                 dailyTasksTableView.tableCellData.append([i.task1, i.task2, i.task3])
+                dailyTasksTableView.taskCompletetion.append([i.task1Complete, i.task2Complete, i.task3Complete])
                 }
+            
+            print ("tableCellData \(dailyTasksTableView.tableCellData)")
+            
+            print ("tableSectionData \(dailyTasksTableView.tableSectionName)")
+            
+            print ("TaskComplete \(dailyTasksTableView.taskCompletetion)")
+            
+
 
             //remove entry for todays goal
             if dailyTasksTableView.tableSectionName.count > 0 {
             dailyTasksTableView.tableSectionName.removeLast()
             dailyTasksTableView.tableCellData.removeLast()
+                dailyTasksTableView.taskCompletetion.removeLast()
             }
         }
     }

@@ -95,6 +95,8 @@ class DailyTaskViewController: UIViewController {
                     
                     
                     
+                } else {
+                    initialAlertBox()
                 }
             }
         }

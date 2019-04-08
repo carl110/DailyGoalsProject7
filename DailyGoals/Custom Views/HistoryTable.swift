@@ -17,11 +17,11 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         delegate = self
         dataSource = self
     }
+    
+    var taskCompletetion: Array<Any> = []
 
-    var tableCellData: Array<Any> = [ ["Task 1", "Task 2","Task 3"],
-                                      ["Task 1", "Task 2","Task 3"],
-                                      ["Task 1", "Task 2","Task 3"] ]
-    var tableSectionName: Array<Any> = ["Day 1", "Day2", "Day 3"]
+    var tableCellData: Array<Any> = []
+    var tableSectionName: Array<Any> = []
     
     var expandedSectionHeaderNumber: Int = -1
     
@@ -76,8 +76,13 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as UITableViewCell
         let section = self.tableCellData[indexPath.section] as! NSArray
+        let completeTask = self.taskCompletetion[indexPath.section] as! NSArray
         cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.text = section[indexPath.row] as? String
+        cell.backgroundColor = UIColor.Greens.standardGreen
+        if completeTask[indexPath.row] as! Bool == false {
+            cell.backgroundColor = UIColor.Reds.standardRed
+        }
         
         return cell
     }
