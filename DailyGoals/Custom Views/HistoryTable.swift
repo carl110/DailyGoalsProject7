@@ -59,9 +59,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.numberOfLines = 0
         header.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         //close open section when another is opened
-        if let viewWithTag = self.viewWithTag(HeaderSectionTag + section) {
-            viewWithTag.removeFromSuperview()
-        }
+
         let headerFrame = self.frame.size
         let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
         theImageView.image = UIImage(named: "chevron")
@@ -146,10 +144,6 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
             self.expandedSectionHeaderNumber = section
             self.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
         }
-    }
-    //Reload data when table is scrolled to ensure no missing sections
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.reloadData()
     }
 
 }
