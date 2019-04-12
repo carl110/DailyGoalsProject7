@@ -34,7 +34,6 @@ class HistoryViewController: UIViewController {
         allSavedData()
         monthPickerViewSetUp()
         monthPickerButtonSetUp()
-        
     }
     
     @IBAction func monthPickerButton(_ sender: Any) {

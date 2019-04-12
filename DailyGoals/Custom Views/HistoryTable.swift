@@ -17,6 +17,9 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         delegate = self
         dataSource = self
         
+        //Stop selection of rows
+        self.allowsSelection = false
+        
         //hide unused rows
         self.tableFooterView = UIView()
     }
