@@ -14,8 +14,14 @@ class HistoryViewController: UIViewController {
     private var historyViewModel: HistoryViewModel!
     private var historyFlow: HistoryFlow!
     
+    var trueCount = 0
+    var goalCompleteCount = 0
+    
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dailyTasksTableView: HistoryTable!
+    @IBOutlet weak var historyTableView: HistoryTable!
+    @IBOutlet weak var monthPickerView: MonthPickerView!
+    @IBOutlet weak var monthPickerButton: UIButton!
+    @IBOutlet weak var monthSummaryLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
@@ -25,7 +31,26 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabelSetUp()
-        savedData()
+        allSavedData()
+    }
+    
+    @IBAction func monthPickerButton(_ sender: Any) {
+        print (monthPickerView.selectedRow(inComponent: 0))
+        
+        //Clear the arrays
+        historyTableView.tableSectionName.removeAll()
+        historyTableView.tableCellData.removeAll()
+        historyTableView.taskCompletetion.removeAll()
+        
+        //Only run if there is saved data
+        if CoreDataManager.shared.fetchGoalData() != nil {
+            if monthPickerView.selectedRow(inComponent: 0) == 12 {
+                allSavedData()
+            } else {
+                dataByMonth()
+            }
+        }
+        historyTableView.reloadData()
     }
     
     func titleLabelSetUp() {
@@ -33,47 +58,87 @@ class HistoryViewController: UIViewController {
         titleLabel.text = "History"
     }
     
-    func savedData() {
-        //Clear the arrays
-        dailyTasksTableView.tableSectionName.removeAll()
-        dailyTasksTableView.tableCellData.removeAll()
-        dailyTasksTableView.taskCompletetion.removeAll()
+    func allSavedData() {
+        //reset trueCount number
+        trueCount = 0
+        goalCompleteCount = 0
         
-        //Only run if there is saved data
-        if CoreDataManager.shared.fetchGoalData() != nil {
+        //fecth all saved data
+        let fetchedData = CoreDataManager.shared.fetchGoalData()
+        
+        //for each entry on CoreData append to correct array
+        for i in fetchedData! {
             
-            let test = CoreDataManager.shared.fetchGoalData()
-
+            let taskCompleteArray = [i.task1Complete, i.task2Complete, i.task3Complete]
+            
+            if i.task1Complete == true && i.task2Complete == true && i.task3Complete == true {
+                historyTableView.tableSectionName.append("\(i.date) \(i.goal) - Complete")
+                goalCompleteCount += 1
+            } else {
+                historyTableView.tableSectionName.append("\(i.date) \(i.goal) - Not Complete")
+            }
+            historyTableView.tableCellData.append([i.task1, i.task2, i.task3])
+            historyTableView.taskCompletetion.append(taskCompleteArray)
+            
+            for i in taskCompleteArray {
+                if i == true {
+                    trueCount += 1
+                }
+            }
+            monthSummaryLabel.text = "For the history of the App. \n You have completed \(goalCompleteCount) out of \(historyTableView.tableSectionName.count) Goals with \(trueCount) out of \(historyTableView.taskCompletetion.count * 3) tasks being completed."
+        }
+        
+        historyTableView.tableSectionName.removeLast()
+        historyTableView.tableCellData.removeLast()
+        historyTableView.taskCompletetion.removeLast()
+        
+    }
+    
+    func dataByMonth() {
+        
+        trueCount = 0
+        goalCompleteCount = 0
+        let index = monthPickerView.selectedRow(inComponent: 0)
+        //set aray for month number
+        let dateArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+        
+        for i in 1...31 {
+            //Format to ensure 2 digit number
+            let date = "\(String(format: "%02d", i)) \(dateArray[index]) 2019"
+            //fecth data for each day in the selected month
+            let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
             //for each entry on CoreData append to correct array
-            for i in test! {
+            for i in fetchedData! {
+                
+                let taskCompleteArray = [i.task1Complete, i.task2Complete, i.task3Complete]
                 
                 if i.task1Complete == true && i.task2Complete == true && i.task3Complete == true {
-                    dailyTasksTableView.tableSectionName.append("\(i.date) \(i.goal) - Complete")
+                    historyTableView.tableSectionName.append("\(i.date) \(i.goal) - Complete")
+                    goalCompleteCount += 1
                 } else {
-                    dailyTasksTableView.tableSectionName.append("\(i.date) \(i.goal) - Not Complete")
+                    historyTableView.tableSectionName.append("\(i.date) \(i.goal) - Not Complete")
                 }
-
-                dailyTasksTableView.tableCellData.append([i.task1, i.task2, i.task3])
-                dailyTasksTableView.taskCompletetion.append([i.task1Complete, i.task2Complete, i.task3Complete])
+                historyTableView.tableCellData.append([i.task1, i.task2, i.task3])
+                historyTableView.taskCompletetion.append(taskCompleteArray)
+                
+                for i in taskCompleteArray {
+                    if i == true {
+                        trueCount += 1
+                    }
                 }
-            
-            print ("tableCellData \(dailyTasksTableView.tableCellData)")
-            
-            print ("tableSectionData \(dailyTasksTableView.tableSectionName)")
-            
-            print ("TaskComplete \(dailyTasksTableView.taskCompletetion)")
-            
-
-
-            //remove entry for todays goal
-            if dailyTasksTableView.tableSectionName.count > 0 {
-            dailyTasksTableView.tableSectionName.removeLast()
-            dailyTasksTableView.tableCellData.removeLast()
-                dailyTasksTableView.taskCompletetion.removeLast()
             }
         }
+        //reverse arrays to show end of month on top
+        historyTableView.tableSectionName.reverse()
+        historyTableView.tableCellData.reverse()
+        historyTableView.taskCompletetion.reverse()
+        if historyTableView.tableSectionName.isEmpty {
+            monthSummaryLabel.text = "There is currently no data held for this month."
+        } else {
+            monthSummaryLabel.text = "For \(historyViewModel.monthArray[index]). \n You have completed \(goalCompleteCount) out of \(historyTableView.tableSectionName.count) Goals with \(trueCount) out of \(historyTableView.taskCompletetion.count * 3) tasks being completed."
+        }
     }
-   
+    
     func assignDependencies(historyViewModel: HistoryViewModel, historyFlow: HistoryFlow) {
         self.historyFlow = historyFlow
         self.historyViewModel = historyViewModel

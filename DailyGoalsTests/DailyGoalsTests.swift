@@ -45,7 +45,7 @@ class CoreDataTests: XCTestCase {
     }
     
     func deleteEntireTable() {
-        coreDataManager.deleteEntireTable()
+        coreDataManager.deleteAllSavedData()
         XCTAssertEqual(coreDataManager.fetchGoalData()?.count, 0)
     }
     //since tests are run alphabetically, using the below

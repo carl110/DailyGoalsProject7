@@ -16,10 +16,12 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     override func awakeFromNib() {
         delegate = self
         dataSource = self
+        
+        //hide unused rows
+        self.tableFooterView = UIView()
     }
     
     var taskCompletetion: Array<Any> = []
-
     var tableCellData: Array<Any> = []
     var tableSectionName: Array<Any> = []
     

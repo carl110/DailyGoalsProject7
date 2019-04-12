@@ -38,6 +38,32 @@ class DailyTaskViewController: UIViewController {
         }
         checkCoreData()
     }
+
+    @IBAction func editTasks(_ sender: Any) {
+        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
+        let rowCell = dailyTaskTableView.visibleCells
+        
+        //check state of labelTitle
+        if tableHeader.labelTitle.isEnabled == false {
+            editTableData()
+        } else {
+            
+            rowCell.forEach{ (row) in
+                if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
+                    
+                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
+                        switch(option) {
+                        case 0:
+                            self.editTableData()
+                        default:
+                            break
+                        }
+                    }
+                }
+            }
+            saveTableData()
+        }
+    }
     
     func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
         let checkToday = CoreDataManager.shared.fetchGoalDataForToday(date: todaysDate)
@@ -63,7 +89,7 @@ class DailyTaskViewController: UIViewController {
             
         }
     }
-
+    
     func checkPreviouseGoalStatus() {
         
         let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForToday(date: Date().subtract(days: daySubtraction)!.string(format: "dd MM yyyy"))
@@ -129,32 +155,6 @@ class DailyTaskViewController: UIViewController {
     func setUpTitle() {
         titleLabel.titleLabelFormat(colour: UIColor.Blues.lightBlue)
         titleLabel.text = "Daily Tasks"
-    }
-    
-    @IBAction func editTasks(_ sender: Any) {
-        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
-        let rowCell = dailyTaskTableView.visibleCells
-        
-        //check state of labelTitle
-        if tableHeader.labelTitle.isEnabled == false {
-            editTableData()
-        } else {
-            
-            rowCell.forEach{ (row) in
-                if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
-                    
-                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
-                        switch(option) {
-                        case 0:
-                            self.editTableData()
-                        default:
-                            break
-                        }
-                    }
-                }
-            }
-            saveTableData()
-        }
     }
     
     func editTableData() {

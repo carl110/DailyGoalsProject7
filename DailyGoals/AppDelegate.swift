@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Dummy data to load to core data
         //remove all old data
-        CoreDataManager.shared.deleteEntireTable()
+        CoreDataManager.shared.deleteAllSavedData()
         let today = Date()
-        for i in 1...10 {
+        for i in 1...50 {
             
             let newDate = today.add(days: -i)?.string(format: "dd MM yyyy")
             CoreDataManager.shared.saveGoalData(goal: "goal \(i)", task1: "taska \(i)", task2: "taskb \(i)", task3: "taskc \(i)", date: newDate!)

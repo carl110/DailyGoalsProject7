@@ -47,7 +47,7 @@ class CoreDataManager {
         }
     }
     
-    func deleteEntireTable() {
+    func deleteAllSavedData() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
