@@ -52,6 +52,7 @@ extension UIColor {
     }
     struct  Greens {
         static let standardGreen = UIColor.colourWithHexString(hexStr: "#00FF00")
+        static let seaGreen = UIColor.colourWithHexString(hexStr: "#2E8B57")
     }
     struct Shades {
         static let standardGrey = UIColor.colourWithHexString(hexStr: "#808080")

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //remove all old data
         CoreDataManager.shared.deleteAllSavedData()
         let today = Date()
-        for i in 1...50 {
+        for i in 1...100 {
             
             let newDate = today.add(days: -i)?.string(format: "dd MM yyyy")
             CoreDataManager.shared.saveGoalData(goal: "goal \(i)", task1: "taska \(i)", task2: "taskb \(i)", task3: "taskc \(i)", date: newDate!)
@@ -29,6 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for task in completeArray{
                 CoreDataManager.shared.update(object: task, updatedEntry: true, date: newDate!)
             }
+        }
+
+        //Randomly set some Task complete status to false
+        for _ in 1...Int.random(in: 1..<100) {
+            let updateDate = today.subtract(days: Int.random(in: 5..<100))?.string(format: "dd MM yyyy")
+            CoreDataManager.shared.update(object: "task\(Int.random(in: 1...3))Complete", updatedEntry: false, date: updateDate!)
         }
 
         //Code to change yesterdays goal to incomplete

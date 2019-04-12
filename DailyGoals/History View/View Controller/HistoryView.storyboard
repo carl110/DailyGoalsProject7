@@ -42,13 +42,13 @@
                                 </prototypes>
                             </tableView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErK-jN-hNz" customClass="MonthPickerView" customModule="DailyGoals" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="90" width="275" height="50"/>
+                                <rect key="frame" x="5" y="90" width="265" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ylc-gM-Gpj"/>
                                 </constraints>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOf-1N-wIE">
-                                <rect key="frame" x="275" y="90" width="100" height="50"/>
+                                <rect key="frame" x="270" y="90" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4Y9-fu-l5r"/>
                                     <constraint firstAttribute="width" constant="100" id="Wg8-1l-0o8"/>
@@ -80,10 +80,10 @@
                             <constraint firstItem="E4A-GF-da5" firstAttribute="top" secondItem="Vh2-ta-5bh" secondAttribute="bottom" id="Tmp-VL-6Qg"/>
                             <constraint firstItem="FOf-1N-wIE" firstAttribute="leading" secondItem="ErK-jN-hNz" secondAttribute="trailing" id="U7w-AY-ZzU"/>
                             <constraint firstItem="E4A-GF-da5" firstAttribute="leading" secondItem="uf1-Fb-OHp" secondAttribute="leading" id="W1G-Jm-hqp"/>
-                            <constraint firstItem="ErK-jN-hNz" firstAttribute="leading" secondItem="uf1-Fb-OHp" secondAttribute="leading" id="WVn-iP-PRP"/>
+                            <constraint firstItem="ErK-jN-hNz" firstAttribute="leading" secondItem="uf1-Fb-OHp" secondAttribute="leading" constant="5" id="WVn-iP-PRP"/>
                             <constraint firstItem="eLT-4C-hh9" firstAttribute="leading" secondItem="uf1-Fb-OHp" secondAttribute="leading" id="bsK-Vm-LaK"/>
                             <constraint firstItem="Vh2-ta-5bh" firstAttribute="leading" secondItem="uf1-Fb-OHp" secondAttribute="leading" id="de6-v5-DBc"/>
-                            <constraint firstItem="uf1-Fb-OHp" firstAttribute="trailing" secondItem="FOf-1N-wIE" secondAttribute="trailing" id="l4a-Qm-ZNi"/>
+                            <constraint firstItem="uf1-Fb-OHp" firstAttribute="trailing" secondItem="FOf-1N-wIE" secondAttribute="trailing" constant="5" id="l4a-Qm-ZNi"/>
                             <constraint firstItem="ErK-jN-hNz" firstAttribute="top" secondItem="eLT-4C-hh9" secondAttribute="bottom" id="lNa-H1-mLX"/>
                             <constraint firstItem="Vh2-ta-5bh" firstAttribute="trailing" secondItem="uf1-Fb-OHp" secondAttribute="trailing" id="u76-BY-CQU"/>
                             <constraint firstItem="Vh2-ta-5bh" firstAttribute="top" secondItem="ErK-jN-hNz" secondAttribute="bottom" id="wTd-Nq-pfl"/>

@@ -32,6 +32,9 @@ class HistoryViewController: UIViewController {
         super.viewDidLoad()
         titleLabelSetUp()
         allSavedData()
+        monthPickerViewSetUp()
+        monthPickerButtonSetUp()
+        
     }
     
     @IBAction func monthPickerButton(_ sender: Any) {
@@ -54,8 +57,24 @@ class HistoryViewController: UIViewController {
     }
     
     func titleLabelSetUp() {
-        titleLabel.titleLabelFormat(colour: UIColor.Greens.standardGreen)
+        titleLabel.titleLabelFormat(colour: UIColor.Greens.seaGreen)
         titleLabel.text = "History"
+    }
+    
+    func monthPickerButtonSetUp() {
+ 
+        monthPickerButton.roundCorners(for: [.topRight, .bottomRight], cornerRadius: 8)
+        monthPickerButton.centerTextHorizontally(spacing: 2)
+        monthPickerButton.setTitle("Select", for: .normal)
+        monthPickerButton.backgroundColor = UIColor.Greens.seaGreen
+        monthPickerButton.setTitleColor(UIColor.Shades.standardWhite, for: .normal)
+//        monthPickerButton.titleLabel?.textColor = UIColor.Shades.standardWhite
+        monthPickerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    }
+    
+    func monthPickerViewSetUp() {
+        monthPickerView.backgroundColor = UIColor.Greens.seaGreen
+            self.monthPickerView.roundCorners(for: [.topLeft, .bottomLeft], cornerRadius: 8)
     }
     
     func allSavedData() {

@@ -33,6 +33,10 @@ class MonthPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
         return historyViewModel.monthArray[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString = NSAttributedString(string: historyViewModel.monthArray[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.Shades.standardWhite])
+        return attributedString
+    }
     
     
 }
