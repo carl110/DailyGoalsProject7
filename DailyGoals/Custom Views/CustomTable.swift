@@ -13,6 +13,9 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     
     fileprivate var dailyTaskViewModel = DailyTaskViewModel()
     
+    var gif = UIImageView()
+    var gifButton = UIButton()
+    
     var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
     var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
     
@@ -69,7 +72,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     //what to do when row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
-
+        
         //Set thaskcomplete marker in core data
         let taskComplete = indexPath.row + 1
         if cell.checkBox.isChecked {
@@ -93,7 +96,15 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             dailyTaskViewModel.goalState = nil
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
-            //            congratsMessage(title: "You'll get there", message: "Keep on going")
+            
+            //Display animated GIF
+            gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
+            gif.frame.size = findViewController()!.view.frame.size
+            gif.center = findViewController()!.view.center
+            
+            self.findViewController()!.view.addSubview(gif)
+            addGifButton()
+            findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
         }
         allCellsTrue(rows: self.visibleCells)
     }
@@ -110,10 +121,25 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         //Messages for checking/unchecking goal
         if trueCount == rows.count {
             header.checkBox.isChecked = true
-            //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
+            //Display animated GIF
+            gif = UIImageView(image: UIImage.gif(name: "fireworks"))
+            gif.frame.size = findViewController()!.view.frame.size
+            gif.center = findViewController()!.view.center
+            
+            self.findViewController()!.view.addSubview(gif)
+            addGifButton()
+            findViewController()!.alertBoxWithTimer(title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal", timeDelay: 3.5)
         }
         if trueCount < rows.count {
-            //            congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
+//            //Display animated GIF
+//            gif = UIImageView(image: UIImage.gif(name: "keepGoing"))
+//            gif.frame.size = findViewController()!.view.frame.size
+//            gif.center = findViewController()!.view.center
+//
+//            self.findViewController()!.view.addSubview(gif)
+//            addGifButton()
+//            findViewController()!.alertBoxWithTimer(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete", timeDelay: 3.0)
+//                        congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
         }
     }
     
@@ -137,18 +163,29 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             dump(data)
             self.reloadData()
             
+            //Display animated GIF
+            gif = UIImageView(image: UIImage.gif(name: "fireworks"))
+            gif.frame.size = findViewController()!.view.frame.size
+            gif.center = findViewController()!.view.center
             
-            let test = UIImageView(image: UIImage.gif(name: "keepGoing"))
+            self.findViewController()!.view.addSubview(gif)
+            addGifButton()
+            findViewController()!.alertBoxWithTimer(title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal", timeDelay: 2.0)
             
-            self.findViewController()!.view.addSubview(test)
             
-            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 5) {
-                test.removeFromSuperview()
-            }
-
+            
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             var taskComplete = 1
+            //Display animated GIF
+            gif = UIImageView(image: UIImage.gif(name: "fireworks"))
+            gif.frame.size = findViewController()!.view.frame.size
+            gif.center = findViewController()!.view.center
+            
+            self.findViewController()!.view.addSubview(gif)
+            addGifButton()
+            findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
+            
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
                 if (row as! TableViewCell).isPreviouseState == true {
@@ -162,8 +199,17 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 taskComplete += 1
             }
         }
-        
-        let updatedData = CoreDataManager.shared.fetchGoalData()
-        dump(updatedData)
+    }
+    
+    func addGifButton() {
+        gifButton.frame.size = findViewController()!.view.frame.size
+        gifButton.isOpaque = true
+        gifButton.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+        findViewController()!.view.addSubview(gifButton)
+    }
+    
+    @objc func buttonAction(sender: UIButton) {
+        gif.removeFromSuperview()
+        gifButton.removeFromSuperview()
     }
 }

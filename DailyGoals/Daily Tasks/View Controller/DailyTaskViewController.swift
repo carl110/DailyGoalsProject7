@@ -148,6 +148,7 @@ class DailyTaskViewController: UIViewController {
                 }
             }
         }
+
         dailyTaskTableView.reloadData()
     }
     

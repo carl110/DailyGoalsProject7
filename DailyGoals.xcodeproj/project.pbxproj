@@ -54,6 +54,8 @@
 		89DF6F4D2264BAF30076E4CD /* SwiftGif.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		89DF6F4F2264BBBA0076E4CD /* UIImage+Gif+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF6F4E2264BBBA0076E4CD /* UIImage+Gif+extensions.swift */; };
 		89DF6F562264C0FE0076E4CD /* keepGoing.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89DF6F552264C0FE0076E4CD /* keepGoing.gif */; };
+		89DF6F592264C76A0076E4CD /* fireworks.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89DF6F582264C76A0076E4CD /* fireworks.gif */; };
+		89DF6F5B2264D1920076E4CD /* keepGoingBackwards.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89DF6F5A2264D1920076E4CD /* keepGoingBackwards.gif */; };
 		89EE11E422608CCB0024F610 /* MonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE11E322608CCB0024F610 /* MonthPickerView.swift */; };
 		89F3BE5C224A5878004C79BE /* UIFont+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE5B224A5878004C79BE /* UIFont+extensions.swift */; };
 		89F3BE5E224A5896004C79BE /* UILabel+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE5D224A5896004C79BE /* UILabel+extensions.swift */; };
@@ -133,6 +135,8 @@
 		89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGif.framework; path = Carthage/Build/iOS/SwiftGif.framework; sourceTree = "<group>"; };
 		89DF6F4E2264BBBA0076E4CD /* UIImage+Gif+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif+extensions.swift"; sourceTree = "<group>"; };
 		89DF6F552264C0FE0076E4CD /* keepGoing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = keepGoing.gif; sourceTree = "<group>"; };
+		89DF6F582264C76A0076E4CD /* fireworks.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fireworks.gif; sourceTree = "<group>"; };
+		89DF6F5A2264D1920076E4CD /* keepGoingBackwards.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = keepGoingBackwards.gif; sourceTree = "<group>"; };
 		89EE11E322608CCB0024F610 /* MonthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPickerView.swift; sourceTree = "<group>"; };
 		89F3BE5B224A5878004C79BE /* UIFont+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extensions.swift"; sourceTree = "<group>"; };
 		89F3BE5D224A5896004C79BE /* UILabel+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extensions.swift"; sourceTree = "<group>"; };
@@ -197,7 +201,7 @@
 		897D12F721EC86C50062B0D2 /* DailyGoals */ = {
 			isa = PBXGroup;
 			children = (
-				89DF6F552264C0FE0076E4CD /* keepGoing.gif */,
+				89DF6F572264C73E0076E4CD /* GIFS */,
 				89CE16E321F1C2A1004CE51D /* TabBarFlow */,
 				8997A9FB21ECCA5700EDF42F /* Daily Tasks */,
 				8997A9FA21ECCA5500EDF42F /* History View */,
@@ -408,6 +412,16 @@
 			path = Flow;
 			sourceTree = "<group>";
 		};
+		89DF6F572264C73E0076E4CD /* GIFS */ = {
+			isa = PBXGroup;
+			children = (
+				89DF6F582264C76A0076E4CD /* fireworks.gif */,
+				89DF6F5A2264D1920076E4CD /* keepGoingBackwards.gif */,
+				89DF6F552264C0FE0076E4CD /* keepGoing.gif */,
+			);
+			path = GIFS;
+			sourceTree = "<group>";
+		};
 		89F3BE5F224A6FBA004C79BE /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,12 +514,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				89DF6F562264C0FE0076E4CD /* keepGoing.gif in Resources */,
+				89DF6F592264C76A0076E4CD /* fireworks.gif in Resources */,
 				89CE16E521F1C2D0004CE51D /* Main.storyboard in Resources */,
 				89CE16F721F1CE56004CE51D /* HistoryView.storyboard in Resources */,
 				8909D4FE21FF34D600C09DEA /* CustomHeader.xib in Resources */,
 				8909D4F821FEFA9900C09DEA /* TableViewCell.xib in Resources */,
 				89CE16FB21F1CE7C004CE51D /* DailyTask.storyboard in Resources */,
 				89CE16F921F1CE69004CE51D /* ProgressView.storyboard in Resources */,
+				89DF6F5B2264D1920076E4CD /* keepGoingBackwards.gif in Resources */,
 				897D130621EC86CA0062B0D2 /* LaunchScreen.storyboard in Resources */,
 				897D130321EC86CA0062B0D2 /* Assets.xcassets in Resources */,
 			);

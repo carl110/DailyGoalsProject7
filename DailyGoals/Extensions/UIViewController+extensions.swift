@@ -58,11 +58,12 @@ extension UIViewController {
     }
     //times alert with no buttons
     func alertBoxWithTimer(title: String? = nil,
-                         message: String? = nil) {
+                           message: String? = nil,
+                           timeDelay: Double? = 1.0) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
+            Timer.scheduledTimer(withTimeInterval: timeDelay ?? 1.0, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
         }
 
     }

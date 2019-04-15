@@ -16,6 +16,16 @@ extension UIButton {
         //centers text
         self.titleLabel?.textAlignment = NSTextAlignment.center
     }
+    
+    func enableButton() {
+        alpha = 1.0
+        isEnabled = true
+    }
+    
+    func disableButton() {
+        alpha = 0.0
+        isEnabled = false
+    }
 }
 
 
