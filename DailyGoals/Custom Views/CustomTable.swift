@@ -136,7 +136,16 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             print ("This is the data I am looking for")
             dump(data)
             self.reloadData()
-            //            congratsMessage(title: "Congratulations", message: "You have completed your Goal for today.")
+            
+            
+            let test = UIImageView(image: UIImage.gif(name: "keepGoing"))
+            
+            self.findViewController()!.view.addSubview(test)
+            
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 5) {
+                test.removeFromSuperview()
+            }
+
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             var taskComplete = 1

@@ -49,6 +49,11 @@
 		89CE170321F5FB34004CE51D /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE170221F5FB34004CE51D /* HistoryViewModel.swift */; };
 		89CE170521F5FC26004CE51D /* HistoryFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE170421F5FC26004CE51D /* HistoryFlow.swift */; };
 		89CE170721F5FD8F004CE51D /* ProgressFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE170621F5FD8F004CE51D /* ProgressFlow.swift */; };
+		89DF6F4B2264BAE60076E4CD /* SwiftGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */; };
+		89DF6F4C2264BAF30076E4CD /* SwiftGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */; };
+		89DF6F4D2264BAF30076E4CD /* SwiftGif.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		89DF6F4F2264BBBA0076E4CD /* UIImage+Gif+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF6F4E2264BBBA0076E4CD /* UIImage+Gif+extensions.swift */; };
+		89DF6F562264C0FE0076E4CD /* keepGoing.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89DF6F552264C0FE0076E4CD /* keepGoing.gif */; };
 		89EE11E422608CCB0024F610 /* MonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE11E322608CCB0024F610 /* MonthPickerView.swift */; };
 		89F3BE5C224A5878004C79BE /* UIFont+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE5B224A5878004C79BE /* UIFont+extensions.swift */; };
 		89F3BE5E224A5896004C79BE /* UILabel+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3BE5D224A5896004C79BE /* UILabel+extensions.swift */; };
@@ -64,6 +69,20 @@
 			remoteInfo = DailyGoals;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		89DF6F492264BA3E0076E4CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				89DF6F4D2264BAF30076E4CD /* SwiftGif.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8909D4F721FEFA9900C09DEA /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -111,6 +130,9 @@
 		89CE170221F5FB34004CE51D /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryViewModel.swift; path = "DailyGoals/Daily Tasks/Flow/HistoryViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		89CE170421F5FC26004CE51D /* HistoryFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFlow.swift; sourceTree = "<group>"; };
 		89CE170621F5FD8F004CE51D /* ProgressFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressFlow.swift; sourceTree = "<group>"; };
+		89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGif.framework; path = Carthage/Build/iOS/SwiftGif.framework; sourceTree = "<group>"; };
+		89DF6F4E2264BBBA0076E4CD /* UIImage+Gif+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif+extensions.swift"; sourceTree = "<group>"; };
+		89DF6F552264C0FE0076E4CD /* keepGoing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = keepGoing.gif; sourceTree = "<group>"; };
 		89EE11E322608CCB0024F610 /* MonthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPickerView.swift; sourceTree = "<group>"; };
 		89F3BE5B224A5878004C79BE /* UIFont+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extensions.swift"; sourceTree = "<group>"; };
 		89F3BE5D224A5896004C79BE /* UILabel+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extensions.swift"; sourceTree = "<group>"; };
@@ -122,6 +144,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89DF6F4B2264BAE60076E4CD /* SwiftGif.framework in Frameworks */,
+				89DF6F4C2264BAF30076E4CD /* SwiftGif.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +164,7 @@
 			children = (
 				8939DFC821F743C3001983A6 /* UIColor+extensions.swift */,
 				8939DFCA21F9B522001983A6 /* UIViewController+extensions.swift */,
+				89DF6F4E2264BBBA0076E4CD /* UIImage+Gif+extensions.swift */,
 				89C83EC421F9ED56001C6C5C /* Date+extensions.swift */,
 				890FBDF82211F4320017891C /* UITableView + extensions.swift */,
 				891D41DF223937B900AF0F5B /* UIButton+extensions.swift */,
@@ -156,6 +181,7 @@
 				897D12F721EC86C50062B0D2 /* DailyGoals */,
 				897D130F21EC86CB0062B0D2 /* DailyGoalsTests */,
 				897D12F621EC86C50062B0D2 /* Products */,
+				89DF6F4A2264BAE60076E4CD /* SwiftGif.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +197,7 @@
 		897D12F721EC86C50062B0D2 /* DailyGoals */ = {
 			isa = PBXGroup;
 			children = (
+				89DF6F552264C0FE0076E4CD /* keepGoing.gif */,
 				89CE16E321F1C2A1004CE51D /* TabBarFlow */,
 				8997A9FB21ECCA5700EDF42F /* Daily Tasks */,
 				8997A9FA21ECCA5500EDF42F /* History View */,
@@ -400,6 +427,7 @@
 				897D12F121EC86C50062B0D2 /* Sources */,
 				897D12F221EC86C50062B0D2 /* Frameworks */,
 				897D12F321EC86C50062B0D2 /* Resources */,
+				89DF6F492264BA3E0076E4CD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -471,6 +499,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89DF6F562264C0FE0076E4CD /* keepGoing.gif in Resources */,
 				89CE16E521F1C2D0004CE51D /* Main.storyboard in Resources */,
 				89CE16F721F1CE56004CE51D /* HistoryView.storyboard in Resources */,
 				8909D4FE21FF34D600C09DEA /* CustomHeader.xib in Resources */,
@@ -499,6 +528,7 @@
 				89CE170121F5FAE4004CE51D /* ProgressViewModel.swift in Sources */,
 				89CE170321F5FB34004CE51D /* HistoryViewModel.swift in Sources */,
 				89CE170721F5FD8F004CE51D /* ProgressFlow.swift in Sources */,
+				89DF6F4F2264BBBA0076E4CD /* UIImage+Gif+extensions.swift in Sources */,
 				89CE16E721F1C2E7004CE51D /* TabBarController.swift in Sources */,
 				8909D4FC21FF1D0700C09DEA /* CustomHeader.swift in Sources */,
 				8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */,
@@ -688,6 +718,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2428X38UTQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DailyGoals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -706,6 +740,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2428X38UTQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DailyGoals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -725,6 +763,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2428X38UTQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DailyGoalsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -746,6 +788,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2428X38UTQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DailyGoalsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
