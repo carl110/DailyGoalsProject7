@@ -77,12 +77,12 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         let taskComplete = indexPath.row + 1
         if cell.checkBox.isChecked {
             CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
-            let updatedData = CoreDataManager.shared.fetchGoalData()
-            dump(updatedData)
+//            let updatedData = CoreDataManager.shared.fetchGoalData()
+//            dump(updatedData)
         } else {
             CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
-            let updatedData = CoreDataManager.shared.fetchGoalData()
-            dump(updatedData)
+//            let updatedData = CoreDataManager.shared.fetchGoalData()
+//            dump(updatedData)
         }
         
         //set previouse state
@@ -96,17 +96,19 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             dailyTaskViewModel.goalState = nil
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
-            
+
             //Display animated GIF
             gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
             gif.frame.size = findViewController()!.view.frame.size
             gif.center = findViewController()!.view.center
-            
+
             self.findViewController()!.view.addSubview(gif)
             addGifButton()
             findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
+        } else {
+                    allCellsTrue(rows: self.visibleCells)
         }
-        allCellsTrue(rows: self.visibleCells)
+
     }
     
     //check to see if all cells show true (isChecked)
@@ -121,6 +123,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         //Messages for checking/unchecking goal
         if trueCount == rows.count {
             header.checkBox.isChecked = true
+            
             //Display animated GIF
             gif = UIImageView(image: UIImage.gif(name: "fireworks"))
             gif.frame.size = findViewController()!.view.frame.size
@@ -131,14 +134,22 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             findViewController()!.alertBoxWithTimer(title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal", timeDelay: 3.5)
         }
         if trueCount < rows.count {
-//            //Display animated GIF
-//            gif = UIImageView(image: UIImage.gif(name: "keepGoing"))
-//            gif.frame.size = findViewController()!.view.frame.size
-//            gif.center = findViewController()!.view.center
-//
-//            self.findViewController()!.view.addSubview(gif)
-//            addGifButton()
-//            findViewController()!.alertBoxWithTimer(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete", timeDelay: 3.0)
+
+            //Display animated GIF
+            gif = UIImageView(image: UIImage.gif(name: "keepGoing"))
+            gif.frame.size = findViewController()!.view.frame.size
+            gif.center = findViewController()!.view.center
+
+            self.findViewController()!.view.addSubview(gif)
+            addGifButton()
+            
+            if rows.count - trueCount == 1 {
+                            findViewController()!.alertBoxWithTimer(title: "You're almost there", message: "Two tasks down, only one task left to complete", timeDelay: 3.0)
+            } else {
+                            findViewController()!.alertBoxWithTimer(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete", timeDelay: 3.0)
+            }
+            
+
 //                        congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
         }
     }
@@ -156,13 +167,9 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             CoreDataManager.shared.update(object: "task1Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
             CoreDataManager.shared.update(object: "task2Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
             CoreDataManager.shared.update(object: "task3Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
-            
-            let data = CoreDataManager.shared.fetchGoalData()
-            
-            print ("This is the data I am looking for")
-            dump(data)
+
             self.reloadData()
-            
+
             //Display animated GIF
             gif = UIImageView(image: UIImage.gif(name: "fireworks"))
             gif.frame.size = findViewController()!.view.frame.size
@@ -177,8 +184,9 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             var taskComplete = 1
+
             //Display animated GIF
-            gif = UIImageView(image: UIImage.gif(name: "fireworks"))
+            gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
             gif.frame.size = findViewController()!.view.frame.size
             gif.center = findViewController()!.view.center
             

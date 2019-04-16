@@ -145,6 +145,9 @@ class DailyTaskViewController: UIViewController {
                 if taskCompleteArray[index] {
                     dailyTaskTableView.selectRow(at: NSIndexPath(row: index, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
                     dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: index, section: 0) as IndexPath)
+                    
+                    dailyTaskTableView.gif.removeFromSuperview()
+                    dailyTaskTableView.gifButton.removeFromSuperview()
                 }
             }
         }
