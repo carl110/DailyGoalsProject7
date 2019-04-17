@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="seM-jl-fjg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="seM-jl-fjg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,6 +28,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rA8-md-reB">
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVj-Jp-bfg">
                                 <rect key="frame" x="0.0" y="20" width="375" height="70"/>
                                 <constraints>
@@ -43,13 +47,18 @@
                             <constraint firstItem="DVj-Jp-bfg" firstAttribute="top" secondItem="JZv-T8-ZSi" secondAttribute="top" id="04A-3H-3YO"/>
                             <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="mhz-dD-D41" secondAttribute="trailing" constant="5" id="0Ve-fm-6SK"/>
                             <constraint firstItem="mhz-dD-D41" firstAttribute="centerY" secondItem="7Z0-AS-1nv" secondAttribute="centerY" id="22B-24-kwe"/>
+                            <constraint firstItem="rA8-md-reB" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" id="665-2E-OnM"/>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="bottom" secondItem="rA8-md-reB" secondAttribute="bottom" id="LdN-jA-fal"/>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="rA8-md-reB" secondAttribute="trailing" id="OzZ-hJ-cxX"/>
                             <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="DVj-Jp-bfg" secondAttribute="trailing" id="a6K-gn-vaq"/>
+                            <constraint firstItem="rA8-md-reB" firstAttribute="top" secondItem="DVj-Jp-bfg" secondAttribute="bottom" id="hgS-UU-Ouo"/>
                             <constraint firstItem="mhz-dD-D41" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" constant="5" id="l5X-Ua-6X7"/>
                             <constraint firstItem="DVj-Jp-bfg" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" id="lHf-Bj-bsg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JZv-T8-ZSi"/>
                     </view>
                     <connections>
+                        <outlet property="barGraph" destination="rA8-md-reB" id="q51-ge-rlU"/>
                         <outlet property="titleLabel" destination="DVj-Jp-bfg" id="UFL-P0-eZR"/>
                     </connections>
                 </viewController>

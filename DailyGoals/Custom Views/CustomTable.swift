@@ -16,8 +16,8 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     var gif = UIImageView()
     var gifButton = UIButton()
     
-    var cellsData: [CellData] = [CellData(text: "Task 1"), CellData(text: "Task 2"), CellData(text: "Task 3")]
-    var sectionData:[DailyGoalData] = [DailyGoalData(text: "Goal")]
+    var cellsData: [CellData] = []
+    var sectionData:[DailyGoalData] = []
     
     override func awakeFromNib() {
         delegate = self
@@ -40,12 +40,12 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionData.count
     }
     
     //Number of rows for each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return cellsData.count
     }
     
     //setup custom header as header
@@ -63,7 +63,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.config(task: cellsData[indexPath.row], checkBoxState: dailyTaskViewModel.goalState)
+        cell.config(task: cellsData[indexPath.row])
         cell.checkBox.checkBoxDelegate = self
         cell.checkBox.owner = .Task
         return cell
@@ -93,7 +93,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         
         //check if any task cell is false
         if cell.isToggled == false {
-            dailyTaskViewModel.goalState = nil
+            dailyTaskViewModel.taskState = nil
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
 
@@ -161,7 +161,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             //set previouse state to checkboxState
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
-                dailyTaskViewModel.goalState = true
+                dailyTaskViewModel.taskState = true
             }
             
             CoreDataManager.shared.update(object: "task1Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
@@ -197,9 +197,9 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
                 if (row as! TableViewCell).isPreviouseState == true {
-                    dailyTaskViewModel.goalState = true
+                    dailyTaskViewModel.taskState = true
                 } else {
-                    dailyTaskViewModel.goalState = false
+                    dailyTaskViewModel.taskState = false
                     self.reloadRows(at: [indexPath], with: .none)
                     CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
                 }
@@ -207,6 +207,17 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 taskComplete += 1
             }
         }
+    }
+    
+    func testMessage() {
+        //Display animated GIF
+        gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
+        gif.frame.size = findViewController()!.view.frame.size
+        gif.center = findViewController()!.view.center
+        
+        self.findViewController()!.view.addSubview(gif)
+        addGifButton()
+        findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
     }
     
     func addGifButton() {

@@ -71,17 +71,10 @@ class DailyTaskViewController: UIViewController {
             for savedData in checkToday! {
                 //Update text in section and rows
                 dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
+                                let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
                 let taskArray = [savedData.task1, savedData.task2, savedData.task3]
                 for index in 0 ..< taskArray.count {
-                    dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index])
-                }
-                //update checkboxes
-                let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
-                for index in 0 ..< taskCompleteArray.count {
-                    if taskCompleteArray[index] {
-                        dailyTaskTableView.selectRow(at: NSIndexPath(row: index, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
-                        dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: index, section: 0) as IndexPath)
-                    }
+                    dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index], state: taskCompleteArray[index])
                 }
             }
         } else {
@@ -116,11 +109,7 @@ class DailyTaskViewController: UIViewController {
                                         default:
                                             break
                                         }
-                                        
                     }
-                    
-                    
-                    
                 } else {
                     initialAlertBox()
                 }
@@ -136,22 +125,11 @@ class DailyTaskViewController: UIViewController {
             //Update text in section and rows
             dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
             let taskArray = [savedData.task1, savedData.task2, savedData.task3]
-            for index in 0 ..< taskArray.count {
-                dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index])
-            }
-            //update checkboxes
             let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
-            for index in 0 ..< taskCompleteArray.count {
-                if taskCompleteArray[index] {
-                    dailyTaskTableView.selectRow(at: NSIndexPath(row: index, section: 0) as IndexPath, animated: true, scrollPosition: .middle)
-                    dailyTaskTableView.delegate?.tableView!(dailyTaskTableView, didSelectRowAt: NSIndexPath(row: index, section: 0) as IndexPath)
-                    
-                    dailyTaskTableView.gif.removeFromSuperview()
-                    dailyTaskTableView.gifButton.removeFromSuperview()
-                }
+            for index in 0 ..< taskArray.count {
+                dailyTaskTableView.cellsData.append(CellData(text: taskArray[index], state: taskCompleteArray[index]))
             }
         }
-
         dailyTaskTableView.reloadData()
     }
     
@@ -189,7 +167,7 @@ class DailyTaskViewController: UIViewController {
         //update array for tableCells and coredata for tasks
         for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
             let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
-            dailyTaskTableView.cellsData[i] = CellData(text: cell.label.text ?? "No Value")
+            dailyTaskTableView.cellsData[i] = CellData(text: cell.task.text, state: cell.task.state)
             let taskNumber = "task\(i + 1)"
             CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: todaysDate)
         }
@@ -199,10 +177,6 @@ class DailyTaskViewController: UIViewController {
             (row as! TableViewCell).label.backgroundColor = UIColor.clear
         }
         editTasks.setTitle("Edit Tasks", for: .normal)
-        
-        //print table data to check
-        let updatedData = CoreDataManager.shared.fetchGoalData()
-        dump(updatedData)
     }
     
     func editTaskButtonSetUp() {
@@ -237,9 +211,9 @@ class DailyTaskViewController: UIViewController {
                                 }
                             } else { //append data from alertbox to arrays
                                 self.dailyTaskTableView.sectionData = [DailyGoalData(text: "\(goalInput ?? "")")]
-                                self.dailyTaskTableView.cellsData = [CellData(text: "\(task1Input ?? "")" ),
-                                                                     CellData(text: "\(task2Input ?? "")" ),
-                                                                     CellData(text: "\(task3Input ?? "")" )]
+                                self.dailyTaskTableView.cellsData = [CellData(text: "\(task1Input ?? "")", state: false ),
+                                                                     CellData(text: "\(task2Input ?? "")", state: false),
+                                                                     CellData(text: "\(task3Input ?? "")", state: false )]
                                 self.dailyTaskTableView.reloadData()
                                 
                                 CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate)

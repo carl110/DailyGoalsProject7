@@ -19,6 +19,7 @@ class TableViewCell: UITableViewCell {
     
     var isToggled: Bool = false
     var isPreviouseState: Bool = false
+    var task: CellData!
     
     func toggleEdit() {
         label.isEnabled = !label.isEnabled
@@ -29,7 +30,7 @@ class TableViewCell: UITableViewCell {
         isToggled = checkBox.isChecked
     }
     
-    func config(task: CellData, checkBoxState: Bool?) {
+    func config(task: CellData) {
         label.text = "\(task.text)"
         label.backgroundColor = UIColor.clear
         label.isEnabled = false
@@ -38,9 +39,9 @@ class TableViewCell: UITableViewCell {
         label.sizeThatFits(CGSize(width: label.frame.size.width, height: label.frame.size.height))
         cellBackground.backgroundColor = UIColor.Blues.softBlue
         
-        if let _checkboxState = checkBoxState {
-            checkBox.isChecked = _checkboxState
-        }
+        checkBox.isChecked = task.state
+        
+        self.task = task
     }
     
     override func prepareForReuse() {

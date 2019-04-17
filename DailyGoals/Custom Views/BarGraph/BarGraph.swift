@@ -1,83 +1,62 @@
 //
-//  ProgressViewController.swift
+//  BarGraph.swift
 //  DailyGoals
 //
-//  Created by Carl Wainwright on 14/01/2019.
+//  Created by Carl Wainwright on 17/04/2019.
 //  Copyright © 2019 Carl Wainwright. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class ProgressViewController: UIViewController {
+class BarGraph: AAChartView {
     
-    private var progressViewModel: ProgressViewModel!
-    private var progressFlow: ProgressFlow!
+    
+    @IBOutlet weak var chartView: UIView!
+    
+    @IBOutlet weak var chartTitle: UILabel!
+    
+    override func awakeFromNib() {
+        chartType = .bar
+        
+        //        chartTitle.text = chartType.map { $0.rawValue }
+        
+        setUpTheSwiths()
+        setUpTheSegmentControls()
+        
+        setUpAAChartView()
+    }
+    
     
     var chartType: AAChartType?
     var step: Bool?
     var aaChartModel: AAChartModel?
     var aaChartView: AAChartView?
     
-    @IBOutlet weak var titleLabel: UILabel!
-
-    @IBOutlet weak var barGraph: UIView!
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        titleLabelSetUp()
-        
-        chartType = .bar
-
-
-
-        setUpTheSwiths()
-        setUpTheSegmentControls()
-
-        setUpAAChartView()
-    }
-    
-    func titleLabelSetUp() {
-        titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
-        titleLabel.text = "Progress"
-    }
-    
-    func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
-        self.progressFlow = progressFlow
-        self.progressViewModel = progressViewModel
-        
-        
-    }
-    
     func setUpAAChartView() {
         aaChartView = AAChartView()
-        let chartViewWidth = view.frame.size.width
-        let chartViewHeight = view.frame.size.height - 250
+        let chartViewWidth = chartView.frame.size.width
+        let chartViewHeight = chartView.frame.size.height - 220
         aaChartView?.frame = CGRect(x: 0,
                                     y: 60,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
         aaChartView?.contentHeight = chartViewHeight - 20
-        view.addSubview(aaChartView!)
+        chartView.addSubview(aaChartView!)
         aaChartView?.scrollEnabled = false
         aaChartView?.isClearBackgroundColor = true
         
         aaChartModel = AAChartModel()
             .chartType(chartType!)
-            .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])//主题颜色数组
+            .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])
             .axisColor("#ffffff")
-            .title("")//图形标题
-            .subtitle("")//图形副标题
-            .dataLabelEnabled(false)//是否显示数字
-            .tooltipValueSuffix("℃")//浮动提示框单位后缀
-            .animationType(.bounce)//图形渲染动画类型为"bounce"
-            .backgroundColor("#22324c")//若要使图表背景色为透明色,可将 backgroundColor 设置为 "rgba(0,0,0,0)" 或 "rgba(0,0,0,0)". 同时确保 aaChartView?.isClearBackgroundColor = true
+            .title("")
+            .subtitle("")
+            .dataLabelEnabled(false)
+            .tooltipValueSuffix("℃")
+            .animationType(.bounce)
+            .backgroundColor("#22324c")
             .series([
                 AASeriesElement()
                     .name("Tokyo")
@@ -132,8 +111,8 @@ class ProgressViewController: UIViewController {
         for i in 0..<segmentedNamesArr.count {
             let segment = UISegmentedControl.init(items: segmentedNamesArr[i] as [Any])
             segment.frame = CGRect(x: 20,
-                                   y: 40.0 * CGFloat(i) + (view.frame.size.height - 145),
-                                   width: view.frame.size.width - 40,
+                                   y: 40.0 * CGFloat(i) + (chartView.frame.size.height - 145),
+                                   width: chartView.frame.size.width - 40,
                                    height: 20)
             segment.tag = i;
             segment.tintColor = .red
@@ -141,18 +120,18 @@ class ProgressViewController: UIViewController {
             segment.addTarget(self,
                               action: #selector(segmentDidSelected(segmentedControl:)),
                               for:.valueChanged)
-            view.addSubview(segment)
+            chartView.addSubview(segment)
             
             let subLabel = UILabel()
             subLabel.font = UIFont(name: "EuphemiaUCAS", size: 12.0)
             subLabel.frame = CGRect(x: 20,
-                                    y: 40 * CGFloat(i) + (view.frame.size.height - 165),
-                                    width: view.frame.size.width - 40,
+                                    y: 40 * CGFloat(i) + (chartView.frame.size.height - 165),
+                                    width: chartView.frame.size.width - 40,
                                     height: 20)
             subLabel.text = typeLabelNamesArr[i] as String
             subLabel.backgroundColor = .clear
             subLabel.textColor = .lightGray
-            view.addSubview(subLabel)
+            chartView.addSubview(subLabel)
         }
         
     }
@@ -198,12 +177,12 @@ class ProgressViewController: UIViewController {
             "Polarization",
             "DataShow"
         ]
-        switchWidth = (view.frame.size.width - 40) / 5
+        switchWidth = (chartView.frame.size.width - 40) / 5
         
         for i in 0..<nameArr.count {
             let uiswitch = UISwitch()
             uiswitch.frame = CGRect(x: switchWidth * CGFloat(i) + 20,
-                                    y: view.frame.size.height - 70,
+                                    y: chartView.frame.size.height - 70,
                                     width: switchWidth,
                                     height: 20)
             uiswitch.isOn = false
@@ -212,18 +191,18 @@ class ProgressViewController: UIViewController {
             uiswitch.addTarget(self,
                                action: #selector(switchDidChange(switchView:)),
                                for: .valueChanged)
-            view.addSubview(uiswitch)
+            chartView.addSubview(uiswitch)
             
             let subLabel = UILabel()
             subLabel.font = UIFont(name: "EuphemiaUCAS", size: nameArr.count == 5 ? 10.0 : 9.0)
             subLabel.frame = CGRect(x: switchWidth * CGFloat(i) + 20,
-                                    y: view.frame.size.height - 45,
+                                    y: chartView.frame.size.height - 45,
                                     width: switchWidth,
                                     height: 35)
             subLabel.text = nameArr[i] as String
             subLabel.backgroundColor = .clear
             subLabel.textColor = .lightGray
-            view.addSubview(subLabel)
+            chartView.addSubview(subLabel)
         }
     }
     
@@ -254,5 +233,7 @@ class ProgressViewController: UIViewController {
                        blue: ((CGFloat)(rgbValue & 0xFF)) / 255.0,
                        alpha: 1.0)
     }
+    
+    
     
 }

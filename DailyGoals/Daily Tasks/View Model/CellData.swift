@@ -12,9 +12,11 @@ import UIKit
 class CellData {
     
     var text: String = ""
+    var state: Bool = false
 
-    init(text: String) {
+    init(text: String, state: Bool) {
         self.text = text
+        self.state = state
     }
 }
 
