@@ -10,7 +10,5 @@ import Foundation
 import UIKit
 
 class DailyTaskViewModel {
-    
-    var taskState: Bool? = nil
     let todaysDate = Date().string(format: "dd MMM yyyy")
 }

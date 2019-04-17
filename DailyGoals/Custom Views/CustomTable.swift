@@ -89,22 +89,14 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         
         //check if any task cell is false
         if cell.isToggled == false {
-
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
-
-            //Display animated GIF
-            gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
-            gif.frame.size = findViewController()!.view.frame.size
-            gif.center = findViewController()!.view.center
-
-            self.findViewController()!.view.addSubview(gif)
-            addGifButton()
-            findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
+            
+            taskAnimation(gifName: "keepGoingBackwards", title: "Thats a shame", message: "Keep going you will get there.")
         } else {
-                    allCellsTrue(rows: self.visibleCells)
+            allCellsTrue(rows: self.visibleCells)
         }
-
+        
     }
     
     //check to see if all cells show true (isChecked)
@@ -120,34 +112,11 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         if trueCount == rows.count {
             header.checkBox.isChecked = true
             
-            //Display animated GIF
-            gif = UIImageView(image: UIImage.gif(name: "fireworks"))
-            gif.frame.size = findViewController()!.view.frame.size
-            gif.center = findViewController()!.view.center
-            
-            self.findViewController()!.view.addSubview(gif)
-            addGifButton()
-            findViewController()!.alertBoxWithTimer(title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal", timeDelay: 3.5)
-        }
-        if trueCount < rows.count {
-
-            //Display animated GIF
-            gif = UIImageView(image: UIImage.gif(name: "keepGoing"))
-            gif.frame.size = findViewController()!.view.frame.size
-            gif.center = findViewController()!.view.center
-
-            self.findViewController()!.view.addSubview(gif)
-            addGifButton()
-            
-            if rows.count - trueCount == 1 {
-                            findViewController()!.alertBoxWithTimer(title: "You're almost there", message: "Two tasks down, only one task left to complete", timeDelay: 3.0)
-            } else {
-                            findViewController()!.alertBoxWithTimer(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete", timeDelay: 3.0)
-            }
-            
-
-//                        congratsMessage(title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete")
-        }
+            taskAnimation(gifName: "fireworks", title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal")
+        } else if rows.count - trueCount == 1 {
+            taskAnimation(gifName: "keepGoing", title: "You're almost there", message: "Two tasks down, only one task left to complete")
+        } else {
+            taskAnimation(gifName: "keepGoing", title: "You're almost there", message: "Only \(rows.count - trueCount) more tasks to complete") }
     }
     
     func headerSectionCell(_ cell: CustomHeader) {
@@ -158,48 +127,32 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
-
-                 (row as! TableViewCell).task.state = true
+                
+                (row as! TableViewCell).task.state = true
             }
             
             CoreDataManager.shared.update(object: "task1Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
             CoreDataManager.shared.update(object: "task2Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
             CoreDataManager.shared.update(object: "task3Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
-
+            
             self.reloadData()
-
-            //Display animated GIF
-            gif = UIImageView(image: UIImage.gif(name: "fireworks"))
-            gif.frame.size = findViewController()!.view.frame.size
-            gif.center = findViewController()!.view.center
             
-            self.findViewController()!.view.addSubview(gif)
-            addGifButton()
-            findViewController()!.alertBoxWithTimer(title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal", timeDelay: 2.0)
-            
-            
+            taskAnimation(gifName: "fireworks", title: "CONGRATULATIONS", message: "Well done on completing your Daily Goal")
             
         } else { // if goal false tasks revert to previouse state
             var rowIndex = 0
             var taskComplete = 1
-
-            //Display animated GIF
-            gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
-            gif.frame.size = findViewController()!.view.frame.size
-            gif.center = findViewController()!.view.center
             
-            self.findViewController()!.view.addSubview(gif)
-            addGifButton()
-            findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
+            taskAnimation(gifName: "keepGoingBackwards", title: "Thats a shame", message: "Keep going you will get there")
             
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
                 if (row as! TableViewCell).isPreviouseState == true {
                     (row as! TableViewCell).task.state = true
-
+                    
                 } else {
                     (row as! TableViewCell).task.state = false
-
+                    
                     self.reloadRows(at: [indexPath], with: .none)
                     CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
                 }
@@ -209,15 +162,15 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         }
     }
     
-    func testMessage() {
+    func taskAnimation(gifName: String, title: String, message: String) {
         //Display animated GIF
-        gif = UIImageView(image: UIImage.gif(name: "keepGoingBackwards"))
+        gif = UIImageView(image: UIImage.gif(name: gifName))
         gif.frame.size = findViewController()!.view.frame.size
         gif.center = findViewController()!.view.center
         
         self.findViewController()!.view.addSubview(gif)
         addGifButton()
-        findViewController()!.alertBoxWithTimer(title: "Thats a shame", message: "Keep going you will get there.", timeDelay: 2.0)
+        findViewController()!.alertBoxWithTimer(title: title, message: message, timeDelay: 2.0)
     }
     
     func addGifButton() {
