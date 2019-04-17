@@ -77,12 +77,8 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         let taskComplete = indexPath.row + 1
         if cell.checkBox.isChecked {
             CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
-//            let updatedData = CoreDataManager.shared.fetchGoalData()
-//            dump(updatedData)
         } else {
             CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
-//            let updatedData = CoreDataManager.shared.fetchGoalData()
-//            dump(updatedData)
         }
         
         //set previouse state
@@ -93,7 +89,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         
         //check if any task cell is false
         if cell.isToggled == false {
-            dailyTaskViewModel.taskState = nil
+
             let header = tableView.headerView(forSection: 0) as! CustomHeader
             header.checkBox.isChecked = false
 
@@ -159,9 +155,11 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         let rowCell = self.visibleCells
         if cell.checkBox.isChecked == true {
             //set previouse state to checkboxState
+            
             rowCell.forEach{ (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
-                dailyTaskViewModel.taskState = true
+
+                 (row as! TableViewCell).task.state = true
             }
             
             CoreDataManager.shared.update(object: "task1Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
@@ -197,9 +195,11 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
             rowCell.forEach { (row) in
                 let indexPath = IndexPath(row: rowIndex, section: 0)
                 if (row as! TableViewCell).isPreviouseState == true {
-                    dailyTaskViewModel.taskState = true
+                    (row as! TableViewCell).task.state = true
+
                 } else {
-                    dailyTaskViewModel.taskState = false
+                    (row as! TableViewCell).task.state = false
+
                     self.reloadRows(at: [indexPath], with: .none)
                     CoreDataManager.shared.update(object: "task\(taskComplete)Complete", updatedEntry: false, date: dailyTaskViewModel.todaysDate)
                 }
