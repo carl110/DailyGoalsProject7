@@ -27,6 +27,12 @@ extension Date {
         return add(years: -years, months: -months, days: -days, hours: -hours, minutes: -minutes, seconds: -seconds)
     }
     
+    var month: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
+        return dateFormatter.string(from: self)
+    }
+    
 }
 
 

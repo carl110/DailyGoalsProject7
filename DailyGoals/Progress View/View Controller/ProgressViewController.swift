@@ -18,8 +18,19 @@ class ProgressViewController: UIViewController {
     var aaChartModel: AAChartModel?
     var aaChartView: AAChartView?
     
+    let date = Date()
+    var thisMonth = Int()
+    
+    
+    var goalTrueData: [Int] = []
+    var goalAllData: [Int] = []
+    var task1TrueData: [Int] = []
+    var task2TrueData: [Int] = []
+    var task3TrueData: [Int] = []
+    var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    
     @IBOutlet weak var titleLabel: UILabel!
-
+    
     @IBOutlet weak var barGraph: UIView!
     
     
@@ -30,16 +41,74 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        thisMonth = Int(date.month)!
+        print (thisMonth)
+        monthArray = monthArray.dropLast(12 - thisMonth)
+        
+        print (monthArray)
+        
+//        let newArray = monthArray.dropLast(thi)
+
+                setupTaskData()
+        
         titleLabelSetUp()
         
         chartType = .bar
-
-
-
+        
+        
+        
         setUpTheSwiths()
         setUpTheSegmentControls()
-
+        
         setUpAAChartView()
+        
+
+    }
+    
+    //Get numbers for true counts
+    func setupTaskData () {
+
+        for month in 1...thisMonth {
+            
+            print (thisMonth)
+            var goalAllCount = 0
+            var goalCount = 0
+            var count1 = 0
+            var count2 = 0
+            var count3 = 0
+            
+            for day in 1...31 {
+                //Format to ensure 2 digit number
+                let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month)) 2019"
+                
+                //fecth data for each day in the selected month
+                let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
+                //for each entry on CoreData append to correct array
+                for i in fetchedData! {
+                    
+                    goalAllCount += 1
+
+                    if i.task1Complete == true {
+                        count1 += 1
+                    }
+                    if i.task2Complete == true {
+                        count2 += 1
+                    }
+                    if i.task3Complete == true {
+                        count3 += 1
+                    }
+                    if i.task1Complete && i.task2Complete && i.task3Complete == true {
+                        goalCount += 1
+                    }
+                }
+            }
+            goalAllData.append(goalAllCount)
+            task1TrueData.append(count1)
+            task2TrueData.append(count2)
+            task3TrueData.append(count3)
+            goalTrueData.append(goalCount)
+        }
     }
     
     func titleLabelSetUp() {
@@ -56,10 +125,10 @@ class ProgressViewController: UIViewController {
     
     func setUpAAChartView() {
         aaChartView = AAChartView()
-        let chartViewWidth = view.frame.size.width
-        let chartViewHeight = view.frame.size.height - 250
-        aaChartView?.frame = CGRect(x: 0,
-                                    y: 60,
+        let chartViewWidth = barGraph.frame.size.width - 50
+        let chartViewHeight = barGraph.frame.size.height - 250
+        aaChartView?.frame = CGRect(x: barGraph.frame.minX,
+                                    y: barGraph.frame.minY,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
@@ -70,30 +139,36 @@ class ProgressViewController: UIViewController {
         
         aaChartModel = AAChartModel()
             .chartType(chartType!)
-            .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])//主题颜色数组
+            .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])
             .axisColor("#ffffff")
-            .title("")//图形标题
-            .subtitle("")//图形副标题
+            .title("Completed Goals and Tasks")//图形标题
+            .titleColor("#ffffff")
+            .subtitle("By Month")//图形副标题
+            .subtitleColor("#ffffff")
             .dataLabelEnabled(false)//是否显示数字
-            .tooltipValueSuffix("℃")//浮动提示框单位后缀
+            .tooltipValueSuffix(" completed")//浮动提示框单位后缀
             .animationType(.bounce)//图形渲染动画类型为"bounce"
-            .backgroundColor("#22324c")//若要使图表背景色为透明色,可将 backgroundColor 设置为 "rgba(0,0,0,0)" 或 "rgba(0,0,0,0)". 同时确保 aaChartView?.isClearBackgroundColor = true
+            .backgroundColor("#1d4991")//若要使图表背景色为透明色,可将 backgroundColor 设置为 "rgba(0,0,0,0)" 或 "rgba(0,0,0,0)". 同时确保 aaChartView?.isClearBackgroundColor = true
             .series([
                 AASeriesElement()
-                    .name("Tokyo")
-                    .data([7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6])
+                    .name("Out of")
+                    .data(goalAllData)
                     .toDic()!,
                 AASeriesElement()
-                    .name("New York")
-                    .data([0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5])
+                    .name("Goal")
+                    .data(goalTrueData)
                     .toDic()!,
                 AASeriesElement()
-                    .name("Berlin")
-                    .data([0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0])
+                    .name("Task 1")
+                    .data(task1TrueData)
                     .toDic()!,
                 AASeriesElement()
-                    .name("London")
-                    .data([3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8])
+                    .name("Task 2")
+                    .data(task2TrueData)
+                    .toDic()!,
+                AASeriesElement()
+                    .name("Task 3")
+                    .data(task3TrueData)
                     .toDic()!,
                 ])
         
@@ -103,37 +178,83 @@ class ProgressViewController: UIViewController {
     }
     
     func configureTheStyleForDifferentTypeChart() {
+        
+        if (chartType == .bar) {
         aaChartModel?
             .categories(["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
             .legendEnabled(true)
             .colorsTheme(["#fe117c","#ffc069","#06caf4","#7dffc0"])
             .animationType(.bounce)
             .animationDuration(1200)
+        } else if (chartType == .area && step == true)
+                || (chartType == .line && step == true) {
+                    aaChartModel?.series([
+                        AASeriesElement()
+                            .name("Goal")
+                            .data(goalTrueData)
+                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                        
+                            .toDic()!,
+                        AASeriesElement()
+                            .name("Task 1")
+                            .data(task1TrueData)
+                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                            .toDic()!,
+                        AASeriesElement()
+                            .name("Task 2")
+                            .data(task2TrueData)
+                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                            .toDic()!,
+                        AASeriesElement()
+                            .name("Task 3")
+                            .data(task3TrueData)
+                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                            .toDic()!,
+                        ])
+    }
     }
     
     func setUpTheSegmentControls() {
         let segmentedNamesArr:[[String]]
         let typeLabelNamesArr:[String]
         
-        segmentedNamesArr = [
-            ["No stacking",
-             "Normal stacking",
-             "Percent stacking"],
-            ["Square corners",
-             "Rounded corners",
-             "Wedge"]
-        ];
-        typeLabelNamesArr = [
-            "Stacking Type Selection",
-            "Corners Style Type Selection"
-        ];
+        if chartType == .column
+            || chartType == .bar {
+            segmentedNamesArr = [
+                ["No stacking",
+                 "Normal stacking",
+                 "Percent stacking"],
+                ["Square corners",
+                 "Rounded corners",
+                 "Wedge"]
+            ];
+            typeLabelNamesArr = [
+                "Stacking Type Selection",
+                "Corners Style Type Selection"
+            ];
+        } else {
+            segmentedNamesArr = [
+                ["No stacking",
+                 "Normal stacking",
+                 "Percent stacking"],
+                ["Circle",
+                 "Square",
+                 "Diamond",
+                 "Triangle",
+                 "Triangle-down"]
+            ];
+            typeLabelNamesArr = [
+                "Stacking Type Selection",
+                "Chart Symbol Type Selection"
+            ];
+        }
         
         
         for i in 0..<segmentedNamesArr.count {
             let segment = UISegmentedControl.init(items: segmentedNamesArr[i] as [Any])
             segment.frame = CGRect(x: 20,
-                                   y: 40.0 * CGFloat(i) + (view.frame.size.height - 145),
-                                   width: view.frame.size.width - 40,
+                                   y: 40.0 * CGFloat(i) + (barGraph.frame.size.height - 145),
+                                   width: barGraph.frame.size.width - 90,
                                    height: 20)
             segment.tag = i;
             segment.tintColor = .red
@@ -146,8 +267,8 @@ class ProgressViewController: UIViewController {
             let subLabel = UILabel()
             subLabel.font = UIFont(name: "EuphemiaUCAS", size: 12.0)
             subLabel.frame = CGRect(x: 20,
-                                    y: 40 * CGFloat(i) + (view.frame.size.height - 165),
-                                    width: view.frame.size.width - 40,
+                                    y: 40 * CGFloat(i) + (barGraph.frame.size.height - 165),
+                                    width: barGraph.frame.size.width - 90,
                                     height: 20)
             subLabel.text = typeLabelNamesArr[i] as String
             subLabel.backgroundColor = .clear
@@ -191,19 +312,31 @@ class ProgressViewController: UIViewController {
         let nameArr: [String]
         let switchWidth: CGFloat
         
-        nameArr = [
-            "xReversed",
-            "yReversed",
-            "xInverted",
-            "Polarization",
-            "DataShow"
-        ]
-        switchWidth = (view.frame.size.width - 40) / 5
+        if chartType == .column || chartType == .bar {
+            nameArr = [
+                "xReversed",
+                "yReversed",
+                "xInverted",
+                "Polarization",
+                "DataShow"
+            ]
+            switchWidth = (view.frame.size.width - 40) / 5
+        } else {
+            nameArr = [
+                "xReversed",
+                "yReversed",
+                "xInverted",
+                "Polarization",
+                "DataShow",
+                "HideMarker"
+            ]
+            switchWidth = (view.frame.size.width - 40) / 6
+        }
         
         for i in 0..<nameArr.count {
             let uiswitch = UISwitch()
             uiswitch.frame = CGRect(x: switchWidth * CGFloat(i) + 20,
-                                    y: view.frame.size.height - 70,
+                                    y: barGraph.frame.size.height - 70,
                                     width: switchWidth,
                                     height: 20)
             uiswitch.isOn = false
@@ -217,7 +350,7 @@ class ProgressViewController: UIViewController {
             let subLabel = UILabel()
             subLabel.font = UIFont(name: "EuphemiaUCAS", size: nameArr.count == 5 ? 10.0 : 9.0)
             subLabel.frame = CGRect(x: switchWidth * CGFloat(i) + 20,
-                                    y: view.frame.size.height - 45,
+                                    y: barGraph.frame.size.height - 45,
                                     width: switchWidth,
                                     height: 35)
             subLabel.text = nameArr[i] as String

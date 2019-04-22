@@ -117,7 +117,7 @@ class HistoryViewController: UIViewController {
         trueCount = 0
         goalCompleteCount = 0
         let index = monthPickerView.selectedRow(inComponent: 0)
-        //set aray for month number
+        //set array for month number
         let dateArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
         
         for i in 1...31 {

@@ -11,4 +11,6 @@ import UIKit
 
 class ProgressViewModel {
     
+    var thisMonth = Data()
+    
 }
