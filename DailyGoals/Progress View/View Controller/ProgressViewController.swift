@@ -42,9 +42,13 @@ class ProgressViewController: UIViewController {
         thisMonth = Int(date.month)!
         setupTaskData()
         chartType = .bar
-        setUpTheSwiths()
-        setUpTheSegmentControls()
-        setUpAAChartView()
+        
+        DispatchQueue.main.async {
+            self.setUpTheSwiths()
+            self.setUpTheSegmentControls()
+            self.setUpAAChartView()
+        }
+
     }
     
     func titleLabelSetUp() {
@@ -111,14 +115,14 @@ extension ProgressViewController {
     
     func setUpAAChartView() {
         aaChartView = AAChartView()
-        let chartViewWidth = barGraph.frame.size.width - 50
-        let chartViewHeight = barGraph.frame.size.height - 250
+        let chartViewWidth = view.frame.size.width - (view.frame.size.width / 7)
+        let chartViewHeight = view.frame.size.height - (view.frame.size.height / 2)
         aaChartView?.frame = CGRect(x: barGraph.frame.minX,
                                     y: barGraph.frame.minY,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
-        aaChartView?.contentHeight = chartViewHeight - 20
+        aaChartView?.contentHeight = chartViewHeight - (chartViewHeight / 12.5)
         view.addSubview(aaChartView!)
         aaChartView?.scrollEnabled = false
         aaChartView?.isClearBackgroundColor = true
@@ -237,10 +241,10 @@ extension ProgressViewController {
         
         for i in 0..<segmentedNamesArr.count {
             let segment = UISegmentedControl.init(items: segmentedNamesArr[i] as [Any])
-            segment.frame = CGRect(x: 20,
-                                   y: 40.0 * CGFloat(i) + (barGraph.frame.size.height - 145),
-                                   width: barGraph.frame.size.width - 90,
-                                   height: 20)
+            segment.frame = CGRect(x: barGraph.frame.minX,
+                                   y: barGraph.frame.minY * CGFloat(i) + (view.frame.size.height - (view.frame.size.height / 3.5)),
+                                   width: view.frame.size.width - (view.frame.size.width / 4),
+                                   height: view.frame.size.height / 25)
             segment.tag = i
             segment.tintColor = .red
             segment.selectedSegmentIndex = 0
@@ -251,10 +255,10 @@ extension ProgressViewController {
             
             let subLabel = UILabel()
             subLabel.font = UIFont(name: "EuphemiaUCAS", size: 12.0)
-            subLabel.frame = CGRect(x: 20,
-                                    y: 40 * CGFloat(i) + (barGraph.frame.size.height - 165),
-                                    width: barGraph.frame.size.width - 90,
-                                    height: 20)
+            subLabel.frame = CGRect(x: barGraph.frame.minX,
+                                    y: barGraph.frame.minY * CGFloat(i) + (view.frame.size.height - (view.frame.size.height / 3)),
+                                    width: view.frame.size.width - (view.frame.size.width / 4),
+                                    height: view.frame.size.height / 25)
             subLabel.text = typeLabelNamesArr[i] as String
             subLabel.backgroundColor = .clear
             subLabel.textColor = .lightGray
@@ -305,7 +309,7 @@ extension ProgressViewController {
                 "Polarization",
                 "DataShow"
             ]
-            switchWidth = (view.frame.size.width - 40) / 5
+            switchWidth = (view.frame.size.width - (view.frame.size.width / 8)) / 5
         } else {
             nameArr = [
                 "xReversed",
@@ -315,15 +319,15 @@ extension ProgressViewController {
                 "DataShow",
                 "HideMarker"
             ]
-            switchWidth = (view.frame.size.width - 40) / 6
+            switchWidth = (view.frame.size.width - (view.frame.size.width / 8)) / 6
         }
         
         for i in 0..<nameArr.count {
             let uiswitch = UISwitch()
-            uiswitch.frame = CGRect(x: switchWidth * CGFloat(i) + 20,
-                                    y: barGraph.frame.size.height - 70,
+            uiswitch.frame = CGRect(x: switchWidth * CGFloat(i) + (switchWidth / 16),
+                                    y: view.frame.size.height - (view.frame.size.height / 7),
                                     width: switchWidth,
-                                    height: 20)
+                                    height: view.frame.size.height / 25)
             uiswitch.isOn = false
             uiswitch.tag = i
             //            uiswitch.onTintColor = UIColor.blue
@@ -334,10 +338,10 @@ extension ProgressViewController {
             
             let subLabel = UILabel()
             subLabel.font = UIFont(name: "EuphemiaUCAS", size: nameArr.count == 5 ? 10.0 : 9.0)
-            subLabel.frame = CGRect(x: switchWidth * CGFloat(i) + 20,
-                                    y: barGraph.frame.size.height - 45,
+            subLabel.frame = CGRect(x: switchWidth * CGFloat(i) + (switchWidth / 16),
+                                    y: view.frame.size.height - (view.frame.size.height / 11),
                                     width: switchWidth,
-                                    height: 35)
+                                    height: view.frame.size.height / 14.5)
             subLabel.text = nameArr[i] as String
             subLabel.backgroundColor = .clear
             subLabel.textColor = .lightGray

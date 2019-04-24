@@ -19,14 +19,11 @@ class BarGraph: AAChartView, AAChartViewDelegate {
     let date = Date()
     var thisMonth = Int()
     
-    
     var goalTrueData: [Int] = []
     var goalAllData: [Int] = []
     var task1TrueData: [Int] = []
     var task2TrueData: [Int] = []
     var task3TrueData: [Int] = []
-    var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    
     
     @IBOutlet weak var chartView: UIView!
     
@@ -34,20 +31,14 @@ class BarGraph: AAChartView, AAChartViewDelegate {
     
     override func awakeFromNib() {
         
+
+
+        chartType = .bar
         delegate = self
         
         thisMonth = Int(date.month)!
-        print (thisMonth)
-        monthArray = monthArray.dropLast(12 - thisMonth)
-        
-        print (monthArray)
-        
-        //        let newArray = monthArray.dropLast(thi)
         
         setupTaskData()
-
-        chartType = .bar
-        
         
         
         setUpTheSwiths()
