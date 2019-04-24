@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BarGraph: AAChartView {
+class BarGraph: AAChartView, AAChartViewDelegate {
     
     var chartType: AAChartType?
     var step: Bool?
@@ -33,6 +33,8 @@ class BarGraph: AAChartView {
     @IBOutlet weak var chartTitle: UILabel!
     
     override func awakeFromNib() {
+        
+        delegate = self
         
         thisMonth = Int(date.month)!
         print (thisMonth)

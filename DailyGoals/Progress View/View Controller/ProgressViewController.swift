@@ -20,19 +20,15 @@ class ProgressViewController: UIViewController {
     
     let date = Date()
     var thisMonth = Int()
-    
-    
     var goalTrueData: [Int] = []
     var goalAllData: [Int] = []
     var task1TrueData: [Int] = []
     var task2TrueData: [Int] = []
     var task3TrueData: [Int] = []
-    var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var barGraph: UIView!
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
@@ -41,37 +37,39 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        thisMonth = Int(date.month)!
-        print (thisMonth)
-        monthArray = monthArray.dropLast(12 - thisMonth)
-        
-        print (monthArray)
-        
-//        let newArray = monthArray.dropLast(thi)
-
-                setupTaskData()
-        
         titleLabelSetUp()
         
+        thisMonth = Int(date.month)!
+        setupTaskData()
         chartType = .bar
-        
-        
-        
         setUpTheSwiths()
         setUpTheSegmentControls()
-        
         setUpAAChartView()
-        
-
     }
+    
+    func titleLabelSetUp() {
+        titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
+        titleLabel.text = "Progress"
+    }
+    
+    func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
+        self.progressFlow = progressFlow
+        self.progressViewModel = progressViewModel
+        
+        
+    }
+    
+
+    
+}
+
+extension ProgressViewController {
+    
     
     //Get numbers for true counts
     func setupTaskData () {
-
+        
         for month in 1...thisMonth {
-            
-            print (thisMonth)
             var goalAllCount = 0
             var goalCount = 0
             var count1 = 0
@@ -88,7 +86,7 @@ class ProgressViewController: UIViewController {
                 for i in fetchedData! {
                     
                     goalAllCount += 1
-
+                    
                     if i.task1Complete == true {
                         count1 += 1
                     }
@@ -109,18 +107,6 @@ class ProgressViewController: UIViewController {
             task3TrueData.append(count3)
             goalTrueData.append(goalCount)
         }
-    }
-    
-    func titleLabelSetUp() {
-        titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
-        titleLabel.text = "Progress"
-    }
-    
-    func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
-        self.progressFlow = progressFlow
-        self.progressViewModel = progressViewModel
-        
-        
     }
     
     func setUpAAChartView() {
@@ -180,38 +166,38 @@ class ProgressViewController: UIViewController {
     func configureTheStyleForDifferentTypeChart() {
         
         if (chartType == .bar) {
-        aaChartModel?
-            .categories(["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
-            .legendEnabled(true)
-            .colorsTheme(["#fe117c","#ffc069","#06caf4","#7dffc0"])
-            .animationType(.bounce)
-            .animationDuration(1200)
+            aaChartModel?
+                .categories(["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
+                .legendEnabled(true)
+                .colorsTheme(["#fe117c","#ffc069","#06caf4","#7dffc0"])
+                .animationType(.bounce)
+                .animationDuration(1200)
         } else if (chartType == .area && step == true)
-                || (chartType == .line && step == true) {
-                    aaChartModel?.series([
-                        AASeriesElement()
-                            .name("Goal")
-                            .data(goalTrueData)
-                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
-                        
-                            .toDic()!,
-                        AASeriesElement()
-                            .name("Task 1")
-                            .data(task1TrueData)
-                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
-                            .toDic()!,
-                        AASeriesElement()
-                            .name("Task 2")
-                            .data(task2TrueData)
-                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
-                            .toDic()!,
-                        AASeriesElement()
-                            .name("Task 3")
-                            .data(task3TrueData)
-                            .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
-                            .toDic()!,
-                        ])
-    }
+            || (chartType == .line && step == true) {
+            aaChartModel?.series([
+                AASeriesElement()
+                    .name("Goal")
+                    .data(goalTrueData)
+                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    
+                    .toDic()!,
+                AASeriesElement()
+                    .name("Task 1")
+                    .data(task1TrueData)
+                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .toDic()!,
+                AASeriesElement()
+                    .name("Task 2")
+                    .data(task2TrueData)
+                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .toDic()!,
+                AASeriesElement()
+                    .name("Task 3")
+                    .data(task3TrueData)
+                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .toDic()!,
+                ])
+        }
     }
     
     func setUpTheSegmentControls() {
@@ -222,16 +208,15 @@ class ProgressViewController: UIViewController {
             || chartType == .bar {
             segmentedNamesArr = [
                 ["No stacking",
-                 "Normal stacking",
-                 "Percent stacking"],
-                ["Square corners",
-                 "Rounded corners",
-                 "Wedge"]
-            ];
+                 "Normal stacking"],
+//                ["Square corners",
+//                 "Rounded corners",
+//                 "Wedge"]
+            ]
             typeLabelNamesArr = [
                 "Stacking Type Selection",
                 "Corners Style Type Selection"
-            ];
+            ]
         } else {
             segmentedNamesArr = [
                 ["No stacking",
@@ -242,11 +227,11 @@ class ProgressViewController: UIViewController {
                  "Diamond",
                  "Triangle",
                  "Triangle-down"]
-            ];
+            ]
             typeLabelNamesArr = [
                 "Stacking Type Selection",
                 "Chart Symbol Type Selection"
-            ];
+            ]
         }
         
         
@@ -256,7 +241,7 @@ class ProgressViewController: UIViewController {
                                    y: 40.0 * CGFloat(i) + (barGraph.frame.size.height - 145),
                                    width: barGraph.frame.size.width - 90,
                                    height: 20)
-            segment.tag = i;
+            segment.tag = i
             segment.tintColor = .red
             segment.selectedSegmentIndex = 0
             segment.addTarget(self,
@@ -340,7 +325,7 @@ class ProgressViewController: UIViewController {
                                     width: switchWidth,
                                     height: 20)
             uiswitch.isOn = false
-            uiswitch.tag = i;
+            uiswitch.tag = i
             //            uiswitch.onTintColor = UIColor.blue
             uiswitch.addTarget(self,
                                action: #selector(switchDidChange(switchView:)),
