@@ -114,12 +114,14 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     //Hide open cells when table is scrolled
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard let image = self.viewWithTag(HeaderSectionTag + sectionTouched!) as? UIImageView else { return print ("No image") }
+
         
         if self.expandedSectionHeaderNumber != -1 {
+                    guard let image = self.viewWithTag(HeaderSectionTag + sectionTouched!) as? UIImageView else { return print ("No image") }
+            
             tableViewCollapeSection(sectionTouched!, imageView: image)
         }
-        print ("Image from the scroll \(image)")
+
     }
     
     

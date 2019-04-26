@@ -37,8 +37,6 @@ class HistoryViewController: UIViewController {
     }
     
     @IBAction func monthPickerButton(_ sender: Any) {
-        print (monthPickerView.selectedRow(inComponent: 0))
-        
         //Clear the arrays
         historyTableView.tableSectionName.removeAll()
         historyTableView.tableCellData.removeAll()
@@ -117,12 +115,14 @@ class HistoryViewController: UIViewController {
         trueCount = 0
         goalCompleteCount = 0
         let index = monthPickerView.selectedRow(inComponent: 0)
+        let yearIndex = monthPickerView.selectedRow(inComponent: 1)
+
         //set array for month number
         let dateArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
         
         for i in 1...31 {
             //Format to ensure 2 digit number
-            let date = "\(String(format: "%02d", i)) \(dateArray[index]) 2019"
+            let date = "\(String(format: "%02d", i)) \(dateArray[index]) \(historyViewModel.yearArray[yearIndex])"
             //fecth data for each day in the selected month
             let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
             //for each entry on CoreData append to correct array
