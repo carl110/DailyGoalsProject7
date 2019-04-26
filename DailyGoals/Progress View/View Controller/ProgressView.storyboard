@@ -17,38 +17,9 @@
                     <view key="view" contentMode="scaleToFill" id="7Z0-AS-1nv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rA8-md-reB">
-                                <rect key="frame" x="10" y="100" width="355" height="507"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVj-Jp-bfg">
-                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="kv7-8J-Qbr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="DVj-Jp-bfg" firstAttribute="top" secondItem="JZv-T8-ZSi" secondAttribute="top" id="04A-3H-3YO"/>
-                            <constraint firstItem="rA8-md-reB" firstAttribute="top" secondItem="DVj-Jp-bfg" secondAttribute="bottom" constant="10" id="L0P-UC-FtZ"/>
-                            <constraint firstItem="rA8-md-reB" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" constant="10" id="Ol4-2L-wKW"/>
-                            <constraint firstItem="rA8-md-reB" firstAttribute="centerX" secondItem="7Z0-AS-1nv" secondAttribute="centerX" id="PzN-X6-UFE"/>
-                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="rA8-md-reB" secondAttribute="trailing" constant="10" id="Vpk-ef-twi"/>
-                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="DVj-Jp-bfg" secondAttribute="trailing" id="a6K-gn-vaq"/>
-                            <constraint firstItem="DVj-Jp-bfg" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" id="lHf-Bj-bsg"/>
-                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="bottom" secondItem="rA8-md-reB" secondAttribute="bottom" constant="60" id="xhr-bU-EDS"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JZv-T8-ZSi"/>
                     </view>
-                    <connections>
-                        <outlet property="barGraph" destination="rA8-md-reB" id="q51-ge-rlU"/>
-                        <outlet property="titleLabel" destination="DVj-Jp-bfg" id="UFL-P0-eZR"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLf-bh-JoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

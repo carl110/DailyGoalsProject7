@@ -30,20 +30,13 @@ class BarGraph: AAChartView, AAChartViewDelegate {
     @IBOutlet weak var chartTitle: UILabel!
     
     override func awakeFromNib() {
-        
-
 
         chartType = .bar
         delegate = self
-        
         thisMonth = Int(date.month)!
-        
         setupTaskData()
-        
-        
         setUpTheSwiths()
         setUpTheSegmentControls()
-        
         setUpAAChartView()
 
     }

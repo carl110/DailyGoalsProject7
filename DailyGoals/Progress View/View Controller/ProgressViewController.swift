@@ -26,10 +26,6 @@ class ProgressViewController: UIViewController {
     var task2TrueData: [Int] = []
     var task3TrueData: [Int] = []
     
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var barGraph: UIView!
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -37,34 +33,22 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabelSetUp()
         
         thisMonth = Int(date.month)!
         setupTaskData()
         chartType = .bar
         
         DispatchQueue.main.async {
-            self.setUpTheSwiths()
-            self.setUpTheSegmentControls()
+//            self.setUpTheSwiths()
+//            self.setUpTheSegmentControls()
             self.setUpAAChartView()
         }
-
-    }
-    
-    func titleLabelSetUp() {
-        titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
-        titleLabel.text = "Progress"
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
         self.progressFlow = progressFlow
         self.progressViewModel = progressViewModel
-        
-        
     }
-    
-
-    
 }
 
 extension ProgressViewController {
@@ -72,14 +56,12 @@ extension ProgressViewController {
     
     //Get numbers for true counts
     func setupTaskData () {
-        
         for month in 1...thisMonth {
             var goalAllCount = 0
             var goalCount = 0
             var count1 = 0
             var count2 = 0
             var count3 = 0
-            
             for day in 1...31 {
                 //Format to ensure 2 digit number
                 let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month)) 2019"
@@ -88,9 +70,7 @@ extension ProgressViewController {
                 let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
                 //for each entry on CoreData append to correct array
                 for i in fetchedData! {
-                    
                     goalAllCount += 1
-                    
                     if i.task1Complete == true {
                         count1 += 1
                     }
@@ -115,18 +95,20 @@ extension ProgressViewController {
     
     func setUpAAChartView() {
         aaChartView = AAChartView()
-        let chartViewWidth = view.frame.size.width - (view.frame.size.width / 7)
-        let chartViewHeight = view.frame.size.height - (view.frame.size.height / 2)
-        aaChartView?.frame = CGRect(x: barGraph.frame.minX,
-                                    y: barGraph.frame.minY,
+        let chartViewWidth = view.frame.size.width
+        let chartViewHeight = view.frame.size.height
+        aaChartView?.frame = CGRect(x: 0,
+                                    y: 0,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
-        aaChartView?.contentHeight = chartViewHeight - (chartViewHeight / 12.5)
+//        aaChartView?.contentHeight = chartViewHeight
+        aaChartView!.translatesAutoresizingMaskIntoConstraints = true
+        aaChartView!.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+        aaChartView!.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         view.addSubview(aaChartView!)
         aaChartView?.scrollEnabled = false
         aaChartView?.isClearBackgroundColor = true
-        
         aaChartModel = AAChartModel()
             .chartType(chartType!)
             .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])
@@ -202,179 +184,5 @@ extension ProgressViewController {
                     .toDic()!,
                 ])
         }
-    }
-    
-    func setUpTheSegmentControls() {
-        let segmentedNamesArr:[[String]]
-        let typeLabelNamesArr:[String]
-        
-        if chartType == .column
-            || chartType == .bar {
-            segmentedNamesArr = [
-                ["No stacking",
-                 "Normal stacking"],
-//                ["Square corners",
-//                 "Rounded corners",
-//                 "Wedge"]
-            ]
-            typeLabelNamesArr = [
-                "Stacking Type Selection",
-                "Corners Style Type Selection"
-            ]
-        } else {
-            segmentedNamesArr = [
-                ["No stacking",
-                 "Normal stacking",
-                 "Percent stacking"],
-                ["Circle",
-                 "Square",
-                 "Diamond",
-                 "Triangle",
-                 "Triangle-down"]
-            ]
-            typeLabelNamesArr = [
-                "Stacking Type Selection",
-                "Chart Symbol Type Selection"
-            ]
-        }
-        
-        
-        for i in 0..<segmentedNamesArr.count {
-            let segment = UISegmentedControl.init(items: segmentedNamesArr[i] as [Any])
-            segment.frame = CGRect(x: barGraph.frame.minX,
-                                   y: barGraph.frame.minY * CGFloat(i) + (view.frame.size.height - (view.frame.size.height / 3.5)),
-                                   width: view.frame.size.width - (view.frame.size.width / 4),
-                                   height: view.frame.size.height / 25)
-            segment.tag = i
-            segment.tintColor = .red
-            segment.selectedSegmentIndex = 0
-            segment.addTarget(self,
-                              action: #selector(segmentDidSelected(segmentedControl:)),
-                              for:.valueChanged)
-            view.addSubview(segment)
-            
-            let subLabel = UILabel()
-            subLabel.font = UIFont(name: "EuphemiaUCAS", size: 12.0)
-            subLabel.frame = CGRect(x: barGraph.frame.minX,
-                                    y: barGraph.frame.minY * CGFloat(i) + (view.frame.size.height - (view.frame.size.height / 3)),
-                                    width: view.frame.size.width - (view.frame.size.width / 4),
-                                    height: view.frame.size.height / 25)
-            subLabel.text = typeLabelNamesArr[i] as String
-            subLabel.backgroundColor = .clear
-            subLabel.textColor = .lightGray
-            view.addSubview(subLabel)
-        }
-        
-    }
-    
-    @objc func segmentDidSelected(segmentedControl:UISegmentedControl) {
-        switch segmentedControl.tag {
-        case 0:
-            let stackingArr = [
-                AAChartStackingType.none,
-                .normal,
-                .percent
-            ]
-            aaChartModel?.stacking(stackingArr[segmentedControl.selectedSegmentIndex])
-            
-        case 1:
-            if chartType == .column || chartType == .bar {
-                let borderRadiusArr = [0,10,100]
-                aaChartModel?.borderRadius(borderRadiusArr[segmentedControl.selectedSegmentIndex])
-            } else {
-                let symbolArr = [
-                    AAChartSymbolType.circle,
-                    .square,
-                    .diamond,
-                    .triangle,
-                    .triangleDown
-                ]
-                aaChartModel?.symbol(symbolArr[segmentedControl.selectedSegmentIndex])
-            }
-            
-        default: break
-        }
-        aaChartView?.aa_refreshChartWholeContentWithChartModel(aaChartModel!)
-    }
-    
-    func setUpTheSwiths() {
-        let nameArr: [String]
-        let switchWidth: CGFloat
-        
-        if chartType == .column || chartType == .bar {
-            nameArr = [
-                "xReversed",
-                "yReversed",
-                "xInverted",
-                "Polarization",
-                "DataShow"
-            ]
-            switchWidth = (view.frame.size.width - (view.frame.size.width / 8)) / 5
-        } else {
-            nameArr = [
-                "xReversed",
-                "yReversed",
-                "xInverted",
-                "Polarization",
-                "DataShow",
-                "HideMarker"
-            ]
-            switchWidth = (view.frame.size.width - (view.frame.size.width / 8)) / 6
-        }
-        
-        for i in 0..<nameArr.count {
-            let uiswitch = UISwitch()
-            uiswitch.frame = CGRect(x: switchWidth * CGFloat(i) + (switchWidth / 16),
-                                    y: view.frame.size.height - (view.frame.size.height / 7),
-                                    width: switchWidth,
-                                    height: view.frame.size.height / 25)
-            uiswitch.isOn = false
-            uiswitch.tag = i
-            //            uiswitch.onTintColor = UIColor.blue
-            uiswitch.addTarget(self,
-                               action: #selector(switchDidChange(switchView:)),
-                               for: .valueChanged)
-            view.addSubview(uiswitch)
-            
-            let subLabel = UILabel()
-            subLabel.font = UIFont(name: "EuphemiaUCAS", size: nameArr.count == 5 ? 10.0 : 9.0)
-            subLabel.frame = CGRect(x: switchWidth * CGFloat(i) + (switchWidth / 16),
-                                    y: view.frame.size.height - (view.frame.size.height / 11),
-                                    width: switchWidth,
-                                    height: view.frame.size.height / 14.5)
-            subLabel.text = nameArr[i] as String
-            subLabel.backgroundColor = .clear
-            subLabel.textColor = .lightGray
-            view.addSubview(subLabel)
-        }
-    }
-    
-    @objc func switchDidChange(switchView:UISwitch) {
-        switch switchView.tag {
-        case 0:
-            aaChartModel?.xAxisReversed(switchView.isOn)
-        case 1:
-            aaChartModel?.yAxisReversed(switchView.isOn)
-        case 2:
-            aaChartModel?.inverted(switchView.isOn)
-        case 3:
-            aaChartModel?.polar(switchView.isOn)
-        case 4:
-            aaChartModel?.dataLabelEnabled(switchView.isOn)
-        case 5:
-            aaChartModel?.markerRadius(switchView.isOn ? 0 : 5)//折线连接点半径长度,为0时相当于没有折线连接点
-        default:
-            break
-        }
-        
-        aaChartView?.aa_refreshChartWholeContentWithChartModel(aaChartModel!)
-    }
-    
-    func kRGBColorFromHex(rgbValue: Int) -> (UIColor) {
-        return UIColor(red: ((CGFloat)((rgbValue & 0xFF0000) >> 16)) / 255.0,
-                       green: ((CGFloat)((rgbValue & 0xFF00) >> 8)) / 255.0,
-                       blue: ((CGFloat)(rgbValue & 0xFF)) / 255.0,
-                       alpha: 1.0)
-    }
-    
+    }  
 }
