@@ -11,7 +11,7 @@ import UIKit
 
 class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-     fileprivate var dailyTaskViewModel = DailyTaskViewModel()
+    fileprivate var dailyTaskViewModel = DailyTaskViewModel()
     
     override func awakeFromNib() {
         delegate = self
@@ -22,11 +22,18 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         //hide unused rows
         self.tableFooterView = UIView()
+        
+        //call custom header
+        let headerNib = UINib.init(nibName: "CustomHeaderHistory", bundle: Bundle.main)
+        self.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeaderHistory")
+
     }
     
     var taskCompletetion: Array<Any> = []
     var tableCellData: Array<Any> = []
     var tableSectionName: Array<Any> = []
+    
+    var sectionTouched: Int?
     
     var expandedSectionHeaderNumber: Int = -1
     
@@ -48,34 +55,21 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    //Name used in the section headers
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (self.tableSectionName.count != 0) {
-            return self.tableSectionName[section] as? String
-        }
-        return ""
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        //recast view as a UITableViewHeaderFooterView
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.Blues.lightBlue
-        header.textLabel?.textColor = UIColor.white
-        header.textLabel?.numberOfLines = 0
-        header.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-        //close open section when another is opened
-
-        let headerFrame = self.frame.size
-        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 32, y: 13, width: 18, height: 18))
-        theImageView.image = UIImage(named: "chevron")
-        theImageView.tag = HeaderSectionTag + section
-        header.addSubview(theImageView)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderHistory") as! CustomHeaderHistory
         
-        // add gesture to header to tap and open
-        header.tag = section
+        headerView.labelTitle.text = self.tableSectionName[section] as? String
+        headerView.config()
+        
+        headerView.imageView.image = UIImage(named: "chevron")
+        headerView.imageView.tag = HeaderSectionTag + section
+        
+        headerView.tag = section
         let headerTapGesture = UITapGestureRecognizer()
         headerTapGesture.addTarget(self, action: #selector(self.sectionHeaderWasTouched(_:)))
-        header.addGestureRecognizer(headerTapGesture)
+        headerView.addGestureRecognizer(headerTapGesture)
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,14 +91,16 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     //Colapsing open sections
-        @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
-        let headerView = sender.view as! UITableViewHeaderFooterView
+    @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
+        let headerView = sender.view as! CustomHeaderHistory
         let section    = headerView.tag
         let eImageView = headerView.viewWithTag(HeaderSectionTag + section) as? UIImageView
+        sectionTouched = section
         
         if (self.expandedSectionHeaderNumber == -1) {
             self.expandedSectionHeaderNumber = section
             tableViewExpandSection(section, imageView: eImageView!)
+            self.scrollToBottomRow()
         } else {
             if (self.expandedSectionHeaderNumber == section) {
                 tableViewCollapeSection(section, imageView: eImageView!)
@@ -115,6 +111,17 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    //Hide open cells when table is scrolled
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard let image = self.viewWithTag(HeaderSectionTag + sectionTouched!) as? UIImageView else { return print ("No image") }
+        
+        if self.expandedSectionHeaderNumber != -1 {
+            tableViewCollapeSection(sectionTouched!, imageView: image)
+        }
+        print ("Image from the scroll \(image)")
+    }
+    
     
     func tableViewCollapeSection(_ section: Int, imageView: UIImageView) {
         let sectionData = self.tableCellData[section] as! NSArray
@@ -152,9 +159,16 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
                 indexesPath.append(index)
             }
             self.expandedSectionHeaderNumber = section
-            self.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
+            self.insertRows(at: indexesPath, with: UITableView.RowAnimation.none)
         }
     }
-
+    
+    func reloadTableView(_ tableView: UITableView) {
+        let contentOffset = self.contentOffset
+        self.reloadData()
+        self.layoutIfNeeded()
+        self.setContentOffset(contentOffset, animated: false)
+    }
+    
 }
 
