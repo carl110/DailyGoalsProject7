@@ -39,10 +39,11 @@ public class AAChartView: UIView {
         willSet {
             if #available(iOS 9.0, *) {
                 wkWebView?.scrollView.isScrollEnabled = newValue!
-            } else {
-                // Fallback on earlier versions
-                uiWebView?.scrollView.isScrollEnabled = newValue!
             }
+//            else {
+//                // Fallback on earlier versions
+//                uiWebView?.scrollView.isScrollEnabled = newValue!
+//            }
         }
     }
     
@@ -53,11 +54,12 @@ public class AAChartView: UIView {
                 if #available(iOS 9.0, *) {
                     wkWebView?.backgroundColor = .clear
                     wkWebView?.isOpaque = false
-                } else {
-                    // Fallback on earlier versions
-                    uiWebView?.backgroundColor = .clear
-                    uiWebView?.isOpaque = false
                 }
+//                else {
+//                    // Fallback on earlier versions
+//                    uiWebView?.backgroundColor = .clear
+//                    uiWebView?.isOpaque = false
+//                }
             }
         }
     }
@@ -94,7 +96,7 @@ public class AAChartView: UIView {
     }
     
     private var wkWebView: WKWebView?
-    private var uiWebView: UIWebView?
+//    private var uiWebView: UIWebView?
     private var optionsJson: String?
     
     override init(frame: CGRect) {
@@ -115,16 +117,17 @@ public class AAChartView: UIView {
             wkWebView?.translatesAutoresizingMaskIntoConstraints = false
             wkWebView?.superview!.addConstraints(configureTheConstraintArray(childView: wkWebView!,
                                                                              fatherView: self)) //Note:父控件添加约束
-        } else {
-            // Fallback on earlier versions
-            uiWebView = UIWebView()
-            uiWebView?.backgroundColor = .white
-            uiWebView?.delegate = self
-            addSubview(uiWebView!)
-            uiWebView?.translatesAutoresizingMaskIntoConstraints = false
-            uiWebView?.superview!.addConstraints(configureTheConstraintArray(childView: uiWebView!,
-                                                                             fatherView: self)) //Note:父控件添加约束
         }
+//        else {
+//            // Fallback on earlier versions
+//            uiWebView = UIWebView()
+//            uiWebView?.backgroundColor = .white
+//            uiWebView?.delegate = self
+//            addSubview(uiWebView!)
+//            uiWebView?.translatesAutoresizingMaskIntoConstraints = false
+//            uiWebView?.superview!.addConstraints(configureTheConstraintArray(childView: uiWebView!,
+//                                                                             fatherView: self)) //Note:父控件添加约束
+//        }
     }
     
     private func configureTheConstraintArray(childView: UIView, fatherView: UIView) -> [NSLayoutConstraint] {
@@ -195,10 +198,11 @@ public class AAChartView: UIView {
                     print(errorInfo)
                 }
             })
-        } else {
-            // Fallback on earlier versions
-            uiWebView?.stringByEvaluatingJavaScript(from: jsString)
         }
+//        else {
+//            // Fallback on earlier versions
+//            uiWebView?.stringByEvaluatingJavaScript(from: jsString)
+//        }
     }
     
     private func configureTheJavaScriptStringWithOptions(_ chartOptions: NSMutableDictionary) {
@@ -251,10 +255,11 @@ extension AAChartView {
             let urlRequest = NSURLRequest(url: urlStr) as URLRequest
             if #available(iOS 9.0, *) {
                 wkWebView?.load(urlRequest)
-            } else {
-                // Fallback on earlier versions
-                uiWebView?.loadRequest(urlRequest)
             }
+//            else {
+//                // Fallback on earlier versions
+//                uiWebView?.loadRequest(urlRequest)
+//            }
         } else {
             configureTheJavaScriptStringWithOptions(options)
             drawChart()
@@ -328,16 +333,16 @@ extension AAChartView: WKUIDelegate {
     }
 }
 
-extension AAChartView:  WKNavigationDelegate, UIWebViewDelegate {
+extension AAChartView:  WKNavigationDelegate {
     open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         drawChart()
         self.delegate?.AAChartViewDidFinishedLoad!()
     }
     
-    open func webViewDidFinishLoad(_ webView: UIWebView) {
-        drawChart()
-        self.delegate?.AAChartViewDidFinishedLoad!()
-    }
+//    open func webViewDidFinishLoad(_ webView: UIWebView) {
+//        drawChart()
+//        self.delegate?.AAChartViewDidFinishedLoad!()
+//    }
     
     
 }

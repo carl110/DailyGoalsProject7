@@ -35,8 +35,8 @@ extension UIView {
     }
     
     func customAnimtation() {
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-            self.transform = CGAffineTransform(scaleX: 100.0, y: 100.0)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: { [weak self] in
+            self?.transform = CGAffineTransform(scaleX: 100.0, y: 100.0)
         }, completion: { (finished: Bool) in
             self.fadeOut()
         } )

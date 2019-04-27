@@ -26,10 +26,16 @@ extension Date {
     func subtract(years: Int = 0, months: Int = 0, days: Int = 0, hours: Int = 0, minutes: Int = 0, seconds: Int = 0) -> Date? {
         return add(years: -years, months: -months, days: -days, hours: -hours, minutes: -minutes, seconds: -seconds)
     }
-    
+    //Get current month
     var month: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM"
+        return dateFormatter.string(from: self)
+    }
+    //Get current year
+    var year: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
         return dateFormatter.string(from: self)
     }
     

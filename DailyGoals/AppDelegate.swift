@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+//*****************************************************************************************************************
         
         //Dummy data to load to core data
         //remove all old data
@@ -42,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreDataManager.shared.update(object: "task1Complete", updatedEntry: false, date: updateDate!)
         
         
+//*****************************************************************************************************************
+
         //Prints location of the SQL data to view with DB Browser
         print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         

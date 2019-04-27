@@ -15,8 +15,12 @@ class ProgressPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     override func awakeFromNib() {
         dataSource = self
         delegate = self
-        
-//        self.selectRow(11, inComponent: 0, animated: true)
+        //Get index of current year and month
+        let month = Int(Date().month)!
+        let year = progressViewModel.yearArray.firstIndex(of: Date().year)!
+        //set picker to show current month when opened
+        self.selectRow(year, inComponent: 1, animated: true)
+        self.selectRow(month - 1, inComponent: 0, animated: true)
     }
     
     //number of columns for pickerView

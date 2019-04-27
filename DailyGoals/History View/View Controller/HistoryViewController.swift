@@ -65,13 +65,12 @@ class HistoryViewController: UIViewController {
         monthPickerButton.setTitle("Select", for: .normal)
         monthPickerButton.backgroundColor = UIColor.Greens.seaGreen
         monthPickerButton.setTitleColor(UIColor.Shades.standardWhite, for: .normal)
-//        monthPickerButton.titleLabel?.textColor = UIColor.Shades.standardWhite
         monthPickerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
     func monthPickerViewSetUp() {
         monthPickerView.backgroundColor = UIColor.Greens.seaGreen
-            self.monthPickerView.roundCorners(for: [.topLeft, .bottomLeft], cornerRadius: 8)
+        monthPickerView.roundCorners(for: [.topLeft, .bottomLeft], cornerRadius: 8)
     }
     
     func allSavedData() {
@@ -104,10 +103,11 @@ class HistoryViewController: UIViewController {
             monthSummaryLabel.text = "For the history of the App. \n You have completed \(goalCompleteCount) out of \(historyTableView.tableSectionName.count) Goals with \(trueCount) out of \(historyTableView.taskCompletetion.count * 3) tasks being completed."
         }
         
-        historyTableView.tableSectionName.removeLast()
-        historyTableView.tableCellData.removeLast()
-        historyTableView.taskCompletetion.removeLast()
-        
+        if historyTableView.tableSectionName.count > 0 {
+            historyTableView.tableSectionName.removeLast()
+            historyTableView.tableCellData.removeLast()
+            historyTableView.taskCompletetion.removeLast()
+        }
     }
     
     func dataByMonth() {

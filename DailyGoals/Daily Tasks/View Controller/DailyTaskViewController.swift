@@ -23,20 +23,15 @@ class DailyTaskViewController: UIViewController {
     @IBOutlet weak var dailyTaskTableView: CustomTable!
     
     @IBOutlet weak var editTasks: UIButton!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTitle()
-        //        initialAlertBox()
-        DispatchQueue.main.async {
-            self.editTaskButtonSetUp()
+        DispatchQueue.main.async { [weak self] in
+            self!.editTaskButtonSetUp()
         }
         checkCoreData()
+        self.hideKeyboardWhenTappedAround()
     }
 
     @IBAction func editTasks(_ sender: Any) {
@@ -71,15 +66,10 @@ class DailyTaskViewController: UIViewController {
             for savedData in checkToday! {
                 //Update text in section and rows
                 dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
-                                let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
-                let taskArray = [savedData.task1, savedData.task2, savedData.task3]
-                for index in 0 ..< taskArray.count {
-                    dailyTaskTableView.cellsData[index] = CellData(text: taskArray[index], state: taskCompleteArray[index])
-                }
+                dailyTaskTableView.cellsData = [CellData(text: savedData.task1, state: savedData.task1Complete), CellData(text: savedData.task2, state: savedData.task2Complete), CellData(text: savedData.task3, state: savedData.task3Complete)]
             }
         } else {
-            checkPreviouseGoalStatus()
-            
+            checkPreviouseGoalStatus() 
         }
     }
     

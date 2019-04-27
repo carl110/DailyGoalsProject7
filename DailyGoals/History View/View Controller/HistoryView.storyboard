@@ -58,7 +58,7 @@
                                     <action selector="monthPickerButton:" destination="0op-8x-Yrl" eventType="touchUpInside" id="OZ5-Sd-A4x"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh2-ta-5bh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Since this is your first time using this app, there is no previouse data." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh2-ta-5bh">
                                 <rect key="frame" x="0.0" y="140" width="375" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="le2-BM-kZz"/>
