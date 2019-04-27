@@ -27,16 +27,50 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMR-ZX-Tq4" customClass="ProgressPickerView" customModule="DailyGoals" customModuleProvider="target">
+                                <rect key="frame" x="10" y="562" width="355" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="JyN-NP-H5g"/>
+                                </constraints>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY1-Ma-qxG">
+                                <rect key="frame" x="10" y="512" width="355" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="yzN-dV-khE"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="selectDateRange:" destination="seM-jl-fjg" eventType="touchUpInside" id="CiJ-ee-evO"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Oc-vF-iQD" customClass="ProgressPickerView" customModule="DailyGoals" customModuleProvider="target">
+                                <rect key="frame" x="10" y="612" width="355" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xzE-W8-EBa"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xM6-wQ-Wmd" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" id="3mA-u1-mzX"/>
+                            <constraint firstItem="vMR-ZX-Tq4" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" constant="10" id="CRP-Ot-cJS"/>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="vMR-ZX-Tq4" secondAttribute="trailing" constant="10" id="MdQ-Vw-Hh6"/>
+                            <constraint firstItem="FY1-Ma-qxG" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" constant="10" id="S1A-CE-4y6"/>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="bottom" secondItem="3Oc-vF-iQD" secondAttribute="bottom" constant="5" id="TxQ-XX-45c"/>
+                            <constraint firstItem="3Oc-vF-iQD" firstAttribute="top" secondItem="vMR-ZX-Tq4" secondAttribute="bottom" id="WQc-Y1-8eI"/>
+                            <constraint firstItem="3Oc-vF-iQD" firstAttribute="leading" secondItem="JZv-T8-ZSi" secondAttribute="leading" constant="10" id="hvm-ZC-d0V"/>
                             <constraint firstItem="xM6-wQ-Wmd" firstAttribute="top" secondItem="JZv-T8-ZSi" secondAttribute="top" id="rAc-t4-fRK"/>
                             <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="xM6-wQ-Wmd" secondAttribute="trailing" id="uVu-YV-aU6"/>
+                            <constraint firstItem="vMR-ZX-Tq4" firstAttribute="top" secondItem="FY1-Ma-qxG" secondAttribute="bottom" id="vEA-1Z-El5"/>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="3Oc-vF-iQD" secondAttribute="trailing" constant="10" id="vId-5f-9WM"/>
+                            <constraint firstItem="JZv-T8-ZSi" firstAttribute="trailing" secondItem="FY1-Ma-qxG" secondAttribute="trailing" constant="10" id="yYY-s6-fvj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JZv-T8-ZSi"/>
                     </view>
                     <connections>
+                        <outlet property="pickDateFrom" destination="vMR-ZX-Tq4" id="fwa-2d-2m3"/>
+                        <outlet property="pickDateTo" destination="3Oc-vF-iQD" id="i43-r8-EjJ"/>
+                        <outlet property="selectDatRange" destination="FY1-Ma-qxG" id="3I7-YZ-PkX"/>
                         <outlet property="titleLabel" destination="xM6-wQ-Wmd" id="tdO-gs-ask"/>
                     </connections>
                 </viewController>

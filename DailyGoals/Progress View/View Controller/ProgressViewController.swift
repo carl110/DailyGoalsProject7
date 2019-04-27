@@ -14,6 +14,9 @@ class ProgressViewController: UIViewController {
     private var progressFlow: ProgressFlow!
  
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var pickDateFrom: UIPickerView!
+    @IBOutlet weak var pickDateTo: UIPickerView!
+    @IBOutlet weak var selectDatRange: UIButton!
     
     var chartType: AAChartType?
     var step: Bool?
@@ -28,6 +31,110 @@ class ProgressViewController: UIViewController {
     var task2TrueData: [Int] = []
     var task3TrueData: [Int] = []
     
+    
+    @IBAction func selectDateRange(_ sender: UIButton) {
+        
+        //if first date is after second date it is invalid
+        if (pickDateFrom.selectedRow(inComponent: 1) > pickDateTo.selectedRow(inComponent: 1)) || (pickDateFrom.selectedRow(inComponent: 1) == pickDateTo.selectedRow(inComponent: 1) && pickDateFrom.selectedRow(inComponent: 0) > pickDateTo.selectedRow(inComponent: 0)) {
+            alertBoxWithAction(title: "Invalid Selection", message: "You cannot choose a start date prior to the end date", options: "Reselect Dates") { (option) in
+                switch(option) {
+                case 0:
+                    break
+                default:
+                    break
+                }
+            }
+        } else {
+            
+            aaChartView?.removeFromSuperview()
+            
+            goalAllData.removeAll()
+            task1TrueData.removeAll()
+            task2TrueData.removeAll()
+            task3TrueData.removeAll()
+            goalTrueData.removeAll()
+            
+            for year in pickDateFrom.selectedRow(inComponent: 1)...pickDateTo.selectedRow(inComponent: 1) {
+                for month in pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0) {
+                    var goalAllCount = 0
+                    var goalCount = 0
+                    var count1 = 0
+                    var count2 = 0
+                    var count3 = 0
+                    for day in 1...31 {
+                        
+                        //format date to 2 digit number
+                        let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month + 1)) \(progressViewModel.yearArray[year])"
+                        
+                        print ("day \(day)")
+                        print ("month \(month)")
+                        print ("year \(year)")
+                        
+                        //fecth data for each day in the selected month
+                        let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
+                        //for each entry on CoreData append to correct array
+                        for i in fetchedData! {
+                            goalAllCount += 1
+                            if i.task1Complete == true {
+                                count1 += 1
+                            }
+                            if i.task2Complete == true {
+                                count2 += 1
+                            }
+                            if i.task3Complete == true {
+                                count3 += 1
+                            }
+                            if i.task1Complete && i.task2Complete && i.task3Complete == true {
+                                goalCount += 1
+                            }
+                        }
+                    }
+                    goalAllData.append(goalAllCount)
+                    task1TrueData.append(count1)
+                    task2TrueData.append(count2)
+                    task3TrueData.append(count3)
+                    goalTrueData.append(goalCount)
+                }
+            }
+        }
+
+        print (goalAllData)
+                setUpAAChartView()
+    }
+
+//                        //Format to ensure 2 digit number
+//                        let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month)) \(year)"
+//
+//                        //fecth data for each day in the selected month
+//                        let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
+//                        //for each entry on CoreData append to correct array
+//                        for i in fetchedData! {
+//                            goalAllCount += 1
+//                            if i.task1Complete == true {
+//                                count1 += 1
+//                            }
+//                            if i.task2Complete == true {
+//                                count2 += 1
+//                            }
+//                            if i.task3Complete == true {
+//                                count3 += 1
+//                            }
+//                            if i.task1Complete && i.task2Complete && i.task3Complete == true {
+//                                goalCount += 1
+//                            }
+//                        }
+//                    }
+//                    goalAllData.append(goalAllCount)
+//                    task1TrueData.append(count1)
+//                    task2TrueData.append(count2)
+//                    task3TrueData.append(count3)
+//                    goalTrueData.append(goalCount)
+//                }
+//            }
+        
+    
+
+    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -38,17 +145,40 @@ class ProgressViewController: UIViewController {
         
         titleLabelSetUp()
         
+        DispatchQueue.main.async {
+            self.monthPickerViewSetUp()
+            self.buttonSetUp()
+        }
+        
         thisMonth = Int(date.month)!
         setupTaskData()
         chartType = .bar
-        
-            self.setUpAAChartView()
+        setUpAAChartView()
 
     }
     
     func titleLabelSetUp() {
         titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
         titleLabel.text = "Progress"
+    }
+    
+    func buttonSetUp() {
+        selectDatRange.roundCorners(for: [.topLeft, .topRight], cornerRadius: 8)
+        selectDatRange.backgroundColor = UIColor.Purples.standardPurple
+        selectDatRange.setTitle("Select the date range bellow and press this button", for: .normal)
+        selectDatRange.setTitleColor(UIColor.Shades.standardWhite, for: .normal)
+        selectDatRange.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        selectDatRange.titleLabel?.lineBreakMode = .byWordWrapping
+        selectDatRange.titleLabel?.textColor = UIColor.Shades.standardWhite
+        selectDatRange.centerTextHorizontally(spacing: 8)
+    }
+    
+    func monthPickerViewSetUp() {
+        pickDateFrom.backgroundColor = UIColor.Purples.standardPurple
+
+        
+        pickDateTo.backgroundColor = UIColor.Purples.standardPurple
+        self.pickDateTo.roundCorners(for: [.bottomLeft, .bottomRight], cornerRadius: 8)
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
@@ -62,8 +192,9 @@ extension ProgressViewController {
     
     //Get numbers for true counts
     func setupTaskData () {
-                        for year in progressViewModel.yearArray {
-        for month in 1...thisMonth {
+        
+        for year in progressViewModel.yearArray {
+        for month in 1...12 {
             var goalAllCount = 0
             var goalCount = 0
             var count1 = 0
@@ -106,7 +237,7 @@ extension ProgressViewController {
     func setUpAAChartView() {
         aaChartView = AAChartView()
         let chartViewWidth = view.frame.size.width
-        let chartViewHeight = view.frame.size.height - 125
+        let chartViewHeight = view.frame.size.height - 300
         aaChartView?.frame = CGRect(x: 0,
                                     y: 125,
                                     width: chartViewWidth,
@@ -159,9 +290,20 @@ extension ProgressViewController {
     
     func configureTheStyleForDifferentTypeChart() {
         
+        var dateLabel: [String] = []
+        
+        for year in pickDateFrom.selectedRow(inComponent: 1)...pickDateTo.selectedRow(inComponent: 1) {
+            for month in pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0) {
+                
+                dateLabel.append("\(progressViewModel.monthArray[month].prefix(3)) \(progressViewModel.yearArray[year].suffix(2))")
+            }
+        }
+
+        print ("date array = \(dateLabel)")
+        
         if (chartType == .bar) {
             aaChartModel?
-                .categories(["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
+                .categories(dateLabel)
                 .legendEnabled(true)
                 .colorsTheme(["#fe117c","#ffc069","#06caf4","#7dffc0"])
                 .animationType(.bounce)
