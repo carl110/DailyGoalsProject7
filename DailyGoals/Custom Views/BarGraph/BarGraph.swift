@@ -35,8 +35,7 @@ class BarGraph: AAChartView, AAChartViewDelegate {
         delegate = self
         thisMonth = Int(date.month)!
         setupTaskData()
-        setUpTheSwiths()
-        setUpTheSegmentControls()
+
         setUpAAChartView()
 
     }

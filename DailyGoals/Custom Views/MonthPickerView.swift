@@ -11,6 +11,8 @@ import UIKit
 
 class MonthPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+    
     fileprivate var historyViewModel = HistoryViewModel()
     
     override func awakeFromNib() {
@@ -25,9 +27,7 @@ class MonthPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
         return 2
     }
     //number of rows for pickerView
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var row = pickerView.selectedRow(inComponent: 0)
-        if component == 0 {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {        if component == 0 {
             return historyViewModel.monthArray.count
         } else {
             return historyViewModel.yearArray.count

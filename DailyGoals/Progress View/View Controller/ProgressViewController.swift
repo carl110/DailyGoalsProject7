@@ -12,6 +12,8 @@ class ProgressViewController: UIViewController {
     
     private var progressViewModel: ProgressViewModel!
     private var progressFlow: ProgressFlow!
+ 
+    @IBOutlet weak var titleLabel: UILabel!
     
     var chartType: AAChartType?
     var step: Bool?
@@ -34,15 +36,19 @@ class ProgressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        titleLabelSetUp()
+        
         thisMonth = Int(date.month)!
         setupTaskData()
         chartType = .bar
         
-        DispatchQueue.main.async {
-//            self.setUpTheSwiths()
-//            self.setUpTheSegmentControls()
             self.setUpAAChartView()
-        }
+
+    }
+    
+    func titleLabelSetUp() {
+        titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
+        titleLabel.text = "Progress"
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
@@ -56,6 +62,7 @@ extension ProgressViewController {
     
     //Get numbers for true counts
     func setupTaskData () {
+                        for year in progressViewModel.yearArray {
         for month in 1...thisMonth {
             var goalAllCount = 0
             var goalCount = 0
@@ -63,8 +70,10 @@ extension ProgressViewController {
             var count2 = 0
             var count3 = 0
             for day in 1...31 {
+                
+
                 //Format to ensure 2 digit number
-                let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month)) 2019"
+                let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month)) \(year)"
                 
                 //fecth data for each day in the selected month
                 let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
@@ -91,20 +100,21 @@ extension ProgressViewController {
             task3TrueData.append(count3)
             goalTrueData.append(goalCount)
         }
+        }
     }
     
     func setUpAAChartView() {
         aaChartView = AAChartView()
         let chartViewWidth = view.frame.size.width
-        let chartViewHeight = view.frame.size.height
+        let chartViewHeight = view.frame.size.height - 125
         aaChartView?.frame = CGRect(x: 0,
-                                    y: 0,
+                                    y: 125,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
 //        aaChartView?.contentHeight = chartViewHeight
         aaChartView!.translatesAutoresizingMaskIntoConstraints = true
-        aaChartView!.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+//        aaChartView!.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
         aaChartView!.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         view.addSubview(aaChartView!)
         aaChartView?.scrollEnabled = false
@@ -113,10 +123,8 @@ extension ProgressViewController {
             .chartType(chartType!)
             .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])
             .axisColor("#ffffff")
-            .title("Completed Goals and Tasks")//图形标题
-            .titleColor("#ffffff")
-            .subtitle("By Month")//图形副标题
-            .subtitleColor("#ffffff")
+            .title("")//图形标题
+ 
             .dataLabelEnabled(false)//是否显示数字
             .tooltipValueSuffix(" completed")//浮动提示框单位后缀
             .animationType(.bounce)//图形渲染动画类型为"bounce"

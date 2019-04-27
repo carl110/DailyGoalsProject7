@@ -13,4 +13,6 @@ class ProgressViewModel {
     
     var thisMonth = Data()
     
+            let yearArray = ["2018", "2019", "2020"]
+    
 }
