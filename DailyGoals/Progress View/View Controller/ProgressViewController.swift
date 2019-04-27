@@ -22,6 +22,7 @@ class ProgressViewController: UIViewController {
     var step: Bool?
     var aaChartModel: AAChartModel?
     var aaChartView: AAChartView?
+    var chartLabel: [String] = []
     
     let date = Date()
     var thisMonth = Int()
@@ -45,17 +46,32 @@ class ProgressViewController: UIViewController {
                 }
             }
         } else {
-            
-            aaChartView?.removeFromSuperview()
-            
+            aaChartView!.customAnimtation()
+          
             goalAllData.removeAll()
             task1TrueData.removeAll()
             task2TrueData.removeAll()
             task3TrueData.removeAll()
             goalTrueData.removeAll()
+            chartLabel.removeAll()
+            var monthRange: ClosedRange = 0...0
+
             
             for year in pickDateFrom.selectedRow(inComponent: 1)...pickDateTo.selectedRow(inComponent: 1) {
-                for month in pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0) {
+
+                if pickDateFrom.selectedRow(inComponent: 1) - pickDateTo.selectedRow(inComponent: 1) == 0 {
+                    monthRange = pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0)
+                } else if pickDateFrom.selectedRow(inComponent: 1) == year {
+                    monthRange = pickDateFrom.selectedRow(inComponent: 1)...11
+                } else if pickDateTo.selectedRow(inComponent: 1) == year {
+                    monthRange = 0...pickDateTo.selectedRow(inComponent: 1)
+                } else {
+                    monthRange = 0...11
+                }
+                
+                
+                
+                for month in monthRange {
                     var goalAllCount = 0
                     var goalCount = 0
                     var count1 = 0
@@ -65,11 +81,7 @@ class ProgressViewController: UIViewController {
                         
                         //format date to 2 digit number
                         let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month + 1)) \(progressViewModel.yearArray[year])"
-                        
-                        print ("day \(day)")
-                        print ("month \(month)")
-                        print ("year \(year)")
-                        
+
                         //fecth data for each day in the selected month
                         let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
                         //for each entry on CoreData append to correct array
@@ -94,47 +106,13 @@ class ProgressViewController: UIViewController {
                     task2TrueData.append(count2)
                     task3TrueData.append(count3)
                     goalTrueData.append(goalCount)
+                    chartLabel.append("\(progressViewModel.monthArray[month].prefix(3)) \(progressViewModel.yearArray[year].suffix(2))")
                 }
             }
         }
-
-        print (goalAllData)
                 setUpAAChartView()
     }
 
-//                        //Format to ensure 2 digit number
-//                        let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month)) \(year)"
-//
-//                        //fecth data for each day in the selected month
-//                        let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
-//                        //for each entry on CoreData append to correct array
-//                        for i in fetchedData! {
-//                            goalAllCount += 1
-//                            if i.task1Complete == true {
-//                                count1 += 1
-//                            }
-//                            if i.task2Complete == true {
-//                                count2 += 1
-//                            }
-//                            if i.task3Complete == true {
-//                                count3 += 1
-//                            }
-//                            if i.task1Complete && i.task2Complete && i.task3Complete == true {
-//                                goalCount += 1
-//                            }
-//                        }
-//                    }
-//                    goalAllData.append(goalAllCount)
-//                    task1TrueData.append(count1)
-//                    task2TrueData.append(count2)
-//                    task3TrueData.append(count3)
-//                    goalTrueData.append(goalCount)
-//                }
-//            }
-        
-    
-
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -248,6 +226,7 @@ extension ProgressViewController {
 //        aaChartView!.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
         aaChartView!.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         view.addSubview(aaChartView!)
+        aaChartView!.fadeIn()
         aaChartView?.scrollEnabled = false
         aaChartView?.isClearBackgroundColor = true
         aaChartModel = AAChartModel()
@@ -289,21 +268,10 @@ extension ProgressViewController {
     }
     
     func configureTheStyleForDifferentTypeChart() {
-        
-        var dateLabel: [String] = []
-        
-        for year in pickDateFrom.selectedRow(inComponent: 1)...pickDateTo.selectedRow(inComponent: 1) {
-            for month in pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0) {
-                
-                dateLabel.append("\(progressViewModel.monthArray[month].prefix(3)) \(progressViewModel.yearArray[year].suffix(2))")
-            }
-        }
 
-        print ("date array = \(dateLabel)")
-        
         if (chartType == .bar) {
             aaChartModel?
-                .categories(dateLabel)
+                .categories(chartLabel)
                 .legendEnabled(true)
                 .colorsTheme(["#fe117c","#ffc069","#06caf4","#7dffc0"])
                 .animationType(.bounce)

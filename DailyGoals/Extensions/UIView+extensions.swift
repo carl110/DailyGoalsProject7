@@ -33,4 +33,26 @@ extension UIView {
             return nil
         }
     }
+    
+    func customAnimtation() {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+            self.transform = CGAffineTransform(scaleX: 100.0, y: 100.0)
+        }, completion: { (finished: Bool) in
+            self.fadeOut()
+        } )
+    }
+    
+    func fadeOut(_ duration: TimeInterval = 0.5, delay: TimeInterval = 0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveLinear, animations: { [weak self] in
+            self?.alpha = 0.0
+            }, completion: { (finished: Bool) in
+                self.removeFromSuperview()
+        } )
+    }
+    
+    func fadeIn(_ duration: TimeInterval = 0.5, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveLinear, animations: { [weak self] in
+            self?.alpha = 1.0
+            }, completion: completion)
+    }
 }
