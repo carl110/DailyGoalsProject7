@@ -76,9 +76,9 @@ extension ProgressViewController {
     func setUpAAChartView() {
         aaChartView = AAChartView()
         let chartViewWidth = view.frame.size.width
-        let chartViewHeight = view.frame.size.height - 225
+        let chartViewHeight = view.frame.size.height - (titleLabel.frame.height + selectDatRange.frame.height + pickDateTo.frame.height + pickDateFrom.frame.height + 50)
         aaChartView?.frame = CGRect(x: 0,
-                                    y: 75,
+                                    y: titleLabel.frame.maxY,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
