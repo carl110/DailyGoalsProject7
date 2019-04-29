@@ -12,6 +12,7 @@ class ProgressViewController: UIViewController {
     
     var progressViewModel: ProgressViewModel!
     private var progressFlow: ProgressFlow!
+    var progressModel: ProgressModel!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pickDateFrom: UIPickerView!
@@ -30,26 +31,6 @@ class ProgressViewController: UIViewController {
     var task2TrueData: [Int] = []
     var task3TrueData: [Int] = []
     
-    
-    @IBAction func selectDateRange(_ sender: UIButton) {
-        
-        //if first date is after second date it is invalid
-        if (pickDateFrom.selectedRow(inComponent: 1) > pickDateTo.selectedRow(inComponent: 1)) || (pickDateFrom.selectedRow(inComponent: 1) == pickDateTo.selectedRow(inComponent: 1) && pickDateFrom.selectedRow(inComponent: 0) > pickDateTo.selectedRow(inComponent: 0)) {
-            alertBoxWithAction(title: "Invalid Selection", message: "You cannot choose a start date prior to the end date", options: "Reselect Dates") { (option) in
-                switch(option) {
-                case 0:
-                    break
-                default:
-                    break
-                }
-            }
-        } else {
-            aaChartView!.customAnimtation()
-            setupTaskData()
-            setUpAAChartView()
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -66,7 +47,7 @@ class ProgressViewController: UIViewController {
         setupTaskData()
         chartType = .bar
     }
-
+    
     func titleLabelSetUp() {
         titleLabel.titleLabelFormat(colour: UIColor.Purples.standardPurple)
         titleLabel.text = "Progress"
@@ -87,6 +68,26 @@ class ProgressViewController: UIViewController {
         pickDateFrom.backgroundColor = UIColor.Purples.standardPurple
         pickDateTo.backgroundColor = UIColor.Purples.standardPurple
         pickDateTo.roundCorners(for: [.bottomLeft, .bottomRight], cornerRadius: 8)
+    }
+    
+    @IBAction func selectDateRange(_ sender: UIButton) {
+        
+        //if first date is after second date it is invalid
+        if (pickDateFrom.selectedRow(inComponent: 1) > pickDateTo.selectedRow(inComponent: 1)) || (pickDateFrom.selectedRow(inComponent: 1) == pickDateTo.selectedRow(inComponent: 1) && pickDateFrom.selectedRow(inComponent: 0) > pickDateTo.selectedRow(inComponent: 0)) {
+            alertBoxWithAction(title: "Invalid Selection", message: "You cannot choose a start date prior to the end date", options: "Reselect Dates") { (option) in
+                switch(option) {
+                case 0:
+                    break
+                default:
+                    break
+                }
+            }
+        } else {
+            chartLabel.removeAll()
+            aaChartView!.customAnimtation()
+            setupTaskData()
+            setUpAAChartView()
+        }
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {

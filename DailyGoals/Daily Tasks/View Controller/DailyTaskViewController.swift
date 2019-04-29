@@ -16,13 +16,17 @@ class DailyTaskViewController: UIViewController {
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
     
-    let todaysDate = Date().string(format: "dd MMM yyyy")
-    var daySubtraction = 1
+    private let todaysDate = Date().string(format: "dd MMM yyyy")
+    private var daySubtraction = 1
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dailyTaskTableView: CustomTable!
-    
     @IBOutlet weak var editTasks: UIButton!
+    
+    //func for TabBarController
+    func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
+        self.dailyTaskFlow = dailyTaskFlow
+    }
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,32 +36,6 @@ class DailyTaskViewController: UIViewController {
         }
         checkCoreData()
         self.hideKeyboardWhenTappedAround()
-    }
-
-    @IBAction func editTasks(_ sender: Any) {
-        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
-        let rowCell = dailyTaskTableView.visibleCells
-        
-        //check state of labelTitle
-        if tableHeader.labelTitle.isEnabled == false {
-            editTableData()
-        } else {
-            
-            rowCell.forEach{ (row) in
-                if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
-                    
-                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
-                        switch(option) {
-                        case 0:
-                            self.editTableData()
-                        default:
-                            break
-                        }
-                    }
-                }
-            }
-            saveTableData()
-        }
     }
     
     func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
@@ -69,7 +47,7 @@ class DailyTaskViewController: UIViewController {
                 dailyTaskTableView.cellsData = [CellData(text: savedData.task1, state: savedData.task1Complete), CellData(text: savedData.task2, state: savedData.task2Complete), CellData(text: savedData.task3, state: savedData.task3Complete)]
             }
         } else {
-            checkPreviouseGoalStatus() 
+            checkPreviouseGoalStatus()
         }
     }
     
@@ -210,8 +188,30 @@ class DailyTaskViewController: UIViewController {
                             }
         })
     }
-    //func for TabBarController
-    func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
-        self.dailyTaskFlow = dailyTaskFlow
+
+    @IBAction func editTasks(_ sender: Any) {
+        let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
+        let rowCell = dailyTaskTableView.visibleCells
+        
+        //check state of labelTitle
+        if tableHeader.labelTitle.isEnabled == false {
+            editTableData()
+        } else {
+            
+            rowCell.forEach{ (row) in
+                if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
+                    
+                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
+                        switch(option) {
+                        case 0:
+                            self.editTableData()
+                        default:
+                            break
+                        }
+                    }
+                }
+            }
+            saveTableData()
+        }
     }
 }

@@ -14,8 +14,8 @@ class HistoryViewController: UIViewController {
     private var historyViewModel: HistoryViewModel!
     private var historyFlow: HistoryFlow!
     
-    var trueCount = 0
-    var goalCompleteCount = 0
+    private var trueCount = 0
+    private var goalCompleteCount = 0
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var historyTableView: HistoryTable!
@@ -23,9 +23,9 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var monthPickerButton: UIButton!
     @IBOutlet weak var monthSummaryLabel: UILabel!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    func assignDependencies(historyViewModel: HistoryViewModel, historyFlow: HistoryFlow) {
+        self.historyFlow = historyFlow
+        self.historyViewModel = historyViewModel
     }
     
     override func viewDidLoad() {
@@ -36,30 +36,13 @@ class HistoryViewController: UIViewController {
         monthPickerButtonSetUp()
     }
     
-    @IBAction func monthPickerButton(_ sender: Any) {
-        //Clear the arrays
-        historyTableView.tableSectionName.removeAll()
-        historyTableView.tableCellData.removeAll()
-        historyTableView.taskCompletetion.removeAll()
-        
-        //Only run if there is saved data
-        if CoreDataManager.shared.fetchGoalData() != nil {
-            if monthPickerView.selectedRow(inComponent: 0) == 12 {
-                allSavedData()
-            } else {
-                dataByMonth()
-            }
-        }
-        historyTableView.reloadData()
-    }
-    
     func titleLabelSetUp() {
         titleLabel.titleLabelFormat(colour: UIColor.Greens.seaGreen)
         titleLabel.text = "History"
     }
     
     func monthPickerButtonSetUp() {
- 
+        
         monthPickerButton.roundCorners(for: [.topRight, .bottomRight], cornerRadius: 8)
         monthPickerButton.centerTextHorizontally(spacing: 2)
         monthPickerButton.setTitle("Select", for: .normal)
@@ -116,7 +99,7 @@ class HistoryViewController: UIViewController {
         goalCompleteCount = 0
         let index = monthPickerView.selectedRow(inComponent: 0)
         let yearIndex = monthPickerView.selectedRow(inComponent: 1)
-
+        
         //set array for month number
         let dateArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
         
@@ -157,9 +140,21 @@ class HistoryViewController: UIViewController {
         }
     }
     
-    func assignDependencies(historyViewModel: HistoryViewModel, historyFlow: HistoryFlow) {
-        self.historyFlow = historyFlow
-        self.historyViewModel = historyViewModel
+    @IBAction func monthPickerButton(_ sender: Any) {
+        //Clear the arrays
+        historyTableView.tableSectionName.removeAll()
+        historyTableView.tableCellData.removeAll()
+        historyTableView.taskCompletetion.removeAll()
+        
+        //Only run if there is saved data
+        if CoreDataManager.shared.fetchGoalData() != nil {
+            if monthPickerView.selectedRow(inComponent: 0) == 12 {
+                allSavedData()
+            } else {
+                dataByMonth()
+            }
+        }
+        historyTableView.reloadData()
     }
 }
 
