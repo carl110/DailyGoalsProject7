@@ -34,8 +34,8 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     var tableSectionName: Array<Any> = []
     
     private var sectionTouched: Int?
-    //Sets section 0 to expanded on open
-    private var expandedSectionHeaderNumber: Int = 0
+    //Sets section -1 so all table is colapsed
+    private var expandedSectionHeaderNumber: Int = -1
     
     let HeaderSectionTag: Int = 1
     
