@@ -31,6 +31,7 @@ class DailyTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTitle()
+        //Dispatch required for all corners to round before appearing
         DispatchQueue.main.async { [weak self] in
             self!.editTaskButtonSetUp()
         }
@@ -38,6 +39,8 @@ class DailyTaskViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
+    //CodeReview: this shoukd be in viewModel, you can call the function in viewModel and it will just return, or with a closure, the section and cells data and here in view controller just assign them
+
     func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
         let checkToday = CoreDataManager.shared.fetchGoalDataForDate(date: todaysDate)
         if (checkToday?.count)! > 0 {
@@ -50,6 +53,8 @@ class DailyTaskViewController: UIViewController {
             checkPreviouseGoalStatus()
         }
     }
+    
+        //CodeReview: to viewModel and just return the cellsData, here you would only append the contents of the sequence (which would be returned by the viewModel) and call the reloadData
     
     func checkPreviouseGoalStatus() {
         
@@ -202,6 +207,13 @@ class DailyTaskViewController: UIViewController {
                 if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
                     
                     alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
+                        
+                        //CodeReview:
+                        /*
+                         1. I think you could just write switch option {(...)}
+                         2. this is not a nice to have option to use strings or numbers in cases, here you have 'case 0'. I would rather suggest creating enums or typealias
+                         */
+                        
                         switch(option) {
                         case 0:
                             self.editTableData()

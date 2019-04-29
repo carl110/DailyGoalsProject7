@@ -12,7 +12,7 @@ class ProgressViewController: UIViewController {
     
     var progressViewModel: ProgressViewModel!
     private var progressFlow: ProgressFlow!
-    var progressModel: ProgressModel!
+
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pickDateFrom: UIPickerView!
@@ -25,6 +25,8 @@ class ProgressViewController: UIViewController {
     var aaChartView: AAChartView?
     var chartLabel: [String] = []
     var monthRange: ClosedRange = 0...0
+    
+        //CodeReview: I think these arrays could be placed in a model
     var goalTrueData: [Int] = []
     var goalAllData: [Int] = []
     var task1TrueData: [Int] = []
@@ -39,6 +41,7 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Dispatch used to ensure all corners rounded before view loads
         DispatchQueue.main.async { [weak self] in
             self!.monthPickerViewSetUp()
             self!.buttonSetUp()

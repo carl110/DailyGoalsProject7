@@ -101,8 +101,10 @@ class HistoryViewController: UIViewController {
         let yearIndex = monthPickerView.selectedRow(inComponent: 1)
         
         //set array for month number
+        //CodeReview: this is not very elegant, I would suggest using range
         let dateArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
         
+              //CodeReview: why '31' ? Not all months have 31 days aren't they? I would like to see here the handler for the months. I gess you could use Calendar class which probably gives us the possibility to check the amount of days in a month. Remeber that February can have 28-29 days.
         for i in 1...31 {
             //Format to ensure 2 digit number
             let date = "\(String(format: "%02d", i)) \(dateArray[index]) \(historyViewModel.yearArray[yearIndex])"
