@@ -56,7 +56,7 @@ class ProgressViewController: UIViewController {
     func buttonSetUp() {
         selectDatRange.roundCorners(for: [.topLeft, .topRight], cornerRadius: 8)
         selectDatRange.backgroundColor = UIColor.Purples.standardPurple
-        selectDatRange.setTitle("Select the date range bellow and press this button", for: .normal)
+        selectDatRange.setTitle("Select \n From - To", for: .normal)
         selectDatRange.setTitleColor(UIColor.Shades.standardWhite, for: .normal)
         selectDatRange.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         selectDatRange.titleLabel?.lineBreakMode = .byWordWrapping
@@ -72,22 +72,22 @@ class ProgressViewController: UIViewController {
     
     @IBAction func selectDateRange(_ sender: UIButton) {
         
-        //if first date is after second date it is invalid
+        //if first date is after second date it will reverse
         if (pickDateFrom.selectedRow(inComponent: 1) > pickDateTo.selectedRow(inComponent: 1)) || (pickDateFrom.selectedRow(inComponent: 1) == pickDateTo.selectedRow(inComponent: 1) && pickDateFrom.selectedRow(inComponent: 0) > pickDateTo.selectedRow(inComponent: 0)) {
-            alertBoxWithAction(title: "Invalid Selection", message: "You cannot choose a start date prior to the end date", options: "Reselect Dates") { (option) in
-                switch(option) {
-                case 0:
-                    break
-                default:
-                    break
-                }
-            }
-        } else {
-            chartLabel.removeAll()
+            
+            let component0 = pickDateTo.selectedRow(inComponent: 0)
+            let component1 = pickDateTo.selectedRow(inComponent: 1)
+            pickDateTo.selectRow((pickDateFrom.selectedRow(inComponent: 0)), inComponent: 0, animated: true)
+            pickDateTo.selectRow((pickDateFrom.selectedRow(inComponent: 1)), inComponent: 1, animated: true)
+
+            pickDateFrom.selectRow(component0, inComponent: 0, animated: false)
+            pickDateFrom.selectRow(component1, inComponent: 1, animated: false)
+            
+        }
             aaChartView!.customAnimtation()
             setupTaskData()
             setUpAAChartView()
-        }
+        
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {

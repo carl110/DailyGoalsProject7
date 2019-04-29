@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ProgressModel{
-    var chartLabel: [String] = []
+    var chartLabel: [String]?
     var monthRange: ClosedRange = 0...0
     var goalTrueData: [Int] = []
     var goalAllData: [Int] = []

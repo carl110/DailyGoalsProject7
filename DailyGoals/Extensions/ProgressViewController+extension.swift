@@ -13,6 +13,7 @@ extension ProgressViewController {
     func setupTaskData () {
         
         //Reset all arrays
+        chartLabel.removeAll()
         goalAllData.removeAll()
         task1TrueData.removeAll()
         task2TrueData.removeAll()
