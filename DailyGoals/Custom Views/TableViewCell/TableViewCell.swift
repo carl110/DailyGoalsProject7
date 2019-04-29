@@ -34,8 +34,6 @@ class TableViewCell: UITableViewCell {
         label.text = "\(task.text)"
         label.backgroundColor = UIColor.clear
         label.isEnabled = false
-//        label.numberOfLines = 0
-//        label.lineBreakMode = .byWordWrapping
         label.sizeThatFits(CGSize(width: label.frame.size.width, height: label.frame.size.height))
         cellBackground.backgroundColor = UIColor.Blues.softBlue
         
