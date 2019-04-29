@@ -107,7 +107,7 @@ class HistoryViewController: UIViewController {
             //Format to ensure 2 digit number
             let date = "\(String(format: "%02d", i)) \(dateArray[index]) \(historyViewModel.yearArray[yearIndex])"
             //fecth data for each day in the selected month
-            let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
+            let fetchedData = CoreDataManager.shared.fetchGoalDataForDate(date: date)
             //for each entry on CoreData append to correct array
             for i in fetchedData! {
                 

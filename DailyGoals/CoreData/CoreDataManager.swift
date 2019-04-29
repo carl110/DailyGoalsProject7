@@ -48,7 +48,7 @@ class CoreDataManager {
     }
     
     func deleteAllSavedData() {
-        
+        //Remove all data saved with coreData
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -96,7 +96,7 @@ class CoreDataManager {
     }
     
     func fetchIndividualData(savedObject: String) -> [String]? {
-        
+        //fetch 1 item from coredata
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
@@ -119,8 +119,8 @@ class CoreDataManager {
         return nil
     }
   
-    func fetchGoalDataForToday(date: String) -> [DataForDailyGoals]?{
-        
+    func fetchGoalDataForDate(date: String) -> [DataForDailyGoals]?{
+        //Fetch data for selected date
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
@@ -145,7 +145,7 @@ class CoreDataManager {
     }
     
     func update(object: String,updatedEntry: Any, date: String) {
-        
+        //Update data held in coredata
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
         let managedContext = appDelegate!.persistentContainer.viewContext
@@ -175,26 +175,3 @@ class CoreDataManager {
     }
 }
 
-class DataForDailyGoals {
-    
-    var goal: String
-    var task1: String
-    var task2: String
-    var task3: String
-    var date: String
-    var task1Complete: Bool
-    var task2Complete: Bool
-    var task3Complete: Bool
-    
-    init(object: NSManagedObject) {
-        
-        self.goal = object.value(forKey: "goal") as! String
-        self.task1 = object.value(forKey: "task1") as! String
-        self.task2 = object.value(forKey: "task2") as! String
-        self.task3 = object.value(forKey: "task3") as! String
-        self.date = object.value(forKey: "date") as! String
-        self.task1Complete = object.value(forKey: "task1Complete") as! Bool
-        self.task2Complete = object.value(forKey: "task2Complete") as! Bool
-        self.task3Complete = object.value(forKey: "task3Complete") as! Bool
-    }
-}

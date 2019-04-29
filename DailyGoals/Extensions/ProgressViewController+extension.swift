@@ -46,7 +46,7 @@ extension ProgressViewController {
                     let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month + 1)) \(progressViewModel.yearArray[year])"
                     
                     //fecth data for each day in the selected month
-                    let fetchedData = CoreDataManager.shared.fetchGoalDataForToday(date: date)
+                    let fetchedData = CoreDataManager.shared.fetchGoalDataForDate(date: date)
                     //for each entry on CoreData append to correct array
                     for i in fetchedData! {
                         goalAllCount += 1

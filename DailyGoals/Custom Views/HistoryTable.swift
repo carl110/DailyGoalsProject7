@@ -33,9 +33,9 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     var tableCellData: Array<Any> = []
     var tableSectionName: Array<Any> = []
     
-    var sectionTouched: Int?
-    
-    var expandedSectionHeaderNumber: Int = -1
+    private var sectionTouched: Int?
+    //Sets section 0 to expanded on open
+    private var expandedSectionHeaderNumber: Int = 0
     
     let HeaderSectionTag: Int = 1
     
@@ -90,21 +90,21 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //Colapsing open sections
     @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
         let headerView = sender.view as! CustomHeaderHistory
         let section    = headerView.tag
         let eImageView = headerView.viewWithTag(HeaderSectionTag + section) as? UIImageView
         sectionTouched = section
         
+        //If section header is colapsed expand section
         if (self.expandedSectionHeaderNumber == -1) {
             self.expandedSectionHeaderNumber = section
             tableViewExpandSection(section, imageView: eImageView!)
             self.scrollToBottomRow()
-        } else {
+        } else { //if section header is open the colapse it
             if (self.expandedSectionHeaderNumber == section) {
                 tableViewCollapeSection(section, imageView: eImageView!)
-            } else {
+            } else { //if header section is colapsed but another header is expanded, colapse open section and expand section header
                 let cImageView = self.viewWithTag(HeaderSectionTag + self.expandedSectionHeaderNumber) as? UIImageView
                 tableViewCollapeSection(self.expandedSectionHeaderNumber, imageView: cImageView!)
                 tableViewExpandSection(section, imageView: eImageView!)
@@ -114,20 +114,16 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     //Hide open cells when table is scrolled
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-
-        
         if self.expandedSectionHeaderNumber != -1 {
                     guard let image = self.viewWithTag(HeaderSectionTag + sectionTouched!) as? UIImageView else { return print ("No image") }
-            
             tableViewCollapeSection(sectionTouched!, imageView: image)
         }
 
     }
-    
-    
+
     func tableViewCollapeSection(_ section: Int, imageView: UIImageView) {
         let sectionData = self.tableCellData[section] as! NSArray
-        
+        //set variable back to -1 so "expanded section is not on a visable section"
         self.expandedSectionHeaderNumber = -1
         if (sectionData.count == 0) {
             return

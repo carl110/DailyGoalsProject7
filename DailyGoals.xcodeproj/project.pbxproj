@@ -15,6 +15,7 @@
 		8918EC15227480940070E616 /* ProgressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8918EC14227480940070E616 /* ProgressPickerView.swift */; };
 		8918EC172274B7CB0070E616 /* ProgressViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8918EC162274B7CB0070E616 /* ProgressViewController+extension.swift */; };
 		8918EC192277074B0070E616 /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8918EC182277074B0070E616 /* ProgressModel.swift */; };
+		8918EC1B2277224F0070E616 /* DataForDailyGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8918EC1A2277224F0070E616 /* DataForDailyGoals.swift */; };
 		891D41E0223937B900AF0F5B /* UIButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891D41DF223937B900AF0F5B /* UIButton+extensions.swift */; };
 		891D41E22239380800AF0F5B /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891D41E12239380800AF0F5B /* UIView+extensions.swift */; };
 		8939DFC921F743C3001983A6 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939DFC821F743C3001983A6 /* UIColor+extensions.swift */; };
@@ -112,6 +113,7 @@
 		8918EC14227480940070E616 /* ProgressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPickerView.swift; sourceTree = "<group>"; };
 		8918EC162274B7CB0070E616 /* ProgressViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressViewController+extension.swift"; sourceTree = "<group>"; };
 		8918EC182277074B0070E616 /* ProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProgressModel.swift; path = DailyGoals/Extensions/ProgressModel.swift; sourceTree = SOURCE_ROOT; };
+		8918EC1A2277224F0070E616 /* DataForDailyGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataForDailyGoals.swift; sourceTree = "<group>"; };
 		891D41DF223937B900AF0F5B /* UIButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extensions.swift"; sourceTree = "<group>"; };
 		891D41E12239380800AF0F5B /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		8939DFC821F743C3001983A6 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 			children = (
 				897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */,
 				89A46C75222D2D6900218A76 /* CoreDataManager.swift */,
+				8918EC1A2277224F0070E616 /* DataForDailyGoals.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				89CA7AED22674FF500A86164 /* AAGradientColor.swift in Sources */,
 				891D41E0223937B900AF0F5B /* UIButton+extensions.swift in Sources */,
 				89CE16F321F1CBD3004CE51D /* HistoryViewBuilder.swift in Sources */,
+				8918EC1B2277224F0070E616 /* DataForDailyGoals.swift in Sources */,
 				89CE16EA21F1C301004CE51D /* TabBarBuilder.swift in Sources */,
 				89A46C76222D2D6900218A76 /* CoreDataManager.swift in Sources */,
 				89F3BE5C224A5878004C79BE /* UIFont+extensions.swift in Sources */,

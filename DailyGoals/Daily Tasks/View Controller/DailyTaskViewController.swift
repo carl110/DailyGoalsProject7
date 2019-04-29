@@ -39,7 +39,7 @@ class DailyTaskViewController: UIViewController {
     }
     
     func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
-        let checkToday = CoreDataManager.shared.fetchGoalDataForToday(date: todaysDate)
+        let checkToday = CoreDataManager.shared.fetchGoalDataForDate(date: todaysDate)
         if (checkToday?.count)! > 0 {
             for savedData in checkToday! {
                 //Update text in section and rows
@@ -53,7 +53,7 @@ class DailyTaskViewController: UIViewController {
     
     func checkPreviouseGoalStatus() {
         
-        let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForToday(date: Date().subtract(days: daySubtraction)!.string(format: "dd MM yyyy"))
+        let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForDate(date: Date().subtract(days: daySubtraction)!.string(format: "dd MM yyyy"))
         
         if CoreDataManager.shared.fetchGoalData()?.count == 0 {
             initialAlertBox()
@@ -87,7 +87,7 @@ class DailyTaskViewController: UIViewController {
     
     func usePreviouseGoal() {
         
-        let previouseDate = CoreDataManager.shared.fetchGoalDataForToday(date: (Date().subtract(days: daySubtraction)?.string(format: "dd MM yyyy"))!)
+        let previouseDate = CoreDataManager.shared.fetchGoalDataForDate(date: (Date().subtract(days: daySubtraction)?.string(format: "dd MM yyyy"))!)
         
         for savedData in previouseDate! {
             //Update text in section and rows
