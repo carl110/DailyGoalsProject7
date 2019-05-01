@@ -94,7 +94,7 @@ class HistoryViewController: UIViewController {
     }
     
     func dataByMonth() {
-        
+ 
         trueCount = 0
         goalCompleteCount = 0
         let index = monthPickerView.selectedRow(inComponent: 0)
@@ -102,8 +102,9 @@ class HistoryViewController: UIViewController {
         
         //set array for month number
         let dateArray = Array(1...12)
-              //CodeReview: why '31' ? Not all months have 31 days aren't they? I would like to see here the handler for the months. I gess you could use Calendar class which probably gives us the possibility to check the amount of days in a month. Remeber that February can have 28-29 days.
-        for i in 1...31 {
+
+        //Array uses extension to get number of days in month for that year
+        for i in 1...self.getTotalDates(year: Int(historyViewModel.yearArray[yearIndex])!, month: dateArray[index]) {
 
             //Format to ensure 2 digit number
             let date = "\(String(format: "%02d", i)) \(String(format: "%02d", dateArray[index])) \(historyViewModel.yearArray[yearIndex])"

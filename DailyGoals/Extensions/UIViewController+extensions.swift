@@ -88,6 +88,20 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    //get number of days in month and year
+    func getTotalDates(year: Int, month: Int) -> Int{
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        
+        let calendar = Calendar.current
+        let yearMonth = calendar.date(from: dateComponents)
+        // change .month into .year to see the days available in the year
+        let interval = calendar.dateInterval(of: .month, for: yearMonth!)!
+        
+        return calendar.dateComponents([.day], from: interval.start, to: interval.end).day!
+        
+    }
     
 }
 

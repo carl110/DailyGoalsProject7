@@ -131,9 +131,11 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
                 (row as! TableViewCell).task.state = true
             }
             
-            CoreDataManager.shared.update(object: "task1Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
-            CoreDataManager.shared.update(object: "task2Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
-            CoreDataManager.shared.update(object: "task3Complete", updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+            let taskCompleteArray = ["task1Complete", "task2Complete", "task3Complete"]
+            
+            for task in taskCompleteArray {
+                CoreDataManager.shared.update(object: task, updatedEntry: true, date: dailyTaskViewModel.todaysDate)
+            }
             
             self.reloadData()
             
