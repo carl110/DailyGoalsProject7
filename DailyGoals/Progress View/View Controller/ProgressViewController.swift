@@ -12,6 +12,7 @@ class ProgressViewController: UIViewController {
     
     var progressViewModel: ProgressViewModel!
     private var progressFlow: ProgressFlow!
+    var progressModel = ProgressModel()
 
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,19 +20,11 @@ class ProgressViewController: UIViewController {
     @IBOutlet weak var pickDateTo: UIPickerView!
     @IBOutlet weak var selectDatRange: UIButton!
     
-    var chartType: AAChartType?
-    var step: Bool?
-    var aaChartModel: AAChartModel?
-    var aaChartView: AAChartView?
-    var chartLabel: [String] = []
-    var monthRange: ClosedRange = 0...0
-    
-        //CodeReview: I think these arrays could be placed in a model
-    var goalTrueData: [Int] = []
-    var goalAllData: [Int] = []
-    var task1TrueData: [Int] = []
-    var task2TrueData: [Int] = []
-    var task3TrueData: [Int] = []
+//    var chartType: AAChartType?
+//    var step: Bool?
+//    var aaChartModel: AAChartModel?
+//    var aaChartView: AAChartView?
+
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
@@ -48,7 +41,7 @@ class ProgressViewController: UIViewController {
         }
         titleLabelSetUp()
         setupTaskData()
-        chartType = .bar
+        progressModel.chartType = .bar
     }
     
     func titleLabelSetUp() {
@@ -87,7 +80,7 @@ class ProgressViewController: UIViewController {
             pickDateFrom.selectRow(component1, inComponent: 1, animated: false)
             
         }
-            aaChartView!.customAnimtation()
+            progressModel.aaChartView!.customAnimtation()
             setupTaskData()
             setUpAAChartView()
         

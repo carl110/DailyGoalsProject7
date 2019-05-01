@@ -12,29 +12,23 @@ extension ProgressViewController {
     //Get numbers for true counts
     func setupTaskData () {
         
-        //Reset all arrays
-        chartLabel.removeAll()
-        goalAllData.removeAll()
-        task1TrueData.removeAll()
-        task2TrueData.removeAll()
-        task3TrueData.removeAll()
-        goalTrueData.removeAll()
-        
+        progressModel.resetArrays()
+               
         //Run through years
         for year in pickDateFrom.selectedRow(inComponent: 1)...pickDateTo.selectedRow(inComponent: 1) {
             //ensure all months are looped if more that 1 year selected
             if pickDateFrom.selectedRow(inComponent: 1) - pickDateTo.selectedRow(inComponent: 1) == 0 {
-                monthRange = pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0)
+                progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0)
             } else if pickDateFrom.selectedRow(inComponent: 1) == year {
-                monthRange = pickDateFrom.selectedRow(inComponent: 1)...11
+                progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 1)...11
             } else if pickDateTo.selectedRow(inComponent: 1) == year {
-                monthRange = 0...pickDateTo.selectedRow(inComponent: 1)
+                progressModel.monthRange = 0...pickDateTo.selectedRow(inComponent: 1)
             } else {
-                monthRange = 0...11
+                progressModel.monthRange = 0...11
             }
             
             //Run through month
-            for month in monthRange {
+            for month in progressModel.monthRange {
                 var goalAllCount = 0
                 var goalCount = 0
                 var count1 = 0
@@ -64,100 +58,100 @@ extension ProgressViewController {
                         }
                     }
                 }
-                goalAllData.append(goalAllCount)
-                task1TrueData.append(count1)
-                task2TrueData.append(count2)
-                task3TrueData.append(count3)
-                goalTrueData.append(goalCount)
-                chartLabel.append("\(progressViewModel.monthArray[month].prefix(3)) \(progressViewModel.yearArray[year].suffix(2))")
+                progressModel.goalAllData.append(goalAllCount)
+                progressModel.task1TrueData.append(count1)
+                progressModel.task2TrueData.append(count2)
+                progressModel.task3TrueData.append(count3)
+                progressModel.goalTrueData.append(goalCount)
+                progressModel.chartLabel.append("\(progressViewModel.monthArray[month].prefix(3)) \(progressViewModel.yearArray[year].suffix(2))")
             }
         }
     }
     
     func setUpAAChartView() {
-        aaChartView = AAChartView()
+        progressModel.aaChartView = AAChartView()
         let chartViewWidth = view.frame.size.width
         let chartViewHeight = view.frame.size.height - (titleLabel.frame.height + selectDatRange.frame.height + pickDateTo.frame.height + pickDateFrom.frame.height + 50)
-        aaChartView?.frame = CGRect(x: 0,
+        progressModel.aaChartView?.frame = CGRect(x: 0,
                                     y: titleLabel.frame.maxY,
                                     width: chartViewWidth,
                                     height: chartViewHeight)
         ///AAChartViewd
-        aaChartView!.translatesAutoresizingMaskIntoConstraints = true
-        aaChartView!.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
-        view.addSubview(aaChartView!)
-        aaChartView?.scrollEnabled = false
-        aaChartView?.isClearBackgroundColor = true
-        aaChartModel = AAChartModel()
-            .chartType(chartType!)
+        progressModel.aaChartView!.translatesAutoresizingMaskIntoConstraints = true
+        progressModel.aaChartView!.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
+        view.addSubview(progressModel.aaChartView!)
+        progressModel.aaChartView?.scrollEnabled = false
+        progressModel.aaChartView?.isClearBackgroundColor = true
+        progressModel.aaChartModel = AAChartModel()
+            .chartType(progressModel.chartType!)
             .colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c",])
             .axisColor("#ffffff")
-            .title("")//图形标题
+            .title("")
             
-            .dataLabelEnabled(false)//是否显示数字
-            .tooltipValueSuffix(" completed")//浮动提示框单位后缀
-            .animationType(.bounce)//图形渲染动画类型为"bounce"
-            .backgroundColor("#1d4991")//若要使图表背景色为透明色,可将 backgroundColor 设置为 "rgba(0,0,0,0)" 或 "rgba(0,0,0,0)". 同时确保 aaChartView?.isClearBackgroundColor = true
+            .dataLabelEnabled(false)
+            .tooltipValueSuffix(" completed")
+            .animationType(.bounce)
+            .backgroundColor("#1d4991")
             .series([
                 AASeriesElement()
                     .name("Out of")
-                    .data(goalAllData)
+                    .data(progressModel.goalAllData)
                     .toDic()!,
                 AASeriesElement()
                     .name("Goal")
-                    .data(goalTrueData)
+                    .data(progressModel.goalTrueData)
                     .toDic()!,
                 AASeriesElement()
                     .name("Task 1")
-                    .data(task1TrueData)
+                    .data(progressModel.task1TrueData)
                     .toDic()!,
                 AASeriesElement()
                     .name("Task 2")
-                    .data(task2TrueData)
+                    .data(progressModel.task2TrueData)
                     .toDic()!,
                 AASeriesElement()
                     .name("Task 3")
-                    .data(task3TrueData)
+                    .data(progressModel.task3TrueData)
                     .toDic()!,
                 ])
         
         configureTheStyleForDifferentTypeChart()
         
-        aaChartView?.aa_drawChartWithChartModel(aaChartModel!)
+        progressModel.aaChartView?.aa_drawChartWithChartModel(progressModel.aaChartModel!)
     }
     
     func configureTheStyleForDifferentTypeChart() {
         
-        if (chartType == .bar) {
-            aaChartModel?
-                .categories(chartLabel)
+        if (progressModel.chartType == .bar) {
+            progressModel.aaChartModel?
+                .categories(progressModel.chartLabel)
                 .legendEnabled(true)
                 .colorsTheme(["#fe117c","#ffc069","#06caf4","#7dffc0"])
                 .animationType(.bounce)
                 .animationDuration(1200)
-        } else if (chartType == .area && step == true)
-            || (chartType == .line && step == true) {
-            aaChartModel?.series([
+        } else if (progressModel.chartType == .area && progressModel.step == true)
+            || (progressModel.chartType == .line && progressModel.step == true) {
+            progressModel.aaChartModel?.series([
                 AASeriesElement()
                     .name("Goal")
-                    .data(goalTrueData)
-                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .data(progressModel.goalTrueData)
+                    .step(true)
                     
                     .toDic()!,
                 AASeriesElement()
                     .name("Task 1")
-                    .data(task1TrueData)
-                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .data(progressModel.task1TrueData)
+                    .step(true)
                     .toDic()!,
                 AASeriesElement()
                     .name("Task 2")
-                    .data(task2TrueData)
-                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .data(progressModel.task2TrueData)
+                    .step(true)
                     .toDic()!,
                 AASeriesElement()
                     .name("Task 3")
-                    .data(task3TrueData)
-                    .step(true)//设置折线样式为直方折线,连接点位置默认靠左👈
+                    .data(progressModel.task3TrueData)
+                    .step(true)
                     .toDic()!,
                 ])
         }

@@ -27,6 +27,7 @@
 		897D130321EC86CA0062B0D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897D130221EC86CA0062B0D2 /* Assets.xcassets */; };
 		897D130621EC86CA0062B0D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897D130421EC86CA0062B0D2 /* LaunchScreen.storyboard */; };
 		897D131121EC86CB0062B0D2 /* DailyGoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D131021EC86CB0062B0D2 /* DailyGoalsTests.swift */; };
+		898740332279A77500690DF9 /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898740322279A77500690DF9 /* ProgressModel.swift */; };
 		899602EE220C3EA1007C7BE4 /* ColourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899602ED220C3EA1007C7BE4 /* ColourTests.swift */; };
 		8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F321ECC31300EDF42F /* HistoryViewController.swift */; };
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
@@ -126,6 +127,7 @@
 		897D130C21EC86CB0062B0D2 /* DailyGoalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyGoalsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		897D131021EC86CB0062B0D2 /* DailyGoalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalsTests.swift; sourceTree = "<group>"; };
 		897D131221EC86CB0062B0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		898740322279A77500690DF9 /* ProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
 		899602ED220C3EA1007C7BE4 /* ColourTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourTests.swift; sourceTree = "<group>"; };
 		8997A9F321ECC31300EDF42F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -271,9 +273,18 @@
 			path = DailyGoalsTests;
 			sourceTree = "<group>";
 		};
+		898740312279A75000690DF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				898740322279A77500690DF9 /* ProgressModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8997A9F921ECCA5200EDF42F /* Progress View */ = {
 			isa = PBXGroup;
 			children = (
+				898740312279A75000690DF9 /* Model */,
 				8997AA0321ECCB4900EDF42F /* View Controller */,
 				8997AA0221ECCB4300EDF42F /* View Model */,
 				89CE16EF21F1CBA7004CE51D /* Flow */,
@@ -660,6 +671,7 @@
 				89A46C76222D2D6900218A76 /* CoreDataManager.swift in Sources */,
 				89F3BE5C224A5878004C79BE /* UIFont+extensions.swift in Sources */,
 				89F3BE61224B7C31004C79BE /* HistoryTable.swift in Sources */,
+				898740332279A77500690DF9 /* ProgressModel.swift in Sources */,
 				8918EC172274B7CB0070E616 /* ProgressViewController+extension.swift in Sources */,
 				89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */,
 				89CA7AEB22674FF500A86164 /* AASeriesElement.swift in Sources */,
