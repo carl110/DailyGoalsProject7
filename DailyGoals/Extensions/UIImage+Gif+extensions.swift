@@ -121,7 +121,7 @@ extension UIImage {
         
         return delay
     }
-    
+    //Enables entity to be used within any source file from module
     internal class func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
         var a = a
         var b = b

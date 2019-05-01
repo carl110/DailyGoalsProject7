@@ -19,13 +19,7 @@ class ProgressViewController: UIViewController {
     @IBOutlet weak var pickDateFrom: UIPickerView!
     @IBOutlet weak var pickDateTo: UIPickerView!
     @IBOutlet weak var selectDatRange: UIButton!
-    
-//    var chartType: AAChartType?
-//    var step: Bool?
-//    var aaChartModel: AAChartModel?
-//    var aaChartView: AAChartView?
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -75,12 +69,10 @@ class ProgressViewController: UIViewController {
             let component1 = pickDateTo.selectedRow(inComponent: 1)
             pickDateTo.selectRow((pickDateFrom.selectedRow(inComponent: 0)), inComponent: 0, animated: true)
             pickDateTo.selectRow((pickDateFrom.selectedRow(inComponent: 1)), inComponent: 1, animated: true)
-
             pickDateFrom.selectRow(component0, inComponent: 0, animated: false)
             pickDateFrom.selectRow(component1, inComponent: 1, animated: false)
             
         }
-            progressModel.aaChartView!.customAnimtation()
             setupTaskData()
             setUpAAChartView()
         

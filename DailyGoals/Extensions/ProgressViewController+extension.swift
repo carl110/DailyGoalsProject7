@@ -20,13 +20,13 @@ extension ProgressViewController {
             if pickDateFrom.selectedRow(inComponent: 1) - pickDateTo.selectedRow(inComponent: 1) == 0 {
                 progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0)
             } else if pickDateFrom.selectedRow(inComponent: 1) == year {
-                progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 1)...11
+                progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 0)...11
             } else if pickDateTo.selectedRow(inComponent: 1) == year {
-                progressModel.monthRange = 0...pickDateTo.selectedRow(inComponent: 1)
+                progressModel.monthRange = 0...pickDateTo.selectedRow(inComponent: 0)
             } else {
                 progressModel.monthRange = 0...11
             }
-            
+
             //Run through month
             for month in progressModel.monthRange {
                 var goalAllCount = 0
@@ -34,11 +34,11 @@ extension ProgressViewController {
                 var count1 = 0
                 var count2 = 0
                 var count3 = 0
-                for day in 1...31 {
+                for day in 1...self.getTotalDates(year: Int(progressViewModel.yearArray[year])!, month: month + 1) {
                     
                     //format date to 2 digit number
                     let date = "\(String(format: "%02d", day)) \(String(format: "%02d", month + 1)) \(progressViewModel.yearArray[year])"
-                    
+
                     //fecth data for each day in the selected month
                     let fetchedData = CoreDataManager.shared.fetchGoalDataForDate(date: date)
                     //for each entry on CoreData append to correct array
@@ -69,6 +69,7 @@ extension ProgressViewController {
     }
     
     func setUpAAChartView() {
+
         progressModel.aaChartView = AAChartView()
         let chartViewWidth = view.frame.size.width
         let chartViewHeight = view.frame.size.height - (titleLabel.frame.height + selectDatRange.frame.height + pickDateTo.frame.height + pickDateFrom.frame.height + 50)
