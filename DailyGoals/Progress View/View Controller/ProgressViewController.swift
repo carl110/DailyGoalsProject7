@@ -62,20 +62,22 @@ class ProgressViewController: UIViewController {
     
     @IBAction func selectDateRange(_ sender: UIButton) {
         
+        let monthTo = pickDateTo.selectedRow(inComponent: 0)
+        let monthFrom = pickDateFrom.selectedRow(inComponent: 0)
+        let yearFrom = pickDateFrom.selectedRow(inComponent: 1)
+        let yearTo = pickDateTo.selectedRow(inComponent: 1)
+        
         //if first date is after second date it will reverse
-        if (pickDateFrom.selectedRow(inComponent: 1) > pickDateTo.selectedRow(inComponent: 1)) || (pickDateFrom.selectedRow(inComponent: 1) == pickDateTo.selectedRow(inComponent: 1) && pickDateFrom.selectedRow(inComponent: 0) > pickDateTo.selectedRow(inComponent: 0)) {
-            
+        if yearFrom > yearTo || (yearFrom == yearTo && monthFrom > monthTo) {
             let component0 = pickDateTo.selectedRow(inComponent: 0)
             let component1 = pickDateTo.selectedRow(inComponent: 1)
-            pickDateTo.selectRow((pickDateFrom.selectedRow(inComponent: 0)), inComponent: 0, animated: true)
-            pickDateTo.selectRow((pickDateFrom.selectedRow(inComponent: 1)), inComponent: 1, animated: true)
+            pickDateTo.selectRow(monthFrom, inComponent: 0, animated: true)
+            pickDateTo.selectRow(yearFrom, inComponent: 1, animated: true)
             pickDateFrom.selectRow(component0, inComponent: 0, animated: false)
             pickDateFrom.selectRow(component1, inComponent: 1, animated: false)
-            
         }
             setupTaskData()
             setUpAAChartView()
-        
     }
     
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {

@@ -68,16 +68,17 @@ extension UIViewController {
 
     }
     //alert box with switch to show options per button set up
-    func alertBoxWithAction(title: String, message: String, options: String..., completion: @escaping (Int) -> Void) {
+    func alertBoxWithAction(title: String, message: String, options: String..., completion: @escaping (String) -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        for (index, option) in options.enumerated() {
+        for (_, option) in options.enumerated() {
             alertController.addAction(UIAlertAction.init(title: option, style: .default, handler: { (action) in
-                completion(index)
+                completion(option)
             }))
         }
         self.present(alertController, animated: true, completion: nil)
     }
 
+    //hide keyboar on device when anywhere outside keyboard is touched
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

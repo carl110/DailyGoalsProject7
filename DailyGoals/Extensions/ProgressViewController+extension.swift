@@ -13,16 +13,21 @@ extension ProgressViewController {
     func setupTaskData () {
         
         progressModel.resetArrays()
+        
+        let monthTo = pickDateTo.selectedRow(inComponent: 0)
+        let monthFrom = pickDateFrom.selectedRow(inComponent: 0)
+        let yearFrom = pickDateFrom.selectedRow(inComponent: 1)
+        let yearTo = pickDateTo.selectedRow(inComponent: 1)
                
         //Run through years
-        for year in pickDateFrom.selectedRow(inComponent: 1)...pickDateTo.selectedRow(inComponent: 1) {
+        for year in yearFrom...yearTo {
             //ensure all months are looped if more that 1 year selected
-            if pickDateFrom.selectedRow(inComponent: 1) - pickDateTo.selectedRow(inComponent: 1) == 0 {
-                progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 0)...pickDateTo.selectedRow(inComponent: 0)
-            } else if pickDateFrom.selectedRow(inComponent: 1) == year {
-                progressModel.monthRange = pickDateFrom.selectedRow(inComponent: 0)...11
-            } else if pickDateTo.selectedRow(inComponent: 1) == year {
-                progressModel.monthRange = 0...pickDateTo.selectedRow(inComponent: 0)
+            if yearFrom - yearTo == 0 {
+                progressModel.monthRange = monthFrom...monthTo
+            } else if yearFrom == year {
+                progressModel.monthRange = monthFrom...11
+            } else if yearTo == year {
+                progressModel.monthRange = 0...monthTo
             } else {
                 progressModel.monthRange = 0...11
             }

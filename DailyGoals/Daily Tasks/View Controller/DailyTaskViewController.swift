@@ -72,11 +72,11 @@ class DailyTaskViewController: UIViewController {
                 
                 if date.task1Complete == false || date.task2Complete == false || date.task3Complete == false {
                     alertBoxWithAction(title: "You have a previously incomplete task",
-                                       message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: "Use previouse Goal", "Enter new Goal and tasks") { (option) in
+                                       message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: alertBox.usePreviouseGoal.name(), alertBox.enterNewGoalAndTasks.name()) { (option) in
                                         switch(option) {
-                                        case 0:
+                                        case alertBox.usePreviouseGoal.name():
                                             self.usePreviouseGoal()
-                                        case 1:
+                                        case alertBox.enterNewGoalAndTasks.name():
                                             self.initialAlertBox()
                                             
                                         default:
@@ -176,7 +176,7 @@ class DailyTaskViewController: UIViewController {
                                                         message: "You must complete setails for the goal and all 3 tasks",
                                                         options: "Complete Inputs") { (option) in
                                                             switch(option) {
-                                                            case 0:
+                                                            case "Complete Inputs":
                                                                 self.initialAlertBox()
                                                             default:
                                                                 break
@@ -206,16 +206,10 @@ class DailyTaskViewController: UIViewController {
             rowCell.forEach{ (row) in
                 if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
                     
-                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: "Complete Data") { (option) in
-                        
-                        //CodeReview:
-                        /*
-                         1. I think you could just write switch option {(...)}
-                         2. this is not a nice to have option to use strings or numbers in cases, here you have 'case 0'. I would rather suggest creating enums or typealias
-                         */
+                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: alertBox.completeData.rawValue.titlecased()) { (option) in
                         
                         switch(option) {
-                        case 0:
+                        case alertBox.completeData.name():
                             self.editTableData()
                         default:
                             break
