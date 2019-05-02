@@ -78,7 +78,6 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    //hide keyboar on device when anywhere outside keyboard is touched
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

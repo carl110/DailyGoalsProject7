@@ -12,12 +12,9 @@ import CoreData
 class DailyTaskViewController: UIViewController {
     
     fileprivate var dailyTaskFlow: DailyTaskFlow!
-    fileprivate var dailyTaskViewModel: DailyTaskViewModel!
+    fileprivate var dailyTaskViewModel = DailyTaskViewModel()
     fileprivate var dailyTaskData: CellData!
     fileprivate var dailyGoalData: DailyGoalData!
-    
-    private let todaysDate = Date().string(format: "dd MMM yyyy")
-    private var daySubtraction = 1
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dailyTaskTableView: CustomTable!
@@ -35,83 +32,35 @@ class DailyTaskViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self!.editTaskButtonSetUp()
         }
-        checkCoreData()
-        self.hideKeyboardWhenTappedAround()
+        checkIfAnyPreviouseTasks()
+        hideKeyboardWhenTappedAround()
     }
-    
-    //CodeReview: this shoukd be in viewModel, you can call the function in viewModel and it will just return, or with a closure, the section and cells data and here in view controller just assign them
-
-    func checkCoreData() {//if todays data exists then go straight to table, if not show alertbox
-        let checkToday = CoreDataManager.shared.fetchGoalDataForDate(date: todaysDate)
-        if (checkToday?.count)! > 0 {
-            for savedData in checkToday! {
-                //Update text in section and rows
-                dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
-                dailyTaskTableView.cellsData = [CellData(text: savedData.task1, state: savedData.task1Complete), CellData(text: savedData.task2, state: savedData.task2Complete), CellData(text: savedData.task3, state: savedData.task3Complete)]
-            }
-        } else {
-            checkPreviouseGoalStatus()
-        }
-    }
-    
-        //CodeReview: to viewModel and just return the cellsData, here you would only append the contents of the sequence (which would be returned by the viewModel) and call the reloadData
-    
-    func checkPreviouseGoalStatus() {
-        
-        let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForDate(date: Date().subtract(days: daySubtraction)!.string(format: "dd MM yyyy"))
-        
-        if CoreDataManager.shared.fetchGoalData()?.count == 0 {
-            initialAlertBox()
-        } else {
-            //if no data for previouse day go back another day
-            while (checkPreviouseGoal?.count)! == 0 {
-                daySubtraction += 1
-            }
-            //If any task is incomplete
-            for date in checkPreviouseGoal! {
-                
-                if date.task1Complete == false || date.task2Complete == false || date.task3Complete == false {
-                    alertBoxWithAction(title: "You have a previously incomplete task",
-                                       message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: alertBox.usePreviouseGoal.name(), alertBox.enterNewGoalAndTasks.name()) { (option) in
-                                        switch(option) {
-                                        case alertBox.usePreviouseGoal.name():
-                                            self.usePreviouseGoal()
-                                        case alertBox.enterNewGoalAndTasks.name():
-                                            self.initialAlertBox()
-                                            
-                                        default:
-                                            break
-                                        }
-                    }
-                } else {
-                    initialAlertBox()
-                }
-            }
-        }
-    }
-    
-    func usePreviouseGoal() {
-        
-        let previouseDate = CoreDataManager.shared.fetchGoalDataForDate(date: (Date().subtract(days: daySubtraction)?.string(format: "dd MM yyyy"))!)
-        
-        for savedData in previouseDate! {
-            //Update text in section and rows
-            dailyTaskTableView.sectionData = [DailyGoalData(text: savedData.goal)]
-            let taskArray = [savedData.task1, savedData.task2, savedData.task3]
-            let taskCompleteArray = [savedData.task1Complete, savedData.task2Complete, savedData.task3Complete]
-            for index in 0 ..< taskArray.count {
-                dailyTaskTableView.cellsData.append(CellData(text: taskArray[index], state: taskCompleteArray[index]))
-            }
-        }
-        dailyTaskTableView.reloadData()
-    }
-    
     
     func setUpTitle() {
         titleLabel.titleLabelFormat(colour: UIColor.Blues.lightBlue)
         titleLabel.text = "Daily Tasks"
     }
     
+    func editTaskButtonSetUp() {
+        editTasks.setTitle("Edit Tasks", for: UIControl.State.normal)
+        editTasks.roundCorners(for: .allCorners, cornerRadius: 8)
+        editTasks.centerTextHorizontally(spacing: 1)
+        editTasks.backgroundColor = UIColor.Blues.softBlue
+    }
+    
+    //Check if there are any previouse tasks and assign data or show alertbox
+    func checkIfAnyPreviouseTasks() {
+        dailyTaskViewModel.checkCoreData()
+        if dailyTaskViewModel.runPreviouseTaskAlert == true {
+            previouseAlert()
+        } else if dailyTaskViewModel.sectionData.isEmpty {
+         initialAlertBox()
+        } else {
+            dailyTaskTableView.sectionData = dailyTaskViewModel.sectionData
+            dailyTaskTableView.cellsData = dailyTaskViewModel.cellsData
+        }
+    }
+
     func editTableData() {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
@@ -126,7 +75,7 @@ class DailyTaskViewController: UIViewController {
         //update title on button
         editTasks.setTitle("Save Changes", for: UIControl.State.normal)
     }
-    
+
     func saveTableData() {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
@@ -135,14 +84,14 @@ class DailyTaskViewController: UIViewController {
         
         //Update array for header and the coredata
         dailyTaskTableView.sectionData = [DailyGoalData(text: tableHeader.labelTitle.text!)]
-        CoreDataManager.shared.update(object: "goal", updatedEntry: tableHeader.labelTitle.text!, date: todaysDate)
+        CoreDataManager.shared.update(object: "goal", updatedEntry: tableHeader.labelTitle.text!, date: dailyTaskViewModel.todaysDate)
         
         //update array for tableCells and coredata for tasks
         for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
             let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
             dailyTaskTableView.cellsData[i] = CellData(text: cell.task.text, state: cell.task.state)
             let taskNumber = "task\(i + 1)"
-            CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: todaysDate)
+            CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: dailyTaskViewModel.todaysDate)
         }
         
         rowCell.forEach{ (row) in
@@ -152,14 +101,31 @@ class DailyTaskViewController: UIViewController {
         editTasks.setTitle("Edit Tasks", for: .normal)
     }
     
-    func editTaskButtonSetUp() {
-        editTasks.setTitle("Edit Tasks", for: UIControl.State.normal)
-        editTasks.roundCorners(for: .allCorners, cornerRadius: 8)
-        editTasks.centerTextHorizontally(spacing: 1)
-        editTasks.backgroundColor = UIColor.Blues.softBlue
+    func previouseAlert() {
+        
+        //alertbox showing previouse tasks
+        let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForDate(date: Date().subtract(days: dailyTaskViewModel.daySubtraction)!.string(format: "dd MM yyyy"))
+        for date in checkPreviouseGoal! {
+            alertBoxWithAction(title: "You have a previously incomplete task",
+                               message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: alertBox.usePreviouseGoal.name(), alertBox.enterNewGoalAndTasks.name()) { (option) in
+                                switch(option) {
+                                case alertBox.usePreviouseGoal.name():
+                                    self.dailyTaskViewModel.usePreviouseGoal()
+                                    self.dailyTaskTableView.sectionData = self.dailyTaskViewModel.sectionData
+                                    self.dailyTaskTableView.cellsData = self.dailyTaskViewModel.cellsData
+                                    self.dailyTaskTableView.reloadData()
+                            case alertBox.enterNewGoalAndTasks.name():
+                                self.initialAlertBox()
+                                
+                            default:
+                                break
+                            }
+            }
+        }
     }
     
     func initialAlertBox() {
+
         //Alert box to add new goal and tasks
         showGoalTaskDialog(title: "Todays Goal ",
                            subtitle: "Please enter your goal for today, and the 3 tasks to achieve your goal",
@@ -189,7 +155,7 @@ class DailyTaskViewController: UIViewController {
                                                                      CellData(text: "\(task3Input ?? "")", state: false )]
                                 self.dailyTaskTableView.reloadData()
                                 
-                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.todaysDate)
+                                CoreDataManager.shared.saveGoalData(goal: "\(goalInput!)", task1: task1Input!, task2: task2Input!, task3: task3Input!, date: self.dailyTaskViewModel.todaysDate)
                             }
         })
     }
