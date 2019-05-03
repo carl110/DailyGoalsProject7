@@ -26,18 +26,18 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         //call custom header
         let headerNib = UINib.init(nibName: "CustomHeaderHistory", bundle: Bundle.main)
         self.register(headerNib, forHeaderFooterViewReuseIdentifier: "CustomHeaderHistory")
-
+        
     }
     
-    var taskCompletetion: Array<Any> = []
-    var tableCellData: Array<Any> = []
-    var tableSectionName: Array<Any> = []
+    var taskCompletetion: [Any] = []
+    var tableCellData: [Any] = []
+    var tableSectionName: [Any] = []
     
     private var sectionTouched: Int?
     //Sets section -1 so all table is colapsed
     private var expandedSectionHeaderNumber: Int = -1
     
-    let HeaderSectionTag: Int = 1
+    let headerSectionTag: Int = 1
     
     //Number of section required for table
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,7 +62,7 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         headerView.config()
         
         headerView.imageView.image = UIImage(named: "chevron")
-        headerView.imageView.tag = HeaderSectionTag + section
+        headerView.imageView.tag = headerSectionTag + section
         
         headerView.tag = section
         let headerTapGesture = UITapGestureRecognizer()
@@ -93,19 +93,19 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
         let headerView = sender.view as! CustomHeaderHistory
         let section    = headerView.tag
-        let eImageView = headerView.viewWithTag(HeaderSectionTag + section) as? UIImageView
+        let eImageView = headerView.viewWithTag(headerSectionTag + section) as? UIImageView
         sectionTouched = section
         
         //If section header is colapsed expand section
-        if (self.expandedSectionHeaderNumber == -1) {
+        if self.expandedSectionHeaderNumber == -1 {
             self.expandedSectionHeaderNumber = section
             tableViewExpandSection(section, imageView: eImageView!)
             self.scrollToBottomRow()
         } else { //if section header is open the colapse it
-            if (self.expandedSectionHeaderNumber == section) {
+            if self.expandedSectionHeaderNumber == section {
                 tableViewCollapeSection(section, imageView: eImageView!)
             } else { //if header section is colapsed but another header is expanded, colapse open section and expand section header
-                let cImageView = self.viewWithTag(HeaderSectionTag + self.expandedSectionHeaderNumber) as? UIImageView
+                let cImageView = self.viewWithTag(headerSectionTag + self.expandedSectionHeaderNumber) as? UIImageView
                 tableViewCollapeSection(self.expandedSectionHeaderNumber, imageView: cImageView!)
                 tableViewExpandSection(section, imageView: eImageView!)
             }
@@ -115,17 +115,17 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     //Hide open cells when table is scrolled
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if self.expandedSectionHeaderNumber != -1 {
-                    guard let image = self.viewWithTag(HeaderSectionTag + sectionTouched!) as? UIImageView else { return print ("No image") }
+            guard let image = self.viewWithTag(headerSectionTag + sectionTouched!) as? UIImageView else { return print ("No image") }
             tableViewCollapeSection(sectionTouched!, imageView: image)
         }
-
+        
     }
-
+    
     func tableViewCollapeSection(_ section: Int, imageView: UIImageView) {
         let sectionData = self.tableCellData[section] as! NSArray
         //set variable back to -1 so "expanded section is not on a visable section"
         self.expandedSectionHeaderNumber = -1
-        if (sectionData.count == 0) {
+        if sectionData.count == 0 {
             return
         } else {
             //turn chevron around
@@ -152,8 +152,8 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
                 imageView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
             })
             var indexesPath = [IndexPath]()
-            for i in 0 ..< sectionData.count {
-                let index = IndexPath(row: i, section: section)
+            for index in 0 ..< sectionData.count {
+                let index = IndexPath(row: index, section: section)
                 indexesPath.append(index)
             }
             self.expandedSectionHeaderNumber = section
@@ -167,6 +167,5 @@ class HistoryTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.layoutIfNeeded()
         self.setContentOffset(contentOffset, animated: false)
     }
-    
 }
 

@@ -21,7 +21,7 @@ extension UIButton {
         alpha = 1.0
         isEnabled = true
     }
-    
+
     func disableButton() {
         alpha = 0.0
         isEnabled = false

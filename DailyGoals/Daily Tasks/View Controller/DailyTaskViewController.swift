@@ -24,7 +24,7 @@ class DailyTaskViewController: UIViewController {
     func assignDependencies(dailyTaskFlow: DailyTaskFlow, dailyTaskViewModel: DailyTaskViewModel) {
         self.dailyTaskFlow = dailyTaskFlow
     }
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTitle()
@@ -54,13 +54,13 @@ class DailyTaskViewController: UIViewController {
         if dailyTaskViewModel.runPreviouseTaskAlert == true {
             previouseAlert()
         } else if dailyTaskViewModel.sectionData.isEmpty {
-         initialAlertBox()
+            initialAlertBox()
         } else {
             dailyTaskTableView.sectionData = dailyTaskViewModel.sectionData
             dailyTaskTableView.cellsData = dailyTaskViewModel.cellsData
         }
     }
-
+    
     func editTableData() {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
@@ -75,7 +75,7 @@ class DailyTaskViewController: UIViewController {
         //update title on button
         editTasks.setTitle("Save Changes", for: UIControl.State.normal)
     }
-
+    
     func saveTableData() {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
@@ -87,10 +87,10 @@ class DailyTaskViewController: UIViewController {
         CoreDataManager.shared.update(object: "goal", updatedEntry: tableHeader.labelTitle.text!, date: dailyTaskViewModel.todaysDate)
         
         //update array for tableCells and coredata for tasks
-        for i in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
-            let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath) as! TableViewCell
-            dailyTaskTableView.cellsData[i] = CellData(text: cell.task.text, state: cell.task.state)
-            let taskNumber = "task\(i + 1)"
+        for index in 0 ... dailyTaskTableView.visibleCells.endIndex - 1 {
+            let cell: TableViewCell = dailyTaskTableView.cellForRow(at: NSIndexPath(row: index, section: 0) as IndexPath) as! TableViewCell
+            dailyTaskTableView.cellsData[index] = CellData(text: cell.task.text, state: cell.task.state)
+            let taskNumber = "task\(index + 1)"
             CoreDataManager.shared.update(object: taskNumber, updatedEntry: cell.label.text! as String, date: dailyTaskViewModel.todaysDate)
         }
         
@@ -107,25 +107,25 @@ class DailyTaskViewController: UIViewController {
         let checkPreviouseGoal = CoreDataManager.shared.fetchGoalDataForDate(date: Date().subtract(days: dailyTaskViewModel.daySubtraction)!.string(format: "dd MM yyyy"))
         for date in checkPreviouseGoal! {
             alertBoxWithAction(title: "You have a previously incomplete task",
-                               message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: alertBox.usePreviouseGoal.name(), alertBox.enterNewGoalAndTasks.name()) { (option) in
+                               message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: AlertBox.usePreviouseGoal.name(), AlertBox.enterNewGoalAndTasks.name()) { (option) in
                                 switch(option) {
-                                case alertBox.usePreviouseGoal.name():
+                                case AlertBox.usePreviouseGoal.name():
                                     self.dailyTaskViewModel.usePreviouseGoal()
                                     self.dailyTaskTableView.sectionData = self.dailyTaskViewModel.sectionData
                                     self.dailyTaskTableView.cellsData = self.dailyTaskViewModel.cellsData
                                     self.dailyTaskTableView.reloadData()
-                            case alertBox.enterNewGoalAndTasks.name():
-                                self.initialAlertBox()
-                                
-                            default:
-                                break
-                            }
+                                case AlertBox.enterNewGoalAndTasks.name():
+                                    self.initialAlertBox()
+                                    
+                                default:
+                                    break
+                                }
             }
         }
     }
     
     func initialAlertBox() {
-
+        
         //Alert box to add new goal and tasks
         showGoalTaskDialog(title: "Todays Goal ",
                            subtitle: "Please enter your goal for today, and the 3 tasks to achieve your goal",
@@ -159,7 +159,7 @@ class DailyTaskViewController: UIViewController {
                             }
         })
     }
-
+    
     @IBAction func editTasks(_ sender: Any) {
         let tableHeader = (dailyTaskTableView.headerView(forSection: 0) as! CustomHeader)
         let rowCell = dailyTaskTableView.visibleCells
@@ -169,13 +169,12 @@ class DailyTaskViewController: UIViewController {
             editTableData()
         } else {
             
-            rowCell.forEach{ (row) in
+            rowCell.forEach { (row) in
                 if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
                     
-                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: alertBox.completeData.rawValue.titlecased()) { (option) in
-                        
+                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: AlertBox.completeData.rawValue.titlecased()) { (option) in
                         switch(option) {
-                        case alertBox.completeData.name():
+                        case AlertBox.completeData.name():
                             self.editTableData()
                         default:
                             break

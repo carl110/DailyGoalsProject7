@@ -16,5 +16,4 @@ extension UILabel {
         self.textAlignment = .center
         self.textColor = colour
     }
-    
 }

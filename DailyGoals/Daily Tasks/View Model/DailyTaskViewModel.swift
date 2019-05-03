@@ -45,14 +45,14 @@ class DailyTaskViewModel {
             for date in checkPreviouseGoal! {
                 if date.task1Complete == false || date.task2Complete == false || date.task3Complete == false {
                     runPreviouseTaskAlert = true
-                } 
+                }
             }
         }
     }
     
     func usePreviouseGoal() {
         let previouseDate = CoreDataManager.shared.fetchGoalDataForDate(date: (Date().subtract(days: daySubtraction)?.string(format: "dd MM yyyy"))!)
-        
+
         for savedData in previouseDate! {
             //Update text in section and rows
             sectionData = [DailyGoalData(text: savedData.goal)]

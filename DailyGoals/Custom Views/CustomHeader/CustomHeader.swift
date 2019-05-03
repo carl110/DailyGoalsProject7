@@ -15,7 +15,6 @@ protocol HeaderSectionDelegate {
 
 class CustomHeader: UITableViewHeaderFooterView {
     
-
     @IBOutlet weak var labelTitle: UITextField!
     @IBOutlet weak var headerBachground: UIView!
     @IBOutlet weak var checkBox: CheckBox!
@@ -33,12 +32,11 @@ class CustomHeader: UITableViewHeaderFooterView {
 //        labelTitle.numberOfLines = 0
         headerBachground.backgroundColor = UIColor.Blues.lightBlue
     }
-    
+
     @IBAction func cliclAction(_ sender: Any) {
         checkBox.isChecked = !checkBox.isChecked
         delegate?.headerSectionCell(self)
     }
-
 }
 
 

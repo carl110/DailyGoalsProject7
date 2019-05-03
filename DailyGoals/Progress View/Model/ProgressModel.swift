@@ -21,7 +21,7 @@ class ProgressModel {
     var goalAllData: [Int] = []
     var task1TrueData: [Int] = []
     var task2TrueData: [Int] = []
-    var task3TrueData: [Int] = []   
+    var task3TrueData: [Int] = []
     
     func resetArrays() {
         chartLabel.removeAll()
@@ -31,5 +31,4 @@ class ProgressModel {
         task3TrueData.removeAll()
         goalTrueData.removeAll()
     }
-    
 }

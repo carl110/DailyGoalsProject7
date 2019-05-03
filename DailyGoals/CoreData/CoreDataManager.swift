@@ -12,7 +12,7 @@ import UIKit
 
 class CoreDataManager {
     
-    class var shared : CoreDataManager {
+    class var shared: CoreDataManager {
         struct Singleton {
             static let instance = CoreDataManager()
         }
@@ -71,8 +71,7 @@ class CoreDataManager {
         }
     }
     
-
-    func fetchGoalData() -> [DataForDailyGoals]?{
+    func fetchGoalData() -> [DataForDailyGoals]? {
         
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
@@ -112,14 +111,14 @@ class CoreDataManager {
                 newArray.append(item.value(forKey: savedObject) as! String)
                 
             }
-    return newArray
+            return newArray
         } catch let error as NSError {
             print (error.description)
         }
         return nil
     }
-  
-    func fetchGoalDataForDate(date: String) -> [DataForDailyGoals]?{
+    
+    func fetchGoalDataForDate(date: String) -> [DataForDailyGoals]? {
         //Fetch data for selected date
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
@@ -144,7 +143,7 @@ class CoreDataManager {
         }
     }
     
-    func update(object: String,updatedEntry: Any, date: String) {
+    func update(object: String, updatedEntry: Any, date: String) {
         //Update data held in coredata
         let appDelegate =
             UIApplication.shared.delegate as? AppDelegate
@@ -168,8 +167,7 @@ class CoreDataManager {
                     fatalError("Could not save. \(error), \(error.userInfo)")
                 }
             }
-        }
-        catch let error as NSError {
+        } catch let error as NSError {
             print ("Could not fetch. \(error). \(error.userInfo)")
         }
     }

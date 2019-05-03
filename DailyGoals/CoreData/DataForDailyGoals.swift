@@ -22,7 +22,6 @@ class DataForDailyGoals {
     var task3Complete: Bool
     
     init(object: NSManagedObject) {
-        
         self.goal = object.value(forKey: "goal") as! String
         self.task1 = object.value(forKey: "task1") as! String
         self.task2 = object.value(forKey: "task2") as! String

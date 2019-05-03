@@ -9,14 +9,12 @@
 import Foundation
 import UIKit
 
-public enum alertBox: String {
+public enum AlertBox: String {
+
     case usePreviouseGoal
-   
     case enterNewGoalAndTasks
-    
     case completeData
-    
-    
+
     func name() -> String {
         return self.rawValue.titlecased()
     }

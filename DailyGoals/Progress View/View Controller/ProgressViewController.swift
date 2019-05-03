@@ -14,7 +14,6 @@ class ProgressViewController: UIViewController {
     private var progressFlow: ProgressFlow!
     var progressModel = ProgressModel()
 
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pickDateFrom: UIPickerView!
     @IBOutlet weak var pickDateTo: UIPickerView!
@@ -79,7 +78,7 @@ class ProgressViewController: UIViewController {
             setupTaskData()
             setUpAAChartView()
     }
-    
+
     func assignDependencies(progressViewModel: ProgressViewModel, progressFlow: ProgressFlow) {
         self.progressFlow = progressFlow
         self.progressViewModel = progressViewModel

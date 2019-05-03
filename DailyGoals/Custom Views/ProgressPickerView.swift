@@ -46,13 +46,11 @@ class ProgressPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         if component == 0 {
-            let attributedString = NSAttributedString(string: progressViewModel.monthArray[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.Shades.standardWhite])
+            let attributedString = NSAttributedString(string: progressViewModel.monthArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.Shades.standardWhite])
             return attributedString
         } else {
-            let attributedString = NSAttributedString(string: progressViewModel.yearArray[row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.Shades.standardWhite])
+            let attributedString = NSAttributedString(string: progressViewModel.yearArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.Shades.standardWhite])
             return attributedString
         }
-        
     }
-
 }

@@ -34,6 +34,7 @@ extension UIView {
         }
     }
     
+    //animates view to grow
     func customAnimtation() {
         UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: { [weak self] in
             self?.transform = CGAffineTransform(scaleX: 100.0, y: 100.0)
@@ -49,7 +50,7 @@ extension UIView {
                 self.removeFromSuperview()
         } )
     }
-    
+
     func fadeIn(_ duration: TimeInterval = 0.5, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveLinear, animations: { [weak self] in
             self?.alpha = 1.0

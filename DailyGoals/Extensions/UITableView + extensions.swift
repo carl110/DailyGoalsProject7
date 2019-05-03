@@ -46,7 +46,7 @@ extension UITableView {
             self.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-    
+
     func indexPathIsValid(_ indexPath: IndexPath) -> Bool {
         let section = indexPath.section
         let row = indexPath.row

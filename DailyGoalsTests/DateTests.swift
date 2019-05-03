@@ -22,8 +22,4 @@ class DateTest: XCTestCase {
 
         XCTAssertEqual(tableViewCell.isToggled == true, checkBox.isChecked == true, "Checkbox should be true when table cell toggle is true")
     }
-
-    
-    
-
 }

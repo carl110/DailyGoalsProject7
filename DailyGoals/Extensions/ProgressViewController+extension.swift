@@ -47,18 +47,18 @@ extension ProgressViewController {
                     //fecth data for each day in the selected month
                     let fetchedData = CoreDataManager.shared.fetchGoalDataForDate(date: date)
                     //for each entry on CoreData append to correct array
-                    for i in fetchedData! {
+                    for data in fetchedData! {
                         goalAllCount += 1
-                        if i.task1Complete == true {
+                        if data.task1Complete == true {
                             count1 += 1
                         }
-                        if i.task2Complete == true {
+                        if data.task2Complete == true {
                             count2 += 1
                         }
-                        if i.task3Complete == true {
+                        if data.task3Complete == true {
                             count3 += 1
                         }
-                        if i.task1Complete && i.task2Complete && i.task3Complete == true {
+                        if data.task1Complete && data.task2Complete && data.task3Complete == true {
                             goalCount += 1
                         }
                     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  CheckBoxDelegate, HeaderSectionDelegate  {
+class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  CheckBoxDelegate, HeaderSectionDelegate {
     
     fileprivate var dailyTaskViewModel = DailyTaskViewModel()
     
@@ -17,7 +17,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
     var gifButton = UIButton()
     
     var cellsData: [CellData] = []
-    var sectionData:[DailyGoalData] = []
+    var sectionData: [DailyGoalData] = []
     
     override func awakeFromNib() {
         delegate = self
@@ -82,7 +82,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         }
         
         //set previouse state
-        self.visibleCells.forEach{ (cell) in
+        self.visibleCells.forEach { (cell) in
             (cell as! TableViewCell).isPreviouseState = (cell as! TableViewCell).checkBox.isChecked
         }
         cell.toggle()
@@ -125,7 +125,7 @@ class CustomTable: UITableView, UITableViewDataSource, UITableViewDelegate,  Che
         if cell.checkBox.isChecked == true {
             //set previouse state to checkboxState
             
-            rowCell.forEach{ (row) in
+            rowCell.forEach { (row) in
                 (row as! TableViewCell).isPreviouseState = (row as! TableViewCell).checkBox.isChecked
                 
                 (row as! TableViewCell).task.state = true

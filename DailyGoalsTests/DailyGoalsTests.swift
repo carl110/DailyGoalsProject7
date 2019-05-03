@@ -31,8 +31,8 @@ class CoreDataTests: XCTestCase {
         let task3 = "Task 3"
         let date = "Date"
         
-        let dailyGoal1 = coreDataManager.saveGoalData(goal: goal, task1: task1, task2: task2, task3: task3, date: date)
-        let dailyGoal2 = coreDataManager.saveGoalData(goal: goal, task1: task1, task2: task2, task3: task3, date: date)
+        let dailyGoal1: () = coreDataManager.saveGoalData(goal: goal, task1: task1, task2: task2, task3: task3, date: date)
+        let dailyGoal2: () = coreDataManager.saveGoalData(goal: goal, task1: task1, task2: task2, task3: task3, date: date)
 
         XCTAssertNotNil( dailyGoal1 )
         XCTAssertNotNil( dailyGoal2 )
@@ -43,7 +43,7 @@ class CoreDataTests: XCTestCase {
         
         XCTAssertEqual(results?.count, 2)
     }
-    
+
     func deleteEntireTable() {
         coreDataManager.deleteAllSavedData()
         XCTAssertEqual(coreDataManager.fetchGoalData()?.count, 0)

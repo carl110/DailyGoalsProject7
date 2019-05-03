@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class CellData {
-    
+
     var text: String = ""
     var state: Bool = false
 

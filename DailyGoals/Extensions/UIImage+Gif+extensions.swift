@@ -29,7 +29,7 @@ extension UIImageView {
                 self.image = image
             }
         }
-    }    
+    }
 }
 
 extension UIImage {
@@ -101,7 +101,7 @@ extension UIImage {
             return delay
         }
         
-        let gifProperties:CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
+        let gifProperties: CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
         
         // Get delay time
         var delayObject: AnyObject = unsafeBitCast(
@@ -122,7 +122,7 @@ extension UIImage {
         return delay
     }
     //Enables entity to be used within any source file from module
-    internal class func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
+    class func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
         var a = a
         var b = b
         // Check if one of them is nil

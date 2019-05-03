@@ -9,12 +9,9 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-    
- 
+
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var checkBox: CheckBox!
-    
-   
     @IBOutlet weak var label: UITextField!
     
     var isToggled: Bool = false
@@ -41,9 +38,8 @@ class TableViewCell: UITableViewCell {
         
         self.task = task
     }
-    
+
     override func prepareForReuse() {
         label.text = ""
     }
-
 }

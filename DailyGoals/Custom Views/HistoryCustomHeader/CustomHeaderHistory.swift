@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 class CustomHeaderHistory: UITableViewHeaderFooterView {
+
     @IBOutlet weak var background: UIView!
-    
     @IBOutlet weak var imageView: UIImageView!
-    
-    
     @IBOutlet weak var labelTitle: UILabel!
     
     func config() {
@@ -30,6 +28,5 @@ class CustomHeaderHistory: UITableViewHeaderFooterView {
     override func prepareForReuse() {
         labelTitle.text = ""
     }
-    
 }
 

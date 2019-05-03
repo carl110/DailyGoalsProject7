@@ -94,7 +94,7 @@ class HistoryViewController: UIViewController {
     }
     
     func dataByMonth() {
- 
+        
         trueCount = 0
         goalCompleteCount = 0
         let index = monthPickerView.selectedRow(inComponent: 0)
@@ -102,30 +102,30 @@ class HistoryViewController: UIViewController {
         
         //set array for month number
         let dateArray = Array(1...12)
-
+        
         //Array uses extension to get number of days in month for that year
-        for i in 1...self.getTotalDates(year: Int(historyViewModel.yearArray[yearIndex])!, month: dateArray[index]) {
-
+        for day in 1...self.getTotalDates(year: Int(historyViewModel.yearArray[yearIndex])!, month: dateArray[index]) {
+            
             //Format to ensure 2 digit number
-            let date = "\(String(format: "%02d", i)) \(String(format: "%02d", dateArray[index])) \(historyViewModel.yearArray[yearIndex])"
+            let date = "\(String(format: "%02d", day)) \(String(format: "%02d", dateArray[index])) \(historyViewModel.yearArray[yearIndex])"
             //fecth data for each day in the selected month
             let fetchedData = CoreDataManager.shared.fetchGoalDataForDate(date: date)
             //for each entry on CoreData append to correct array
-            for i in fetchedData! {
+            for data in fetchedData! {
                 
-                let taskCompleteArray = [i.task1Complete, i.task2Complete, i.task3Complete]
+                let taskCompleteArray = [data.task1Complete, data.task2Complete, data.task3Complete]
                 
-                if i.task1Complete == true && i.task2Complete == true && i.task3Complete == true {
-                    historyTableView.tableSectionName.append("\(i.date) \(i.goal) - Complete")
+                if data.task1Complete == true && data.task2Complete == true && data.task3Complete == true {
+                    historyTableView.tableSectionName.append("\(data.date) \(data.goal) - Complete")
                     goalCompleteCount += 1
                 } else {
-                    historyTableView.tableSectionName.append("\(i.date) \(i.goal) - Not Complete")
+                    historyTableView.tableSectionName.append("\(data.date) \(data.goal) - Not Complete")
                 }
-                historyTableView.tableCellData.append([i.task1, i.task2, i.task3])
+                historyTableView.tableCellData.append([data.task1, data.task2, data.task3])
                 historyTableView.taskCompletetion.append(taskCompleteArray)
                 
-                for i in taskCompleteArray {
-                    if i == true {
+                for taskComplete in taskCompleteArray {
+                    if taskComplete == true {
                         trueCount += 1
                     }
                 }

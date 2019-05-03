@@ -21,7 +21,6 @@ class CheckBox: UIButton {
     enum CheckBoxOwner: String {
         case Goal = "Goal"
         case Task = "Task"
-        
         case none
     }
     // Images
@@ -33,7 +32,7 @@ class CheckBox: UIButton {
     
     // Bool property chooses images for the variables
     var isChecked: Bool = false {
-        didSet{
+        didSet {
             checkBoxDelegate?.checkBoxDidClick(owner: owner, state: isChecked)
             if isChecked == true {
                 self.setImage(checkedImage, for: .normal)
@@ -44,12 +43,12 @@ class CheckBox: UIButton {
     }
     
     override func awakeFromNib() {
-        self.addTarget(self, action:#selector(buttonClicked(sender:)), for: UIControl.Event.touchUpInside)
+        self.addTarget(self, action:#selector(buttonClicked(sender: )), for: UIControl.Event.touchUpInside)
         self.isChecked = false
     }
     //change image to the opposite image when selected
     @objc func buttonClicked(sender: UIButton) {
-        if(sender == self) {
+        if sender == self {
             if isChecked == true {
                 isChecked = false  }
             else {

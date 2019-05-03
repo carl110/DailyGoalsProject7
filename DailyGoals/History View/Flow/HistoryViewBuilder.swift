@@ -19,10 +19,8 @@ class HistoryViewBuilder {
         let historyFlow = HistoryFlow(navigator: navigator)
         let historyControl = UIStoryboard(name: "HistoryView", bundle: nil).instantiateInitialViewController() as! HistoryViewController
         historyControl.assignDependencies(historyViewModel: historyViewModel, historyFlow: historyFlow)
-        
+
         navigator.setViewControllers([historyControl], animated: true)
         return navigator
-        
-        
     }
 }
