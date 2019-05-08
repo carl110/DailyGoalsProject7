@@ -34,7 +34,7 @@
 		8997A9F421ECC31300EDF42F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F321ECC31300EDF42F /* HistoryViewController.swift */; };
 		8997A9F821ECC34B00EDF42F /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */; };
 		8997AA0821ECCC8E00EDF42F /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997AA0721ECCC8E00EDF42F /* CheckBox.swift */; };
-		89A46C7222281DE200218A76 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A46C7122281DE200218A76 /* DateTests.swift */; };
+		89A46C7222281DE200218A76 /* CheckBoxTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A46C7122281DE200218A76 /* CheckBoxTest.swift */; };
 		89A46C76222D2D6900218A76 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A46C75222D2D6900218A76 /* CoreDataManager.swift */; };
 		89A46C77223290DF00218A76 /* DailyGoals.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 897D12FF21EC86C50062B0D2 /* DailyGoals.xcdatamodeld */; };
 		89C12F1D2223F4F400A85FA0 /* CustomTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C12F1C2223F4F400A85FA0 /* CustomTable.swift */; };
@@ -136,7 +136,7 @@
 		8997A9F321ECC31300EDF42F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8997A9F721ECC34B00EDF42F /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		8997AA0721ECCC8E00EDF42F /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		89A46C7122281DE200218A76 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		89A46C7122281DE200218A76 /* CheckBoxTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxTest.swift; sourceTree = "<group>"; };
 		89A46C75222D2D6900218A76 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		89C12F1C2223F4F400A85FA0 /* CustomTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTable.swift; sourceTree = "<group>"; };
 		89C83EC421F9ED56001C6C5C /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 				897D131021EC86CB0062B0D2 /* DailyGoalsTests.swift */,
 				897D131221EC86CB0062B0D2 /* Info.plist */,
 				899602ED220C3EA1007C7BE4 /* ColourTests.swift */,
-				89A46C7122281DE200218A76 /* DateTests.swift */,
+				89A46C7122281DE200218A76 /* CheckBoxTest.swift */,
 			);
 			path = DailyGoalsTests;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89A46C77223290DF00218A76 /* DailyGoals.xcdatamodeld in Sources */,
-				89A46C7222281DE200218A76 /* DateTests.swift in Sources */,
+				89A46C7222281DE200218A76 /* CheckBoxTest.swift in Sources */,
 				899602EE220C3EA1007C7BE4 /* ColourTests.swift in Sources */,
 				897D131121EC86CB0062B0D2 /* DailyGoalsTests.swift in Sources */,
 			);

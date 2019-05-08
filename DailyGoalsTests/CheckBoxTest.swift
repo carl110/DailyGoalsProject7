@@ -9,7 +9,7 @@
 import XCTest
 @testable import DailyGoals
 
-class DateTest: XCTestCase {
+class CheckBoxTest: XCTestCase {
     
     var checkBox = CheckBox()
     var tableViewCell = TableViewCell()
