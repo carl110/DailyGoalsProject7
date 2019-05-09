@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-public enum AlertBox: String {
-
+public enum AlertBox: String, CaseIterable {
+    
     case usePreviouseGoal
     case enterNewGoalAndTasks
     case completeData
-
+    case completeInputs
+    
+    public static func getKey(from value: String) -> AlertBox? {
+        return AlertBox.allCases.first(where: { $0.rawValue == value })
+    }
+    
     func name() -> String {
         return self.rawValue.titlecased()
     }
+    
 }

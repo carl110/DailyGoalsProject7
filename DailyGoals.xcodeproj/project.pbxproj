@@ -574,6 +574,7 @@
 					};
 					897D130B21EC86CB0062B0D2 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 897D12F421EC86C50062B0D2;
 					};
 				};
@@ -900,7 +901,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.carlwainwright.DailyGoalsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyGoals.app/DailyGoals";
 			};
@@ -925,7 +926,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.carlwainwright.DailyGoalsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyGoals.app/DailyGoals";
 			};

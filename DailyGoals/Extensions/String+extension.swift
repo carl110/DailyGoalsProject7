@@ -16,4 +16,30 @@ extension String {
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .capitalized
     }
+    
+    //sets first letter of string to capital
+    var uppercasingFirst: String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    
+    //sets first character of string to lower case
+    var lowercasingFirst: String {
+        return prefix(1).lowercased() + dropFirst()
+    }
+    
+    //convers string to camelCase
+    var camelCase: String {
+        guard !isEmpty else {
+            return ""
+        }
+        
+        //split individual words to sections
+        let parts = self.components(separatedBy: CharacterSet.alphanumerics.inverted)
+        
+        //set first section with lowercase and rest with capital as first character
+        let first = String(describing: parts.first!).lowercasingFirst
+        let rest = parts.dropFirst().map({String($0).uppercasingFirst})
+        
+        return ([first] + rest).joined(separator: "")
+    }
 }

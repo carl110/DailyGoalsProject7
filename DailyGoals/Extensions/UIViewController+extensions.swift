@@ -11,14 +11,14 @@ import UIKit
 
 extension UIViewController {
     //Alertbox with text fields
-    func showGoalTaskDialog(title:String? = nil,
-                         subtitle:String? = nil,
-                         actionTitle:String? = "Add",
-                         goalPlaceHolder:String? = nil,
-                         task1PlaceHolder:String? = nil,
-                         task2PlaceHolder:String? = nil,
-                         task3PlaceHolder:String? = nil,
-                         actionHandler: ((_ goal: String?, _ task1:String?, _ task2:String?, _ task3:String?) -> Void)? = nil) {
+    func showGoalTaskDialog(title: String? = nil,
+                         subtitle: String? = nil,
+                         actionTitle: String? = "Add",
+                         goalPlaceHolder: String? = nil,
+                         task1PlaceHolder: String? = nil,
+                         task2PlaceHolder: String? = nil,
+                         task3PlaceHolder: String? = nil,
+                         actionHandler: ((_ goal: String?, _ task1: String?, _ task2: String?, _ task3: String?) -> Void)? = nil) {
 
         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         alert.addTextField { (goalText:UITextField) in
@@ -68,11 +68,11 @@ extension UIViewController {
 
     }
     //alert box with switch to show options per button set up
-    func alertBoxWithAction(title: String, message: String, options: String..., completion: @escaping (String) -> Void) {
+    func alertBoxWithAction(title: String, message: String, options: String..., completion: @escaping (AlertBox) -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for (_, option) in options.enumerated() {
             alertController.addAction(UIAlertAction.init(title: option, style: .default, handler: { (action) in
-                completion(option)
+                completion(AlertBox.getKey(from: option.camelCase)!)
             }))
         }
         self.present(alertController, animated: true, completion: nil)

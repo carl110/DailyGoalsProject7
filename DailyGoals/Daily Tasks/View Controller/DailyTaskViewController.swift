@@ -109,12 +109,12 @@ class DailyTaskViewController: UIViewController {
             alertBoxWithAction(title: "You have a previously incomplete task",
                                message: "Your previouse goal was \(date.goal), with tasks - \n \(date.task1) \n \(date.task2) \n \(date.task3)", options: AlertBox.usePreviouseGoal.name(), AlertBox.enterNewGoalAndTasks.name()) { (option) in
                                 switch(option) {
-                                case AlertBox.usePreviouseGoal.name():
+                                case .usePreviouseGoal:
                                     self.dailyTaskViewModel.usePreviouseGoal()
                                     self.dailyTaskTableView.sectionData = self.dailyTaskViewModel.sectionData
                                     self.dailyTaskTableView.cellsData = self.dailyTaskViewModel.cellsData
                                     self.dailyTaskTableView.reloadData()
-                                case AlertBox.enterNewGoalAndTasks.name():
+                                case .enterNewGoalAndTasks:
                                     self.initialAlertBox()
                                     
                                 default:
@@ -140,9 +140,9 @@ class DailyTaskViewController: UIViewController {
                                 //Alert reruns initial alert
                                 self.alertBoxWithAction(title: "Goals and Tasks",
                                                         message: "You must complete setails for the goal and all 3 tasks",
-                                                        options: "Complete Inputs") { (option) in
+                                                        options: AlertBox.completeInputs.name()) { (option) in
                                                             switch(option) {
-                                                            case "Complete Inputs":
+                                                            case .completeInputs:
                                                                 self.initialAlertBox()
                                                             default:
                                                                 break
@@ -172,9 +172,9 @@ class DailyTaskViewController: UIViewController {
             rowCell.forEach { (row) in
                 if (tableHeader.labelTitle.text?.isEmpty)! || ((row as! TableViewCell).label.text?.isEmpty)! {
                     
-                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: AlertBox.completeData.rawValue.titlecased()) { (option) in
+                    alertBoxWithAction(title: "Incomplete Data", message: "You cannot leave any of the tasks or goal blank, please complete these fully to proceed.", options: AlertBox.completeData.name()) { (option) in
                         switch(option) {
-                        case AlertBox.completeData.name():
+                        case .completeData:
                             self.editTableData()
                         default:
                             break

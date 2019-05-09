@@ -17,6 +17,9 @@ class CoreDataTests: XCTestCase {
     override func setUp() {
         super.setUp()
         coreDataManager = CoreDataManager.shared
+        
+        //remove all data ie. dummy data loaded from AppDelegate
+        coreDataManager.deleteAllSavedData()
     }
 
     func initCoreDataManager() {
