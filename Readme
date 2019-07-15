@@ -1,0 +1,55 @@
+This is project 7 on the OpenClassrooms iOS Developer course
+
+App requirements
+
+Every morning, the app will ask the user to write down a single goal for the day and the 3 tasks that will help them achieve it.
+
+If the goal from the previous day was not achieved, it will be offered for the current day.
+
+Tasks and goals can be modified during the day. Only the most recent modification for each day will be stored.
+
+The user will receive scheduled check-ins from the app asking them to mark the task’s progress.
+
+When the user completes one of the tasks, the app will perform a small "congrats" animation. When the user marks the goal as "achieved", the app will mark all of the tasks as "completed" and will perform a more impressive "congrats" animation. If the user completes all of the tasks, the app will automatically mark the goal as "completed", but it will also provide the user with the option to mark the goal as "not yet achieved".
+
+The user will have access to 3 groups of information:
+
+    Today's ToDo List
+    History log
+    Progress diagram
+
+Today's ToDo List
+
+"Today’s view" is the most important focus point for the user. Every time they open an application it will act as their dashboard of the day. The goal must stand out visually in comparison to the tasks. The view must provide the user with the ability to mark a task or a goal as ‘completed’ or to ‘undo’ an action. Add an animation for each of these actions (a different animation for each action). Example animations can include messages, such as:
+
+    on task completion: “Great job on making progress!”
+    on goal completion: “Congrats on achieving your goal!”
+    on unchecking a task: “ah, no biggie, you’ll get it next time!”
+
+In addition, you may create an array of animation variations for each situation type and pick a different one each time.
+History log
+
+The History log will provide a full log of all of the user’s entries on the app. The latest log will be visible by default and appear at the top of the list. Earlier logs will become visible as the user scrolls to reveal content at the bottom.
+
+The view must display a summary for each month in addition to daily details. The logs for goals must stand out visually from the tasks.
+
+The History log cannot be edited.
+Progress diagram
+
+The Progress diagram must present the user’s progress in the form of a diagram.
+
+Come up with a meaningful visualization to present the reports. Here are some examples:
+
+    Demonstrate daily successes - (fully successful days), the number of goal and tasks completed, work in progress (partial task completion) using a percentage of completed items. 
+    Demonstrate goal successes - similar to the above, however, taking in account only fully completed goals, not partially completed tasks.
+
+Feel free to come up with your own visualization which you believe will benefit the user's productivity.
+
+Visualization tips:
+
+    Group data by week or month to present daily progress.
+    Use pagination to present grouped data, one group at a time. For example, monthly view per page with each month accessible using paginated scrolling.
+    Provide all the necessary information to identify the data presented at each moment.
+    Provide detailed and general comparison for each segment of presented data. For example, for a monthly grouping, weekly or daily comparison to the previous month could be useful as well as general monthly improvement (comparison to the previous  month).
+
+The Progress diagram is not editable.
